@@ -2,7 +2,7 @@
 
 > Tiny tools for annoying tasks.
 
-Ujjwal Tools is a local-first collection of focused browser utilities for documents, development, text, colour, and everyday work. The app is built with Next.js App Router and is intended for [app.ujjwaluzu.in](https://app.ujjwaluzu.in).
+Ujjwal Tools is a local-first collection of focused browser utilities for documents, development, text, colour, and everyday work. The app is built with Next.js App Router and is intended for [tools.ujjwaluzu.in](https://tools.ujjwaluzu.in).
 
 When a tool can run in the browser, it does. User inputs and files are not uploaded or stored by the application.
 
