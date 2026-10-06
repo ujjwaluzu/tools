@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+build/
+coverage/
+.env*
+!.env.example
+*.tsbuildinfo
+next-env.d.ts
+.npm-cache/
+public/pdf.worker.min.mjs
+docs

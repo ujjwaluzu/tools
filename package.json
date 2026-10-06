@@ -1,0 +1,33 @@
+{
+  "name": "ujjwal-tools",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "predev": "node scripts/copy-pdf-worker.mjs",
+    "dev": "next dev",
+    "prebuild": "node scripts/copy-pdf-worker.mjs",
+    "build": "next build",
+    "prestart": "node scripts/copy-pdf-worker.mjs",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^16.1.0",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.4.299",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^16.1.0",
+    "typescript": "^5.9.0"
+  }
+}
