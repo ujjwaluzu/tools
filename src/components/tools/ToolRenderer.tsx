@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import type { ComponentType } from "react";
+import type { ToolCategory } from "@/lib/tools/registry";
 
 const toolComponents: Record<string, ComponentType> = {
   json: dynamic(() => import("@/components/tools/implementations/JsonFormatter").then((module) => module.JsonFormatter)),
@@ -16,7 +17,10 @@ const toolComponents: Record<string, ComponentType> = {
   "to-jpg": dynamic(() => import("@/components/tools/implementations/pdf/PdfToImages").then((module) => module.PdfToJpgTool)),
 };
 
-export function ToolRenderer({ slug }: { slug: string }) {
+const ImageTool = dynamic<{ tool: string }>(() => import("@/components/tools/implementations/images/ImageSuite").then((module) => module.ImageSuite), { ssr: false });
+
+export function ToolRenderer({ slug, category }: { slug: string; category: ToolCategory }) {
+  if (category === "images") return <ImageTool tool={slug} />;
   const Tool = toolComponents[slug];
   return Tool ? <Tool /> : null;
 }

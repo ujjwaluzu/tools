@@ -21,5 +21,5 @@ export default async function ToolPage({ params }: { params: Promise<{ category:
   const { category, tool: slug } = await params;
   const tool = getTool(category, slug);
   if (!tool) notFound();
-  return <ToolShell tool={tool}><ToolRenderer slug={tool.slug} /></ToolShell>;
+  return <ToolShell tool={tool}><ToolRenderer slug={tool.slug} category={tool.category} /></ToolShell>;
 }

@@ -49,6 +49,26 @@ export const categories: CategoryDefinition[] = [
 ];
 
 export const tools: ToolDefinition[] = [
+  ...[
+    ["convert", "Convert Images", "Convert images between common formats directly in your browser.", "Convert Images Online — Ujjwal Tools", ["image", "convert", "png", "jpg", "webp", "avif", "svg"]],
+    ["resize", "Resize Images", "Resize images quickly in your browser without uploading them.", "Resize Images Online — Ujjwal Tools", ["image", "resize", "dimensions", "scale"]],
+    ["compress", "Compress Images", "Compress images locally in your browser and compare the actual file size.", "Compress Images Online — Ujjwal Tools", ["image", "compress", "quality", "file size"]],
+    ["crop", "Crop Images", "Crop images to a preset or custom aspect ratio in your browser.", "Crop Images Online — Ujjwal Tools", ["image", "crop", "aspect ratio"]],
+    ["transform", "Transform Images", "Rotate and flip images locally in your browser.", "Transform Images Online — Ujjwal Tools", ["image", "rotate", "flip"]],
+    ["adjust", "Adjust Images", "Tune brightness, contrast, saturation, grayscale, and blur.", "Adjust Images Online — Ujjwal Tools", ["image", "brightness", "contrast", "saturation", "blur"]],
+    ["base64", "Image to Base64", "Encode an image as a Data URL or raw Base64 locally.", "Image to Base64 — Ujjwal Tools", ["image", "base64", "data url", "encode"]],
+    ["base64-to-image", "Base64 to Image", "Decode image Base64 locally and preview the resulting image.", "Base64 to Image — Ujjwal Tools", ["image", "base64", "decode", "data url"]],
+    ["exif", "EXIF Viewer", "View supported image metadata locally in your browser.", "EXIF Viewer — Ujjwal Tools", ["image", "exif", "metadata", "gps", "camera"]],
+    ["remove-exif", "Remove Image Metadata", "Re-encode an image to remove metadata where supported.", "Remove Image Metadata — Ujjwal Tools", ["image", "exif", "metadata", "remove"]],
+    ["favicon", "Favicon Generator", "Generate 16, 32, and 48 pixel PNG favicons from an image.", "Favicon Generator — Ujjwal Tools", ["favicon", "png", "icon", "website"]],
+    ["pwa-icons", "PWA Icon Generator", "Generate 192 and 512 pixel app icons and a manifest snippet.", "PWA Icon Generator — Ujjwal Tools", ["pwa", "app icon", "manifest", "png"]],
+    ["thumbnail", "Thumbnail Generator", "Create image thumbnails with fit or crop sizing.", "Thumbnail Generator — Ujjwal Tools", ["thumbnail", "resize", "crop", "image"]],
+    ["og", "OG Image Generator", "Create a clean Open Graph image for a webpage or article.", "OG Image Generator — Ujjwal Tools", ["open graph", "og", "social image", "social preview"]],
+  ].map(([slug, title, description, metaTitle, keywords]) => ({
+    slug: slug as string, category: "images" as const, title: title as string, description: description as string,
+    metaTitle: metaTitle as string, keywords: keywords as string[], icon: "▧", href: `/tools/images/${slug}`,
+    processing: "client" as const, privacyNote: "Processed locally in your browser. Your image was not uploaded.",
+  })),
   {
     slug: "merge", category: "pdf", title: "Merge PDF", metaTitle: "Merge PDF Files Online",
     description: "Combine multiple PDF files into one PDF directly in your browser.",
@@ -119,7 +139,7 @@ export function getToolsForCategory(categorySlug: string): ToolDefinition[] {
 }
 
 export function getRelatedTools(tool: ToolDefinition, limit = 3): ToolDefinition[] {
-  return tools.filter((candidate) => candidate.slug !== tool.slug)
+  return tools.filter((candidate) => candidate.href !== tool.href)
     .sort((a, b) => Number(b.category === tool.category) - Number(a.category === tool.category))
     .slice(0, limit);
 }
