@@ -2,11 +2,19 @@
 
 > Tiny tools for annoying tasks.
 
-Ujjwal Tools is a local-first collection of focused browser utilities for documents, development, text, colour, and everyday work. The app is built with Next.js App Router and is intended for [tools.ujjwaluzu.in](https://tools.ujjwaluzu.in).
+Ujjwal Tools is a local-first collection of focused browser utilities for images, PDFs, development, text, colour, and everyday work. The app is built with Next.js App Router and is intended for [tools.ujjwaluzu.in](https://tools.ujjwaluzu.in).
 
 When a tool can run in the browser, it does. User inputs and files are not uploaded or stored by the application.
 
 ## Available tools
+
+### Images
+
+- Convert, resize, compress, crop, rotate, flip, and adjust images
+- Image Base64 encoding and decoding
+- JPEG EXIF viewer and metadata re-encoding
+- PNG favicon and PWA icon generation
+- Thumbnail and Open Graph image generation
 
 ### PDF
 
@@ -34,12 +42,14 @@ The catalogue also includes categories for Images, Web & SEO, Markdown, Git & Gi
 
 ## Local processing and privacy
 
-The current tools process data locally in the browser. This includes PDF merging, page extraction, image-to-PDF conversion, and PDF page rendering.
+File and text tools process data locally in the browser. This includes image conversion and editing, image metadata inspection, PDF merging and page extraction, image-to-PDF conversion, and PDF page rendering.
 
 - Files are kept in browser memory while a tool is in use.
 - Generated files are offered directly for download and are not persisted by the application.
 - The app does not send tool input or file contents to analytics or external processors.
 - Password-protected PDFs are rejected rather than bypassed.
+- Image processing is limited to 25 MB per file and 24 megapixels to help protect browser memory.
+- SVG input is sanitized before rasterization. EXIF reading currently supports JPEG metadata; removing metadata re-encodes to PNG.
 
 See [the product documentation](docs/tools/README.md), [privacy guidance](docs/tools/PRIVACY.md), and [security rules](docs/tools/SECURITY.md) for the full product contract.
 
@@ -100,10 +110,12 @@ src/
     sitemap.ts
   components/tools/
     implementations/     # Focused UI and state for each tool
+      images/             # Image tool workspace
     pdf/                 # Reusable PDF UI: file lists, page selection, downloads
     ToolShell.tsx        # Shared page frame, privacy note, related tools
     primitives.tsx       # Dropzone, progress, errors, empty states, actions
   lib/tools/
+    images/               # Local image decoding, validation, EXIF, and canvas processing
     registry.ts          # Source of truth for categories and tool definitions
     pdf/                 # Browser-only validation and processing services
 scripts/
