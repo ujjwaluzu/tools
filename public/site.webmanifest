@@ -1,0 +1,14 @@
+{
+  "name": "Ujjwal Tools",
+  "short_name": "Ujjwal Tools",
+  "description": "Small, useful tools for everyday, developer, document, and creative tasks.",
+  "start_url": "/",
+  "scope": "/",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#f7f7f3",
+  "background_color": "#f7f7f3",
+  "display": "standalone"
+}

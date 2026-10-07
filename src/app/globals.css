@@ -30,7 +30,7 @@ button:disabled { cursor: not-allowed; opacity: .45; }
 .site-header { height: 70px; border-bottom: 1px solid rgba(32, 35, 31, .08); background: rgba(247, 247, 243, .94); }
 .header-inner, .footer-inner { width: min(1280px, calc(100% - 48px)); height: 100%; margin: auto; display: flex; align-items: center; justify-content: space-between; }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-family: Manrope, sans-serif; font-size: 16px; font-weight: 800; letter-spacing: -.04em; }
-.brand-mark { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 9px; background: var(--green); color: white; font-size: 15px; letter-spacing: -.09em; }
+.brand-logo { display: block; width: 31px; height: 31px; object-fit: contain; }
 .header-nav { display: flex; gap: 28px; color: var(--muted); font-size: 13px; font-weight: 600; }
 .header-nav a:hover, .breadcrumbs a:hover { color: var(--green); }
 .site-footer { margin-top: 88px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
@@ -316,7 +316,7 @@ h1, h2, p { margin-top: 0; }
   .site-header { height: 61px; }
   .header-nav { gap: 15px; font-size: 11px; }
   .brand { font-size: 14px; }
-  .brand-mark { width: 28px; height: 28px; }
+  .brand-logo { width: 28px; height: 28px; }
   .hero { min-height: auto; display: block; padding-top: 48px; padding-bottom: 31px; }
   .hero h1 { margin-top: 16px; font-size: clamp(43px, 12vw, 59px); }
   .hero-copy > p { font-size: 14px; }

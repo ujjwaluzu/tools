@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 
@@ -7,6 +8,15 @@ export const metadata: Metadata = {
   title: { default: "Ujjwal Tools — Tiny tools for annoying tasks", template: "%s — Ujjwal Tools" },
   description: "Small, useful tools for everyday, developer, document, and creative tasks. Private by default, with local processing whenever possible.",
   applicationName: "Ujjwal Tools",
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+    other: [{ rel: "shortcut icon", url: "/favicon.ico", type: "image/x-icon" }],
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     siteName: "Ujjwal Tools",
@@ -25,8 +35,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <header className="site-header">
           <div className="header-inner">
             <Link className="brand" href="/tools" aria-label="Ujjwal Tools home">
-              <span className="brand-mark" aria-hidden="true">u.</span>
-              <span>Ujjwal Tools</span>
+              <Image className="brand-logo" src="/android-chrome-192x192.png" alt="Ujjwal Tools" width={31} height={31} priority />
             </Link>
             <nav className="header-nav" aria-label="Main navigation">
               <Link href="/tools">All tools</Link>
