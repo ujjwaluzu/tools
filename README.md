@@ -6,39 +6,32 @@ Ujjwal Tools is a local-first collection of focused browser utilities for images
 
 When a tool can run in the browser, it does. User inputs and files are not uploaded or stored by the application.
 
-## Available tools
+## Tool status
 
-### Images
+The lists below reflect the tool catalogue and implementation in this repository. **Available** means the tool has a working page in the app. Categories can appear in the catalogue before they have tools.
 
-- Convert, resize, compress, crop, rotate, flip, and adjust images
-- Image Base64 encoding and decoding
-- JPEG EXIF viewer and metadata re-encoding
-- PNG favicon and PWA icon generation
-- Thumbnail and Open Graph image generation
+### Available now
 
-### PDF
+| Category | Tools | State |
+| --- | --- | --- |
+| Images | Convert, resize, compress, crop, rotate/flip, adjust, image to Base64, Base64 to image, EXIF viewer, remove image metadata, favicon generator, PWA icon generator, thumbnail generator, Open Graph image generator | Implemented; browser-local processing |
+| PDF | Merge PDF, split PDF, images to PDF, PDF to PNG, PDF to JPG | Implemented; browser-local processing |
+| Developer | JSON formatter/validator/minifier, word counter | Implemented; browser-local processing |
+| Security & Encoding | Base64 encoder/decoder, UUID generator | Implemented; browser-local processing |
+| Color | HEX/RGB/HSL color converter | Implemented; browser-local processing |
 
-- Merge PDF
-- Split PDF and extract selected pages
-- Images to PDF
-- PDF to PNG
-- PDF to JPG
+### Coming soon / planned
 
-### Developer and text
+These are roadmap ideas, not yet available tools or release commitments. Work is expected to be incremental.
 
-- JSON Formatter, Validator, and Minifier
-- Word Counter
+- **Developer and web:** JWT decoder, URL encoder/decoder, metadata generator, sitemap and robots.txt generators.
+- **Markdown:** Markdown writing, formatting, and preview utilities.
+- **Data:** CSV/JSON conversion and cleanup utilities, plus more advanced data tools.
+- **PDF and images:** PDF editing, OCR, and image background removal.
+- **Git & GitHub:** small workflow helpers and GitHub tools.
+- **Everyday and student:** focused utilities for common daily and study tasks.
 
-### Security and encoding
-
-- Base64 Encoder / Decoder
-- UUID Generator
-
-### Colour
-
-- HEX, RGB, and HSL Color Converter
-
-The catalogue also includes categories for Images, Web & SEO, Markdown, Git & GitHub, Data, Converters, Everyday, and Student tools. New tools are added through the central registry.
+The app also has catalogue categories for Web & SEO, Markdown, Git & GitHub, Data, Converters, Everyday, and Student. Some categories do not have a tool yet. New tools are added through the central registry.
 
 ## Local processing and privacy
 
