@@ -47,7 +47,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <footer className="site-footer">
           <div className="footer-inner">
             <span>Small tools for annoying tasks.</span>
-            <span>Made to be useful. Private by default.</span>
+            <nav className="footer-links" aria-label="External links">
+              <a href="https://ujjwaluzu.in" target="_blank" rel="noopener noreferrer">Portfolio</a>
+              <a href="https://blog.ujjwaluzu.in" target="_blank" rel="noopener noreferrer">Blog</a>
+              <a href="https://status.ujjwaluzu.in" target="_blank" rel="noopener noreferrer">Status</a>
+            </nav>
           </div>
         </footer>
       </body>

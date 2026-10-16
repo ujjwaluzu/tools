@@ -35,6 +35,8 @@ button:disabled { cursor: not-allowed; opacity: .45; }
 .header-nav a:hover, .breadcrumbs a:hover { color: var(--green); }
 .site-footer { margin-top: 88px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 .footer-inner { min-height: 74px; }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a:hover { color: var(--green); }
 
 .hero { min-height: 480px; display: grid; grid-template-columns: 1.25fr .75fr; align-items: center; gap: 50px; padding-top: 34px; padding-bottom: 44px; }
 .hero-copy { max-width: 630px; }
