@@ -3,6 +3,8 @@
 import dynamic from "next/dynamic";
 import type { ComponentType } from "react";
 import type { ToolCategory } from "@/lib/tools/registry";
+import type { Mode } from "@/components/tools/implementations/DeveloperSuite";
+import type { WebMode } from "@/components/tools/implementations/WebSuite";
 
 const toolComponents: Record<string, ComponentType> = {
   json: dynamic(() => import("@/components/tools/implementations/JsonFormatter").then((module) => module.JsonFormatter)),
@@ -18,9 +20,16 @@ const toolComponents: Record<string, ComponentType> = {
 };
 
 const ImageTool = dynamic<{ tool: string }>(() => import("@/components/tools/implementations/images/ImageSuite").then((module) => module.ImageSuite), { ssr: false });
+const DeveloperSuite = dynamic<{ mode: Mode }>(() => import("@/components/tools/implementations/DeveloperSuite").then((module) => module.DeveloperSuite), { ssr: false });
+const WebSuite = dynamic<{ mode: WebMode }>(() => import("@/components/tools/implementations/WebSuite").then((module) => module.WebSuite), { ssr: false });
+
+const suiteTools = new Set(["json-to-csv", "csv-to-json", "json-to-typescript", "json-to-yaml", "case-converter", "remove-duplicate-lines", "sort-lines", "remove-empty-lines", "find-replace", "diff", "url-encode", "html-entities", "unicode", "regex", "cron-explainer", "cron-generator", "gitignore", "url-parser", "query-string", "user-agent", "http-status", "robots-tester", "sitemap-validator", "jwt-decoder", "hash", "hmac"]);
+const webTools = new Set(["meta-generator", "og-preview", "x-card-preview", "json-ld", "sitemap-generator", "robots-generator", "canonical-checker", "seo-preview", "slug-generator", "http-headers", "metadata-inspector", "social-metadata-checker"]);
 
 export function ToolRenderer({ slug, category }: { slug: string; category: ToolCategory }) {
   if (category === "images") return <ImageTool tool={slug} />;
+  if (suiteTools.has(slug)) return <DeveloperSuite mode={slug as Mode} />;
+  if (webTools.has(slug)) return <WebSuite mode={slug as WebMode} />;
   const Tool = toolComponents[slug];
   return Tool ? <Tool /> : null;
 }

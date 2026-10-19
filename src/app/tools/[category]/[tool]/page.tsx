@@ -4,7 +4,7 @@ import { ToolRenderer } from "@/components/tools/ToolRenderer";
 import { ToolShell } from "@/components/tools/ToolShell";
 import { getTool, tools } from "@/lib/tools/registry";
 
-export function generateStaticParams() { return tools.map(({ category, slug }) => ({ category, tool: slug })); }
+export function generateStaticParams() { return tools.map(({ category, href, slug }) => ({ category: href.split("/")[2] || category, tool: slug })); }
 
 export async function generateMetadata({ params }: { params: Promise<{ category: string; tool: string }> }): Promise<Metadata> {
   const { category, tool: slug } = await params;
