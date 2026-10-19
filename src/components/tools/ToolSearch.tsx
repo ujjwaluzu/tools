@@ -4,12 +4,15 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { categories, tools } from "@/lib/tools/registry";
 
+// href is the catalogue identity; a few registry entries share a slug across categories.
+const uniqueTools = Array.from(new Map(tools.map((tool) => [tool.href, tool])).values());
+
 export function ToolSearch() {
   const [query, setQuery] = useState("");
   const results = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase();
     if (!normalized) return [];
-    return tools.filter((tool) => {
+    return uniqueTools.filter((tool) => {
       const category = categories.find((item) => item.slug === tool.category)?.name ?? "";
       return [tool.title, tool.description, category, ...tool.keywords].join(" ").toLocaleLowerCase().includes(normalized);
     });
@@ -18,7 +21,6 @@ export function ToolSearch() {
   return (
     <div className="search-wrap">
       <label className="search-box" htmlFor="tool-search">
-        <span className="search-glyph" aria-hidden="true">⌕</span>
         <input
           id="tool-search" type="search" role="combobox" aria-autocomplete="list" aria-haspopup="listbox"
           value={query} onChange={(event) => setQuery(event.target.value)}
@@ -28,14 +30,13 @@ export function ToolSearch() {
             if (event.key === "Enter" && results[0]) window.location.assign(results[0].href);
           }}
         />
-        <kbd>Enter</kbd>
         {query && <button className="search-clear" type="button" aria-label="Clear search" onClick={() => setQuery("")}>×</button>}
+        <button className="search-submit" type="button" onClick={() => results[0] && window.location.assign(results[0].href)}>Search</button>
       </label>
       {query.trim() && (
         <div className="search-results" id="tool-search-results" role="listbox" aria-label="Tool search results">
           {results.length ? results.map((tool) => (
             <Link role="option" aria-selected="false" href={tool.href} className="search-result" key={tool.href} onClick={() => setQuery("")}>
-              <span className="tool-icon small-icon" aria-hidden="true">{tool.icon}</span>
               <span><strong>{tool.title}</strong><small>{tool.description}</small></span>
               <span aria-hidden="true">↗</span>
             </Link>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Small tools for annoying tasks</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;font-family:'Instrument Sans',system-ui,sans-serif;color:#0a0a0a;background:#fff}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p{margin:0}
+.tag{font:500 11px/1 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#6b6b6b;border:1px solid #d9d9d9;padding:5px 7px;display:inline-block;background:#fff}
+.cell{background:#fff;padding:24px;display:flex;flex-direction:column;gap:10px;min-height:150px}
+.cell:hover{background:#f4f4f4}
+.dots{background-image:radial-gradient(circle,#0a0a0a 1.3px,transparent 1.8px);background-size:5px 5px}
+.hatch{background:repeating-linear-gradient(135deg,#e6e6e6 0 1px,#fff 1px 5px)}
+.grid{display:grid;gap:1px;background:#e4e4e4;border-top:1px solid #e4e4e4}
+</style>
+</head>
+<body>
+<div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;border-bottom:1px solid #e4e4e4">
+<a href="#" aria-label="Home" style="display:flex;width:30px;height:30px;background:#0a0a0a;border-radius:8px;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 3v6a4 4 0 0 0 8 0V3"/></svg></a>
+<div style="display:flex;gap:28px;font-size:14px;color:#3d3d3d"><a href="#">All tools</a><a href="#">Categories</a></div>
+</div>
+<div style="display:flex">
+<div class="hatch" style="flex:1;min-width:0;border-right:1px solid #e4e4e4"></div>
+<div style="flex:0 1 1040px;min-width:0">
+<div style="padding:72px 24px 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px;border-bottom:1px solid #e4e4e4">
+<span class="tag">New · 62 tools</span>
+<h1 style="font-size:clamp(40px,7vw,76px);font-weight:600;letter-spacing:-0.045em;line-height:1.02">Small tools for<br><span style="color:#8c8c8c">annoying tasks.</span></h1>
+<p style="font-size:17px;line-height:1.5;color:#5c5c5c;max-width:460px">Quick, useful utilities that get out of your way. Private by default, with local processing whenever possible.</p>
+<div style="display:flex;align-items:center;gap:8px;width:min(520px,100%);box-sizing:border-box;border:1px solid #d4d4d4;border-radius:10px;padding:6px 6px 6px 16px;background:#fff">
+<input aria-label="Search tools" placeholder="Search tools…" style="flex:1;min-width:0;border:0;outline:0;font:400 15px 'Instrument Sans',sans-serif;background:transparent">
+<a href="#" style="background:#0a0a0a;color:#fff;font-size:14px;font-weight:500;padding:10px 16px;border-radius:7px">Search</a>
+</div>
+<p style="font:400 12px 'DM Mono',monospace;color:#6b6b6b">Your inputs stay in your browser for these tools.</p>
+<div style="position:relative;width:100%;height:280px;overflow:hidden;margin-top:12px">
+<div class="dots" style="position:absolute;left:50%;top:10px;width:900px;height:900px;margin-left:-450px;border-radius:50%;-webkit-mask-image:radial-gradient(circle closest-side,transparent 62%,#000 70%,#000 88%,transparent 100%);mask-image:radial-gradient(circle closest-side,transparent 62%,#000 70%,#000 88%,transparent 100%)"></div>
+<div style="position:absolute;left:50%;top:70px;width:720px;height:720px;margin-left:-360px;box-sizing:border-box;border:34px solid #0a0a0a;border-radius:50%;-webkit-mask-image:linear-gradient(#000 35%,transparent 100%);mask-image:linear-gradient(#000 35%,transparent 100%)"></div>
+</div>
+</div>
+<div class="hatch" style="height:28px;border-bottom:1px solid #e4e4e4"></div>
+<div style="padding:40px 24px;text-align:center;border-bottom:1px solid #e4e4e4">
+<p class="tag" style="border:0;padding:0;margin-bottom:18px">Formats and files we handle</p>
+<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px 40px;font-size:18px;font-weight:600;letter-spacing:-0.02em;color:#2b2b2b"><span>JSON</span><span>PDF</span><span>PNG</span><span>Base64</span><span>CSV</span><span>YAML</span><span>JWT</span></div>
+</div>
+<div style="padding:56px 24px 32px">
+<span class="tag">Why it’s different</span>
+<h2 style="font-size:clamp(28px,4vw,40px);font-weight:600;letter-spacing:-0.035em;line-height:1.1;margin-top:16px;max-width:520px">Simple tools, <span style="color:#8c8c8c">kept private and out of your way.</span></h2>
+</div>
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+<div class="cell" style="padding:24px 24px 28px;gap:12px">
+<div style="height:150px;display:flex;align-items:center;justify-content:center"><div style="position:relative;width:110px;height:110px;transform:rotate(18deg)"><div class="dots" style="position:absolute;inset:0;-webkit-mask-image:linear-gradient(135deg,#000,rgba(0,0,0,.15));mask-image:linear-gradient(135deg,#000,rgba(0,0,0,.15))"></div><div style="position:absolute;right:-14px;top:-14px;width:56px;height:56px;background:#0a0a0a"></div></div></div>
+<span class="tag" style="align-self:flex-start">Local</span>
+<h3 style="font-size:20px;font-weight:600;letter-spacing:-0.02em">Runs in your browser</h3>
+<p style="font-size:14px;line-height:1.5;color:#5c5c5c">Your inputs stay on your device whenever a tool can process them locally.</p>
+</div>
+<div class="cell" style="padding:24px 24px 28px;gap:12px">
+<div style="height:150px;display:flex;align-items:center;justify-content:center"><div class="dots" style="width:120px;height:120px;border-radius:50%;-webkit-mask-image:radial-gradient(circle at 35% 35%,rgba(0,0,0,.12),#000 85%);mask-image:radial-gradient(circle at 35% 35%,rgba(0,0,0,.12),#000 85%)"></div></div>
+<span class="tag" style="align-self:flex-start">Focused</span>
+<h3 style="font-size:20px;font-weight:600;letter-spacing:-0.02em">One tool, one job</h3>
+<p style="font-size:14px;line-height:1.5;color:#5c5c5c">Each tool does a single annoying task well, with no menus to dig through.</p>
+</div>
+<div class="cell" style="padding:24px 24px 28px;gap:12px">
+<div style="height:150px;display:flex;align-items:center;justify-content:center"><div style="position:relative;width:120px;height:120px"><div class="dots" style="position:absolute;left:44px;top:0;width:32px;height:120px"></div><div class="dots" style="position:absolute;left:0;top:44px;width:120px;height:32px"></div><div style="position:absolute;left:44px;top:44px;width:32px;height:32px;background:#0a0a0a"></div></div></div>
+<span class="tag" style="align-self:flex-start">Fast</span>
+<h3 style="font-size:20px;font-weight:600;letter-spacing:-0.02em">Find it in seconds</h3>
+<p style="font-size:14px;line-height:1.5;color:#5c5c5c">Search or browse by drawer, paste or drop your file, and get on with your day.</p>
+</div>
+</div>
+<div style="padding:56px 24px 32px;border-top:1px solid #e4e4e4">
+<span class="tag">Find your drawer</span>
+<h2 style="font-size:clamp(28px,4vw,40px);font-weight:600;letter-spacing:-0.035em;line-height:1.1;margin-top:16px">Browse <span style="color:#8c8c8c">categories</span></h2>
+</div>
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+<a href="#" class="cell" style="min-height:104px;justify-content:space-between"><span class="tag" style="border:0;padding:0">01</span><span style="font-weight:500;font-size:16px">PDF</span></a>
+<a href="#" class="cell" style="min-height:104px;justify-content:space-between"><span class="tag" style="border:0;padding:0">02</span><span style="font-weight:500;font-size:16px">Images</span></a>
+<a href="#" class="cell" style="min-height:104px;justify-content:space-between"><span class="tag" style="border:0;padding:0">03</span><span style="font-weight:500;font-size:16px">Developer</span></a>
+<a href="#" class="cell" style="min-height:104px;justify-content:space-between"><span class="tag" style="border:0;padding:0">04</span><span style="font-weight:500;font-size:16px">Web &amp; SEO</span></a>
+<a href="#" class="cell" style="min-height:104px;justify-content:space-between"><span class="tag" style="border:0;padding:0">05</span><span style="font-weight:500;font-size:16px">Color</span></a>
+<a href="#" class="cell" style="min-height:104px;justify-content:space-between"><span class="tag" style="border:0;padding:0">06</span><span style="font-weight:500;font-size:16px">Security &amp; Encoding</span></a>
+<div class="cell" style="min-height:104px;justify-content:space-between;color:#6b6b6b"><span class="tag" style="border:0;padding:0">07</span><span style="font-size:16px">Markdown · Soon</span></div>
+<div class="cell" style="min-height:104px;justify-content:space-between;color:#6b6b6b"><span class="tag" style="border:0;padding:0">08</span><span style="font-size:16px">Git &amp; GitHub · Soon</span></div>
+<div class="cell" style="min-height:104px;justify-content:space-between;color:#6b6b6b"><span class="tag" style="border:0;padding:0">09</span><span style="font-size:16px">Data · Soon</span></div>
+<div class="cell" style="min-height:104px;justify-content:space-between;color:#6b6b6b"><span class="tag" style="border:0;padding:0">10</span><span style="font-size:16px">Converters · Soon</span></div>
+<div class="cell" style="min-height:104px;justify-content:space-between;color:#6b6b6b"><span class="tag" style="border:0;padding:0">11</span><span style="font-size:16px">Everyday · Soon</span></div>
+<div class="cell" style="min-height:104px;justify-content:space-between;color:#6b6b6b"><span class="tag" style="border:0;padding:0">12</span><span style="font-size:16px">Student · Soon</span></div>
+</div>
+<div style="padding:56px 24px 32px;border-top:1px solid #e4e4e4">
+<span class="tag">A good place to start</span>
+<h2 style="font-size:clamp(28px,4vw,40px);font-weight:600;letter-spacing:-0.035em;line-height:1.1;margin-top:16px">Popular <span style="color:#8c8c8c">tools</span></h2>
+</div>
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+<a href="#" class="cell"><div style="display:flex;justify-content:space-between"><span class="tag">Developer</span><span>↗</span></div><h3 style="font-size:18px;font-weight:600;letter-spacing:-0.02em;margin-top:14px">JSON Formatter</h3><p style="font-size:14px;line-height:1.5;color:#5c5c5c">Format, validate, and minify JSON without sending it anywhere.</p></a>
+<a href="#" class="cell"><div style="display:flex;justify-content:space-between"><span class="tag">Developer</span><span>↗</span></div><h3 style="font-size:18px;font-weight:600;letter-spacing:-0.02em;margin-top:14px">Word Counter</h3><p style="font-size:14px;line-height:1.5;color:#5c5c5c">Count words, characters, and lines as you type.</p></a>
+<a href="#" class="cell"><div style="display:flex;justify-content:space-between"><span class="tag">Security &amp; Encoding</span><span>↗</span></div><h3 style="font-size:18px;font-weight:600;letter-spacing:-0.02em;margin-top:14px">Base64 Encoder / Decoder</h3><p style="font-size:14px;line-height:1.5;color:#5c5c5c">Encode text to Base64 or decode a Base64 value locally.</p></a>
+<a href="#" class="cell"><div style="display:flex;justify-content:space-between"><span class="tag">Security &amp; Encoding</span><span>↗</span></div><h3 style="font-size:18px;font-weight:600;letter-spacing:-0.02em;margin-top:14px">UUID Generator</h3><p style="font-size:14px;line-height:1.5;color:#5c5c5c">Generate one or more random UUIDs in your browser.</p></a>
+<a href="#" class="cell"><div style="display:flex;justify-content:space-between"><span class="tag">Color</span><span>↗</span></div><h3 style="font-size:18px;font-weight:600;letter-spacing:-0.02em;margin-top:14px">Color Converter</h3><p style="font-size:14px;line-height:1.5;color:#5c5c5c">Convert between HEX, RGB, and HSL, with a live preview.</p></a>
+<a href="#" class="cell" style="background:#0a0a0a;color:#fff;justify-content:space-between"><span class="tag" style="background:transparent;color:#bdbdbd;border-color:#444;align-self:flex-start">The toolbox</span><h3 style="font-size:22px;font-weight:600;letter-spacing:-0.03em">Browse all 62 tools →</h3></a>
+</div>
+<div style="padding:56px 24px 32px;border-top:1px solid #e4e4e4">
+<span class="tag">The toolbox</span>
+<h2 style="font-size:clamp(28px,4vw,40px);font-weight:600;letter-spacing:-0.035em;line-height:1.1;margin-top:16px">All available <span style="color:#8c8c8c">tools</span></h2>
+</div>
+<div style="border-top:1px solid #e4e4e4">
+<a href="#" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding:18px 24px;border-bottom:1px solid #e4e4e4"><span style="flex:0 0 200px;font-weight:600">Convert Images</span><span style="flex:1 1 280px;font-size:14px;color:#5c5c5c">Convert images between common formats directly in your browser.</span><span class="tag">Images</span></a>
+<a href="#" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding:18px 24px;border-bottom:1px solid #e4e4e4"><span style="flex:0 0 200px;font-weight:600">Merge PDF</span><span style="flex:1 1 280px;font-size:14px;color:#5c5c5c">Combine multiple PDF files into one PDF directly in your browser.</span><span class="tag">PDF</span></a>
+<a href="#" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding:18px 24px;border-bottom:1px solid #e4e4e4"><span style="flex:0 0 200px;font-weight:600">JSON to CSV</span><span style="flex:1 1 280px;font-size:14px;color:#5c5c5c">Convert an array of JSON objects to correctly escaped CSV.</span><span class="tag">Developer</span></a>
+<a href="#" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding:18px 24px;border-bottom:1px solid #e4e4e4"><span style="flex:0 0 200px;font-weight:600">Regex Tester</span><span style="flex:1 1 280px;font-size:14px;color:#5c5c5c">Test JavaScript regular expressions in your browser.</span><span class="tag">Developer</span></a>
+<a href="#" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding:18px 24px;border-bottom:1px solid #e4e4e4"><span style="flex:0 0 200px;font-weight:600">Sitemap Validator</span><span style="flex:1 1 280px;font-size:14px;color:#5c5c5c">Validate pasted XML sitemap structure locally.</span><span class="tag">Web &amp; SEO</span></a>
+<a href="#" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding:18px 24px;border-bottom:1px solid #e4e4e4"><span style="flex:0 0 200px;font-weight:600">JWT Decoder</span><span style="flex:1 1 280px;font-size:14px;color:#5c5c5c">Decode JWT header and payload locally without verifying signatures.</span><span class="tag">Security &amp; Encoding</span></a>
+</div>
+<div style="padding:32px 24px">
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;border:1px solid #e4e4e4;padding:24px">
+<div><h3 style="font-size:20px;font-weight:600;letter-spacing:-0.02em">Your data stays yours.</h3><p style="font-size:14px;color:#5c5c5c;margin-top:6px">These tools run right in your browser. Your inputs aren’t sent to a server.</p></div>
+<a href="#" style="background:#0a0a0a;color:#fff;font-size:14px;font-weight:500;padding:12px 18px;border-radius:8px">Explore private tools →</a>
+</div>
+</div>
+</div>
+<div class="hatch" style="flex:1;min-width:0;border-left:1px solid #e4e4e4"></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:24px;border-top:1px solid #e4e4e4;font-size:13px;color:#5c5c5c"><span>Small tools for annoying tasks.</span><span style="display:flex;gap:20px"><a href="#">Portfolio</a><a href="#">Blog</a><a href="#">Status</a></span></div>
+</div>
+</body>
+</html>

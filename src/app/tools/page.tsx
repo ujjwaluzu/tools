@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ToolCard } from "@/components/tools/ToolCard";
+import { Cell, DotShape, Grid, Tag } from "@/components/home/DesignPrimitives";
 import { ToolSearch } from "@/components/tools/ToolSearch";
 import { categories, tools } from "@/lib/tools/registry";
 
@@ -10,54 +10,111 @@ export const metadata: Metadata = {
   alternates: { canonical: "/tools" },
 };
 
+// href is the catalogue identity; a few registry entries share a slug across categories.
+const uniqueTools = Array.from(new Map(tools.map((tool) => [tool.href, tool])).values());
+const popularTools = uniqueTools.filter((tool) => tool.popular);
+const FORMATS = ["JSON", "PDF", "PNG", "Base64", "CSV", "YAML", "JWT"];
+
+const DIFFERENCES = [
+  { type: "corner" as const, tag: "Local", title: "Runs in your browser", copy: "Your inputs stay on your device whenever a tool can process them locally." },
+  { type: "sphere" as const, tag: "Focused", title: "One tool, one job", copy: "Each tool does a single annoying task well, with no menus to dig through." },
+  { type: "plus" as const, tag: "Fast", title: "Find it in seconds", copy: "Search or browse by drawer, paste or drop your file, and get on with your day." },
+];
+
 export default function ToolsHomePage() {
-  const popularTools = tools.filter((tool) => tool.popular);
+  const categoryName = (slug: string) => categories.find((category) => category.slug === slug)?.name ?? "";
   return (
-    <main>
-      <section className="hero page-width">
-        <div className="hero-copy">
-          <span className="eyebrow"><span className="status-dot" /> A little toolbox for the web</span>
-          <h1>Small tools for<br /><span>annoying tasks.</span></h1>
-          <p>Quick, useful utilities that get out of your way. Private by default, with local processing whenever possible.</p>
-          <ToolSearch />
-          <div className="privacy-inline"><span aria-hidden="true">⌑</span> Your inputs stay in your browser for these tools.</div>
+    <main className="tools-home">
+      <section className="home-hero">
+        <Tag>New · {uniqueTools.length} tools</Tag>
+        <h1>Small tools for<br /><span>annoying tasks.</span></h1>
+        <p>Quick, useful utilities that get out of your way. Private by default, with local processing whenever possible.</p>
+        <ToolSearch />
+        <p className="privacy-inline">Your inputs stay in your browser for these tools.</p>
+        <div className="hero-rings" aria-hidden="true"><div className="dots" /><div /></div>
+      </section>
+
+      <div className="hatch hatch-band" aria-hidden="true" />
+
+      <section className="formats-strip">
+        <Tag>Formats and files we handle</Tag>
+        <div>{FORMATS.map((format) => <span key={format}>{format}</span>)}</div>
+      </section>
+
+      <section className="home-heading">
+        <Tag>Why it’s different</Tag>
+        <h2>Simple tools, <span>kept private and out of your way.</span></h2>
+      </section>
+      <Grid className="difference-grid">
+        {DIFFERENCES.map((item) => (
+          <Cell key={item.tag}>
+            <DotShape type={item.type} />
+            <Tag>{item.tag}</Tag>
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+          </Cell>
+        ))}
+      </Grid>
+
+      <section className="home-heading" id="categories">
+        <Tag>Find your drawer</Tag>
+        <h2>Browse <span>categories</span></h2>
+      </section>
+      <Grid className="categories-grid">
+        {categories.map((category, index) => {
+          const count = uniqueTools.filter((tool) => tool.category === category.slug).length;
+          const content = (
+            <>
+              <span className="category-number">{String(index + 1).padStart(2, "0")}</span>
+              <span>{category.name}{count === 0 && " · Soon"}</span>
+            </>
+          );
+          return count
+            ? <Link className="cell category-cell" href={`/tools/${category.slug}`} key={category.slug}>{content}</Link>
+            : <Cell className="category-cell category-soon" key={category.slug}>{content}</Cell>;
+        })}
+      </Grid>
+
+      <section className="home-heading">
+        <Tag>A good place to start</Tag>
+        <h2>Popular <span>tools</span></h2>
+      </section>
+      <Grid className="popular-grid">
+        {popularTools.map((tool) => (
+          <Link className="cell popular-cell" href={tool.href} key={tool.href}>
+            <div><Tag>{categoryName(tool.category)}</Tag><span aria-hidden="true">↗</span></div>
+            <h3>{tool.title}</h3>
+            <p>{tool.description}</p>
+          </Link>
+        ))}
+        <Link className="cell browse-all-cell" href="#all-tools">
+          <Tag>The toolbox</Tag>
+          <h3>Browse all {uniqueTools.length} tools →</h3>
+        </Link>
+      </Grid>
+
+      <section className="home-heading" id="all-tools">
+        <Tag>The toolbox</Tag>
+        <h2>All available <span>tools</span></h2>
+      </section>
+      <section className="tool-list" aria-label="All available tools">
+        {uniqueTools.map((tool) => (
+          <Link href={tool.href} key={tool.href}>
+            <strong>{tool.title}</strong>
+            <span>{tool.description}</span>
+            <Tag>{categoryName(tool.category)}</Tag>
+          </Link>
+        ))}
+      </section>
+
+      <section className="privacy-callout">
+        <div className="privacy-callout-box">
+          <div>
+            <h3>Your data stays yours.</h3>
+            <p>These tools run right in your browser. Your inputs aren’t sent to a server.</p>
+          </div>
+          <Link href="/tools/security">Explore private tools →</Link>
         </div>
-        <div className="hero-note" aria-hidden="true">
-          <div className="note-top"><span>TOOLBOX / 001</span><span>✳</span></div>
-          <div className="note-symbol">{ }</div>
-          <div className="note-rule" />
-          <div className="note-bottom"><span>Less busywork.</span><span>More doing.</span></div>
-        </div>
-      </section>
-
-      <section className="section page-width" id="categories">
-        <div className="section-heading"><div><span className="eyebrow">Find your drawer</span><h2>Browse categories</h2></div></div>
-        <div className="category-grid">
-          {categories.map((category) => {
-            const count = tools.filter((tool) => tool.category === category.slug).length;
-            return <Link className="category-link" href={`/tools/${category.slug}`} key={category.slug}>
-              <span className="category-icon" aria-hidden="true">{category.icon}</span>
-              <span className="category-name">{category.name}</span>
-              <span className="category-count">{count || "Soon"}</span>
-            </Link>;
-          })}
-        </div>
-      </section>
-
-      <section className="section page-width">
-        <div className="section-heading"><div><span className="eyebrow">A good place to start</span><h2>Popular tools</h2></div></div>
-        <div className="tool-grid">{popularTools.map((tool) => <ToolCard key={tool.href} tool={tool} />)}</div>
-      </section>
-
-      <section className="section page-width catalogue-section">
-        <div className="section-heading"><div><span className="eyebrow">The toolbox</span><h2>All available tools</h2></div><span className="subtle-count">{tools.length} tools</span></div>
-        {tools.length ? <div className="tool-grid">{tools.map((tool) => <ToolCard key={tool.href} tool={tool} />)}</div> : <p className="empty-state">New tools are being made. Check back soon.</p>}
-      </section>
-
-      <section className="privacy-banner page-width">
-        <span className="privacy-banner-icon" aria-hidden="true">⌑</span>
-        <div><strong>Your data stays yours.</strong><p>These tools run right in your browser. Your inputs aren’t sent to a server.</p></div>
-        <Link href="/tools/security">Explore private tools <span aria-hidden="true">→</span></Link>
       </section>
     </main>
   );

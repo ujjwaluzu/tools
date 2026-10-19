@@ -1,7 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import Image from "next/image";
+import { DM_Mono, Instrument_Sans } from "next/font/google";
 import Link from "next/link";
+import { HatchGutter } from "@/components/home/DesignPrimitives";
 import "./globals.css";
+
+const instrumentSans = Instrument_Sans({
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
+
+const dmMono = DM_Mono({
+  weight: ["400", "500"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tools.ujjwaluzu.in"),
@@ -26,16 +41,16 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = { themeColor: "#f7f7f3" };
+export const viewport: Viewport = { themeColor: "#ffffff" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${instrumentSans.variable} ${dmMono.variable}`}>
       <body>
         <header className="site-header">
           <div className="header-inner">
             <Link className="brand" href="/tools" aria-label="Ujjwal Tools home">
-              <Image className="brand-logo" src="/android-chrome-192x192.png" alt="Ujjwal Tools" width={31} height={31} priority />
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M4 3v6a4 4 0 0 0 8 0V3" /></svg>
             </Link>
             <nav className="header-nav" aria-label="Main navigation">
               <Link href="/tools">All tools</Link>
@@ -43,7 +58,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </nav>
           </div>
         </header>
-        {children}
+        <div className="site-frame">
+          <HatchGutter side="left" />
+          <div className="frame-center">{children}</div>
+          <HatchGutter side="right" />
+        </div>
         <footer className="site-footer">
           <div className="footer-inner">
             <span>Small tools for annoying tasks.</span>
