@@ -1,4 +1,5 @@
-import { MAX_PDF_FILE_BYTES, MAX_PDF_PAGES } from "./pdf/types.ts";
+import { MAX_PDF_FILE_BYTES } from "./pdf/types.ts";
+import { assertPageCount, readPdfBytes } from "./pdf/validation.ts";
 
 export const MAX_FILE_INFO_BYTES = MAX_PDF_FILE_BYTES;
 export const FILE_SIGNATURE_BYTES = 1024;
@@ -94,6 +95,7 @@ export function exifAvailability(format: string, metadata: Record<string, string
 
 export type PdfInformation = {
   pageCount: number;
+  pages: Array<{ page: number; width: number; height: number; orientation: "Portrait" | "Landscape" | "Square" }>;
   title?: string;
   author?: string;
   subject?: string;
@@ -103,20 +105,20 @@ export type PdfInformation = {
   modificationDate?: Date;
 };
 
-export async function inspectPdfInformation(file: Pick<File, "name" | "size" | "slice" | "arrayBuffer">): Promise<PdfInformation> {
-  assertFileInfoSize(file.size);
-  if (!file.size) throw new Error("The PDF file is empty.");
-  const prefix = new Uint8Array(await file.slice(0, FILE_SIGNATURE_BYTES).arrayBuffer());
-  const detected = detectFileFormat(prefix);
-  if (detected?.family !== "pdf") throw new Error("The file does not have a PDF signature.");
-  const bytes = new Uint8Array(await file.arrayBuffer());
+export async function inspectPdfInformation(file: File): Promise<PdfInformation> {
+  const bytes = await readPdfBytes(file);
   const { PDFDocument } = await import("pdf-lib");
   const pdf = await PDFDocument.load(bytes, { ignoreEncryption: false, throwOnInvalidObject: true, updateMetadata: false });
   const pageCount = pdf.getPageCount();
-  if (!Number.isInteger(pageCount) || pageCount < 1) throw new Error("No readable PDF pages were found.");
-  if (pageCount > MAX_PDF_PAGES) throw new Error(`This PDF exceeds the ${MAX_PDF_PAGES} page inspection limit.`);
+  assertPageCount(pageCount);
   const date = (value: Date | undefined): Date | undefined => value instanceof Date && Number.isFinite(value.getTime()) ? value : undefined;
-  const info: PdfInformation = { pageCount };
+  const info: PdfInformation = {
+    pageCount,
+    pages: pdf.getPages().map((page, index) => {
+      const { width, height } = page.getSize();
+      return { page: index + 1, width, height, orientation: width > height ? "Landscape" as const : width < height ? "Portrait" as const : "Square" as const };
+    }),
+  };
   const fields: Array<[keyof PdfInformation, string | Date | undefined]> = [
     ["title", pdf.getTitle()], ["author", pdf.getAuthor()], ["subject", pdf.getSubject()],
     ["creator", pdf.getCreator()], ["producer", pdf.getProducer()],

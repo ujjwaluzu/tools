@@ -14,8 +14,9 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test tests/csv.test.ts tests/file-info.test.ts tests/hash.test.ts tests/xml.test.ts",
-    "test:xml-browser": "node scripts/qa-xml.mjs"
+    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test tests/csv.test.ts tests/file-info.test.ts tests/hash.test.ts tests/xml.test.ts tests/pdf-inspector.test.ts",
+    "test:xml-browser": "node scripts/qa-xml.mjs",
+    "test:pdf-browser": "node scripts/qa-pdf-inspector.mjs"
   },
   "dependencies": {
     "next": "^16.1.0",

@@ -76,6 +76,12 @@ export const tools: ToolDefinition[] = [
     privacyNote: "Processed locally in your browser. Your files are not uploaded.",
   },
   {
+    slug: "inspect", category: "pdf", title: "PDF Inspector & Text Extraction", metaTitle: "PDF Inspector and Text Extraction Online",
+    description: "Inspect PDF properties and extract selectable text from chosen pages in your browser.",
+    keywords: ["pdf", "inspect", "metadata", "properties", "extract text", "text extraction", "pages", "dimensions"], icon: "PDF", href: "/tools/pdf/inspect", processing: "client",
+    privacyNote: "PDF inspection and text extraction happen locally in your browser. Your document is not uploaded.",
+  },
+  {
     slug: "split", category: "pdf", title: "Split PDF", metaTitle: "Split PDF Files Online",
     description: "Split and extract pages from a PDF directly in your browser.",
     keywords: ["pdf", "split", "extract", "pages", "range"], icon: "▤↕", href: "/tools/pdf/split", processing: "client",

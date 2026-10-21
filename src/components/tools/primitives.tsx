@@ -60,11 +60,12 @@ export type AcceptedFiles = {
   rejected: string[];
 };
 
-export function Dropzone({ onFiles, accept, multiple = false, maxBytes = 25 * 1024 * 1024, disabled = false }: {
+export function Dropzone({ onFiles, accept, multiple = false, maxBytes = 25 * 1024 * 1024, displayMaxBytes = maxBytes, disabled = false }: {
   onFiles: (result: AcceptedFiles) => void;
   accept?: string[];
   multiple?: boolean;
   maxBytes?: number;
+  displayMaxBytes?: number;
   disabled?: boolean;
 }) {
   const [dragging, setDragging] = useState(false);
@@ -84,7 +85,7 @@ export function Dropzone({ onFiles, accept, multiple = false, maxBytes = 25 * 10
     <input ref={input} type="file" className="visually-hidden" accept={accept?.join(",")} multiple={multiple} disabled={disabled} onChange={(event) => { if (event.target.files) validate(event.target.files); event.target.value = ""; }} />
     <span className="dropzone-icon" aria-hidden="true">↥</span><strong>Drop a file here</strong><span>or choose a file from your device</span>
     <button type="button" className="button button-secondary" disabled={disabled} onClick={() => input.current?.click()}>Browse files</button>
-    <small>Up to {formatBytes(maxBytes)}{accept?.length ? ` · ${accept.join(", ")}` : ""}</small>
+    <small>Up to {formatBytes(displayMaxBytes)}{accept?.length ? ` · ${accept.join(", ")}` : ""}</small>
   </div>;
 }
 

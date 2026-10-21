@@ -1,6 +1,7 @@
 import type { PdfImageType, PdfPageProgress } from "@/lib/tools/pdf/types";
-import { MAX_PDF_PAGES, MAX_RENDER_PAGE_PIXELS, MAX_RENDER_PAGES, MAX_RENDER_TOTAL_PIXELS } from "@/lib/tools/pdf/types";
+import { MAX_EXTRACT_PAGES, MAX_PDF_PAGES, MAX_RENDER_PAGE_PIXELS, MAX_RENDER_PAGES, MAX_RENDER_TOTAL_PIXELS } from "@/lib/tools/pdf/types";
 import { PdfToolError, readPdfBytes, safeBaseName } from "@/lib/tools/pdf/validation";
+import { formatPdfTextItems } from "./inspector";
 
 type PdfJsModule = typeof import("pdfjs-dist");
 
@@ -10,7 +11,7 @@ async function loadPdfJs(): Promise<PdfJsModule> {
   return pdfjs;
 }
 
-async function openPdfJsDocument(file: File) {
+export async function openPdfJsDocument(file: File, signal?: AbortSignal) {
   const bytes = await readPdfBytes(file);
   const pdfjs = await loadPdfJs();
   const loadingTask = pdfjs.getDocument({
@@ -21,12 +22,54 @@ async function openPdfJsDocument(file: File) {
     maxImageSize: MAX_RENDER_PAGE_PIXELS,
     verbosity: 0,
   });
-  const document = await loadingTask.promise;
+  const abort = () => { void loadingTask.destroy(); };
+  signal?.addEventListener("abort", abort, { once: true });
+  if (signal?.aborted) abort();
+  let document: Awaited<typeof loadingTask.promise>;
+  try { document = await loadingTask.promise; }
+  catch (error) { signal?.removeEventListener("abort", abort); await loadingTask.destroy(); throw error; }
+  signal?.removeEventListener("abort", abort);
+  if (signal?.aborted) { await loadingTask.destroy(); throw new PdfToolError("PDF processing was cancelled."); }
   if (document.numPages < 1 || document.numPages > MAX_PDF_PAGES) {
     await loadingTask.destroy();
     throw new PdfToolError(`This PDF must contain between 1 and ${MAX_PDF_PAGES} pages for browser processing.`);
   }
   return { document, loadingTask };
+}
+
+export type PdfTextProgress = { completed: number; total: number; page: number };
+
+export async function extractPdfText(
+  file: File,
+  selectedPages: number[],
+  onProgress?: (progress: PdfTextProgress) => void,
+  signal?: AbortSignal,
+): Promise<Array<{ page: number; text: string }>> {
+  if (!selectedPages.length) throw new PdfToolError("Select at least one page to extract text from.");
+  if (selectedPages.length > MAX_EXTRACT_PAGES) throw new PdfToolError(`Select ${MAX_EXTRACT_PAGES} pages or fewer at a time to keep this operation within browser limits.`);
+  const { document, loadingTask } = await openPdfJsDocument(file, signal);
+  const pages = [...new Set(selectedPages)].sort((a, b) => a - b);
+  if (pages.some((page) => !Number.isInteger(page) || page < 1 || page > document.numPages)) {
+    await loadingTask.destroy();
+    throw new PdfToolError(`Choose page numbers from 1 to ${document.numPages}.`);
+  }
+  const abort = () => { void loadingTask.destroy(); };
+  signal?.addEventListener("abort", abort, { once: true });
+  const output: Array<{ page: number; text: string }> = [];
+  try {
+    for (const [index, pageNumber] of pages.entries()) {
+      if (signal?.aborted) throw new PdfToolError("Text extraction was cancelled.");
+      const page = await document.getPage(pageNumber);
+      const content = await page.getTextContent();
+      output.push({ page: pageNumber, text: formatPdfTextItems(content.items as Array<{ str?: string; transform?: number[] }>) });
+      page.cleanup();
+      onProgress?.({ completed: index + 1, total: pages.length, page: pageNumber });
+    }
+    return output;
+  } finally {
+    signal?.removeEventListener("abort", abort);
+    await loadingTask.destroy();
+  }
 }
 
 export async function inspectPdfForRendering(file: File): Promise<number> {

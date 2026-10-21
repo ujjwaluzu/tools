@@ -1,4 +1,4 @@
-import { MAX_PDF_FILE_BYTES, MAX_PDF_FILES, MAX_PDF_PAGES, MAX_PDF_TOTAL_BYTES } from "@/lib/tools/pdf/types";
+import { MAX_PDF_FILE_BYTES, MAX_PDF_FILES, MAX_PDF_PAGES, MAX_PDF_TOTAL_BYTES } from "./types.ts";
 
 export class PdfToolError extends Error {
   constructor(message: string) {

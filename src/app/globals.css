@@ -285,6 +285,19 @@ h1 span, h2 span { color: var(--muted-headline); }
 .file-info-exif dd { margin: 0; color: var(--ink); font-size: 11px; overflow-wrap: anywhere; }
 .file-info-exif p { margin: 0; color: var(--body); font-size: 10px; line-height: 1.5; }
 .file-info-empty { margin-top: 2px; }
+.pdf-inspector-workspace { gap: 14px; }
+.pdf-inspector-table-wrap { max-height: 360px; overflow: auto; border: 1px solid var(--hairline); border-radius: 7px; }
+.pdf-inspector-table { width: 100%; border-collapse: collapse; background: var(--page); font-size: 11px; }
+.pdf-inspector-table caption { padding: 9px; color: var(--body); text-align: left; }
+.pdf-inspector-table th, .pdf-inspector-table td { padding: 8px 10px; border-top: 1px solid var(--hairline); text-align: left; white-space: nowrap; }
+.pdf-inspector-table thead th { position: sticky; top: 0; background: var(--hover); }
+.pdf-metadata-status { color: var(--body); font-size: 10px; }
+.pdf-extract-controls { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: end; }
+.pdf-extract-controls small { color: var(--body); font-size: 10px; }
+.pdf-select-all { align-self: flex-start; margin-top: 2px; }
+.pdf-extract-controls > .button { min-height: 40px; }
+.pdf-empty-pages { margin: 0; padding: 9px 11px; border-radius: 6px; background: var(--hover); color: var(--body); font-size: 11px; line-height: 1.5; }
+.pdf-extracted-text { width: 100%; min-height: 260px; max-height: 560px; resize: vertical; padding: 12px; overflow: auto; border: 0; background: var(--page); color: var(--ink); font: 11px/1.6 var(--font-mono), 'DM Mono', monospace; white-space: pre; }
 .hash-workspace { gap: 14px; }
 .hash-privacy { margin: 0; color: var(--body); font-size: 11px; }
 .hash-algorithm { max-width: 260px; }
@@ -530,6 +543,9 @@ h1 span, h2 span { color: var(--muted-headline); }
   .preset-row .button { flex: 1 1 auto; }
   .csv-input-grid { grid-template-columns: 1fr; }
   .file-info-grid { grid-template-columns: 1fr; }
+  .pdf-extract-controls { grid-template-columns: 1fr; }
+  .pdf-extract-controls > .button { width: 100%; }
+  .pdf-inspector-table th, .pdf-inspector-table td { padding: 7px; }
   .file-info-section { padding: 11px; }
   .file-info-section-heading { align-items: flex-start; }
   .file-info-exif dl { grid-template-columns: 1fr; gap: 3px; }
