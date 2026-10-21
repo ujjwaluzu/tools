@@ -210,7 +210,11 @@ h1 span, h2 span { color: var(--muted-headline); }
 
 .formats-strip { padding: 40px 24px; text-align: center; border-bottom: 1px solid var(--hairline); }
 .formats-strip .tag { display: block; border: 0; padding: 0; background: transparent; margin-bottom: 18px; }
-.formats-strip > div { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 40px; font-size: 18px; font-weight: 600; letter-spacing: -.02em; color: var(--subtle-ink); }
+.formats-strip > div.formats-marquee { display: block; overflow: hidden; font-size: 18px; font-weight: 600; letter-spacing: -.02em; color: var(--subtle-ink); }
+.formats-track { display: flex; width: max-content; animation: formats-slide 42s linear infinite; }
+.formats-group { display: flex; flex: none; align-items: center; gap: 40px; padding-right: 40px; }
+.formats-marquee:hover .formats-track { animation-play-state: paused; }
+@keyframes formats-slide { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 
 .home-heading { padding: 56px 24px 32px; border-top: 1px solid var(--hairline); }
 .formats-strip + .home-heading { border-top: 0; }
@@ -799,7 +803,8 @@ h1 span, h2 span { color: var(--muted-headline); }
   .home-hero h1 { font-size: clamp(40px, 12vw, 56px); }
   .home-hero > p { font-size: 15px; }
   .formats-strip { padding: 32px 24px; }
-  .formats-strip > div { font-size: 16px; gap: 12px 26px; }
+  .formats-strip > div.formats-marquee { font-size: 16px; }
+  .formats-group { gap: 26px; padding-right: 26px; }
   .home-heading { padding: 44px 24px 26px; }
   .home-heading h2 { font-size: clamp(26px, 8vw, 32px); }
   .tool-list strong { flex: 0 0 100%; }
@@ -926,4 +931,9 @@ h1 span, h2 span { color: var(--muted-headline); }
   .html-converter-actions .button { min-height: 35px; padding-inline: 9px; font-size: 11px; }
   .html-preview-document { padding-inline: 14px; }
   .html-preview-title { margin-inline: -14px; padding-inline: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .formats-track { animation: none; }
+  .formats-group[aria-hidden="true"] { display: none; }
 }

@@ -17,7 +17,7 @@ const uniqueTools = Array.from(new Map(tools.map((tool) => [tool.href, tool])).v
 const popularTools = uniqueTools.filter((tool) => tool.popular);
 /** Position in the hero's entrance cascade; the CSS turns --i into a delay. */
 const cue = (index: number) => ({ "--i": index }) as CSSProperties;
-const FORMATS = ["JSON", "PDF", "PNG", "Base64", "CSV", "YAML", "JWT"];
+const FORMATS = ["JSON", "XML", "CSV", "YAML", "Markdown", "HTML", "TXT", "PDF", "DOCX", "XLSX", "PPTX", "PNG", "JPG", "GIF", "WebP", "AVIF", "SVG", "Base64", "JWT"];
 
 const DIFFERENCES = [
   { type: "corner" as const, tag: "Local", title: "Runs in your browser", copy: "Your inputs stay on your device whenever a tool can process them locally." },
@@ -43,7 +43,15 @@ export default function ToolsHomePage() {
 
       <section className="formats-strip">
         <Tag>Formats and files we handle</Tag>
-        <div>{FORMATS.map((format) => <span key={format}>{format}</span>)}</div>
+        <div className="formats-marquee" role="group" aria-label={`Supported formats: ${FORMATS.join(", ")}`}>
+          <div className="formats-track">
+            {[0, 1].map((copy) => (
+              <div className="formats-group" key={copy} aria-hidden={copy === 1}>
+                {FORMATS.map((format) => <span key={format}>{format}</span>)}
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="home-heading">
