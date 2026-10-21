@@ -335,6 +335,17 @@ h1 span, h2 span { color: var(--muted-headline); }
 .tool-page-heading h1 { margin-bottom: 5px; }
 .tool-privacy { display: flex; align-items: center; gap: 8px; margin: 0 0 18px 71px; color: var(--label); font-family: var(--font-mono), 'DM Mono', monospace; font-size: 12px; }
 .tool-privacy span { font-size: 15px; }
+.tool-faq-section { max-width: 850px; padding-top: 38px; }
+.tool-faq-section .section-heading { margin-bottom: 13px; }
+.tool-faq-section .section-heading h2 { font-size: 23px; }
+.tool-faq-list { border-top: 1px solid var(--hairline); }
+.tool-faq-item { border-bottom: 1px solid var(--hairline); }
+.tool-faq-item > summary { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 17px 4px; color: var(--ink); cursor: pointer; font-size: 14px; font-weight: 600; list-style: none; }
+.tool-faq-item > summary::-webkit-details-marker { display: none; }
+.tool-faq-item > summary:focus-visible { outline: 2px solid var(--action-bg); outline-offset: 3px; border-radius: 3px; }
+.tool-faq-chevron { width: 9px; height: 9px; flex: 0 0 auto; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform .15s ease; }
+.tool-faq-item[open] .tool-faq-chevron { transform: rotate(225deg) translate(-2px, -1px); }
+.tool-faq-item > p { max-width: 720px; margin: -2px 32px 17px 4px; color: var(--body); font-size: 13px; line-height: 1.65; }
 .related-section { padding-top: 42px; }
 .section-heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 17px; }
 .section-heading h2 { margin-top: 5px; font-size: 24px; line-height: 1.2; letter-spacing: -.035em; }
