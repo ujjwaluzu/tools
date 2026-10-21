@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { DM_Mono, Instrument_Sans } from "next/font/google";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { getThemeBootstrapScript } from "@/lib/theme";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -47,7 +48,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${instrumentSans.variable} ${dmMono.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `try { var theme = localStorage.getItem("ujjwal-tools-theme"); if (theme !== "light" && theme !== "dark") theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; document.documentElement.dataset.theme = theme; } catch (_) { document.documentElement.dataset.theme = "light"; }` }} />
+        <script dangerouslySetInnerHTML={{ __html: getThemeBootstrapScript() }} />
       </head>
       <body>
         <header className="site-header">

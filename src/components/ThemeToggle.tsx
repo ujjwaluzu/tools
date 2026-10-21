@@ -1,27 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { Icon } from "@/components/Icon";
-
-type Theme = "light" | "dark";
+import {
+  applyTheme, getServerThemeSnapshot, getThemeSnapshot, subscribeToThemeChange,
+} from "@/lib/theme";
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("light");
-
-  useEffect(() => {
-    const current = document.documentElement.dataset.theme;
-    if (current === "dark" || current === "light") setTheme(current);
-  }, []);
+  const theme = useSyncExternalStore(subscribeToThemeChange, getThemeSnapshot, getServerThemeSnapshot);
 
   function toggleTheme() {
-    const nextTheme: Theme = theme === "dark" ? "light" : "dark";
-    document.documentElement.dataset.theme = nextTheme;
-    try {
-      window.localStorage.setItem("ujjwal-tools-theme", nextTheme);
-    } catch {
-      // The selected theme still applies for this page even when storage is unavailable.
-    }
-    setTheme(nextTheme);
+    applyTheme(theme === "dark" ? "light" : "dark");
   }
 
   return (
