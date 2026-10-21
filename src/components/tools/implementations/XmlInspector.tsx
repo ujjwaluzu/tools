@@ -62,7 +62,7 @@ export function XmlInspector() {
   const outputName = action === "json" ? "converted.json" : "formatted.xml";
   return <div className="tool-workspace xml-workspace">
     <p className="field-help">Paste XML or choose a local file. Files are decoded as UTF-8; browser decoding may replace invalid byte sequences. Content is processed in this browser and is never uploaded.</p>
-    <Dropzone onFiles={selectFiles} maxBytes={MAX_XML_INPUT_BYTES} disabled={working} />
+    <Dropzone onFiles={selectFiles} accept={[".xml", "text/xml", "application/xml"]} maxBytes={MAX_XML_INPUT_BYTES} disabled={working} />
     <label className="field-group" htmlFor="xml-input"><span className="field-label">XML input</span>
       <textarea id="xml-input" className="code-input" value={input} onChange={(event) => changed(event.target.value)} placeholder={'Paste XML here…\n\n<person id="7"><name>Ada</name></person>'} spellCheck={false} disabled={working} />
     </label>

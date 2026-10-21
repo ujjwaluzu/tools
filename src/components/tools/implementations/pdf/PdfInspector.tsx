@@ -97,7 +97,7 @@ export function PdfInspector() {
 
   return <div className="tool-workspace pdf-inspector-workspace">
     <p className="file-info-privacy">Select a PDF. Its signature and document structure are checked locally in your browser. The file is not uploaded, and a valid signature does not prove a document is safe.</p>
-    <Dropzone onFiles={chooseFile} maxBytes={Number.MAX_SAFE_INTEGER} displayMaxBytes={MAX_PDF_FILE_BYTES} accept={undefined} />
+    <Dropzone onFiles={chooseFile} maxBytes={Number.MAX_SAFE_INTEGER} displayMaxBytes={MAX_PDF_FILE_BYTES} accept={["application/pdf", ".pdf"]} />
     <div className="file-info-actions"><div className="button-row">{state && <button type="button" className="button button-secondary" onClick={() => document.querySelector<HTMLInputElement>(".pdf-inspector-workspace input[type=file]")?.click()}>Replace PDF</button>}<ResetButton onClick={reset} label="Clear file and results" disabled={!state && !extracting} /></div></div>
     {!state && <EmptyState title="Choose a PDF to inspect">Select or drop a local PDF up to {formatBytes(MAX_PDF_FILE_BYTES)}.</EmptyState>}
     {state && <>
