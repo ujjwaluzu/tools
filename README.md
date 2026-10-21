@@ -4,7 +4,7 @@
 
 Ujjwal Tools is a local-first collection of focused browser utilities for images, PDFs, development, text, colour, and everyday work. The app is built with Next.js App Router and is intended for [tools.ujjwaluzu.in](https://tools.ujjwaluzu.in).
 
-When a tool can run in the browser, it does. User inputs and files are not uploaded or stored by the application.
+When a tool can run in the browser, it does. Tool inputs and files are not uploaded. The Notes Organizer is the exception to transient inputs: it saves notes in browser local storage, as described in its documentation.
 
 ## Tool status
 
@@ -22,15 +22,18 @@ The lists below reflect the tool catalogue and implementation in this repository
 | Security & Encoding | Base64, UUID, JWT decoder, hash and HMAC generators | Implemented; browser-local processing |
 | Markdown | Markdown Editor & Preview, Markdown to HTML Converter, HTML to Markdown Converter, Markdown to PDF Converter, Markdown to DOCX Converter, Markdown Table Generator, Table to Markdown Converter, Markdown TOC Generator, Markdown Formatter | Implemented; browser-local editing, safe conversions, structured document output, table utilities, and formatting |
 | Color | HEX/RGB/HSL color converter | Implemented; browser-local processing |
+| Everyday | Calculator, percentage and age calculators, date difference, tip and GST calculators, loan calculator, timezone and Unix timestamp converters, date/time utilities, measurement and currency converters, random generator | Implemented; calculations run in the browser; currency uses dated Frankfurter reference rates |
+| Student Tools | Image to Text (English OCR), PDF text extraction, Word Counter, Notes to Markdown, Markdown to PDF, citation drafts, text utilities, study timer, flashcard generator, notes organizer | Implemented; see [Student Tools notes](docs/tools/STUDENT.md) for asset loading, storage, and limitations |
 
 ### Coming soon / planned
 
 These are roadmap ideas, not yet available tools or release commitments. Work is expected to be incremental.
 
 - **Data:** XLSX conversion and additional CSV/data utilities.
-- **PDF and images:** PDF editing, OCR, and image background removal.
+- **PDF and images:** PDF editing and image background removal.
 - **Git & GitHub:** small workflow helpers and GitHub tools.
-- **Everyday and student:** focused utilities for common daily and study tasks.
+
+See [Everyday tool assumptions](docs/tools/EVERYDAY.md) for calculator, date, timezone, loan, currency, and randomness behavior.
 
 The app also has catalogue categories for Web & SEO, Markdown, Git & GitHub, Data, Converters, Everyday, and Student. Some categories do not have a tool yet. New tools are added through the central registry.
 

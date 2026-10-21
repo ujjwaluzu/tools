@@ -14,8 +14,10 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test tests/csv.test.ts tests/file-info.test.ts tests/image-processing.test.ts tests/hash.test.ts tests/xml.test.ts tests/pdf-inspector.test.ts tests/pdf-text-to-pdf.test.ts tests/markdown.test.ts tests/markdown-to-html.test.ts tests/html-to-markdown.test.ts tests/markdown-to-pdf.test.ts tests/markdown-to-docx.test.ts tests/markdown-table.test.ts tests/table-to-markdown.test.ts tests/markdown-toc.test.ts tests/markdown-formatter.test.ts tests/web-url.test.ts tests/theme.test.ts tests/converters.test.ts",
+    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test tests/csv.test.ts tests/file-info.test.ts tests/image-processing.test.ts tests/hash.test.ts tests/xml.test.ts tests/pdf-inspector.test.ts tests/pdf-text-to-pdf.test.ts tests/markdown.test.ts tests/markdown-to-html.test.ts tests/html-to-markdown.test.ts tests/markdown-to-pdf.test.ts tests/markdown-to-docx.test.ts tests/markdown-table.test.ts tests/table-to-markdown.test.ts tests/markdown-toc.test.ts tests/markdown-formatter.test.ts tests/web-url.test.ts tests/theme.test.ts tests/converters.test.ts tests/everyday.test.ts tests/student.test.ts",
     "test:converters-browser": "node scripts/qa-converters.mjs",
+    "test:student-browser": "node scripts/qa-student.mjs",
+    "test:everyday-browser": "node scripts/qa-everyday.mjs",
     "test:xml-browser": "node scripts/qa-xml.mjs",
     "test:web-url-browser": "node scripts/qa-web-url.mjs",
     "test:pdf-browser": "node scripts/qa-pdf-inspector.mjs",
@@ -31,6 +33,7 @@
     "test:markdown-formatter-browser": "node scripts/qa-markdown-formatter.mjs"
   },
   "dependencies": {
+    "@tesseract.js-data/eng": "1.0.0",
     "docx": "^9.13.0",
     "dompurify": "^3.4.17",
     "next": "^16.1.0",
@@ -44,6 +47,7 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "remark-stringify": "^11.0.0",
+    "tesseract.js": "7.0.0",
     "turndown": "^7.2.4",
     "turndown-plugin-gfm": "^1.0.2",
     "unified": "^11.0.5"

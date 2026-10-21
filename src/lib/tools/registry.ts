@@ -23,6 +23,7 @@ export type ToolDefinition = {
   processing: "client" | "server";
   privacyNote: string;
   popular?: boolean;
+  additionalCategories?: ToolCategory[];
 };
 
 export type CategoryDefinition = {
@@ -43,7 +44,7 @@ export const categories: CategoryDefinition[] = [
   { slug: "security", name: "Security & Encoding", description: "Encode values and generate identifiers locally.", icon: "⌑" },
   { slug: "converters", name: "Converters", description: "Convert common values and units.", icon: "⇄" },
   { slug: "everyday", name: "Everyday", description: "Fast answers for day-to-day tasks.", icon: "✳" },
-  { slug: "student", name: "Student", description: "Small tools for studying and writing.", icon: "▱" },
+  { slug: "student", name: "Student Tools", description: "Extract, format, cite, and study with small local tools.", icon: "▱" },
 ];
 
 export const tools: ToolDefinition[] = [
@@ -61,7 +62,7 @@ export const tools: ToolDefinition[] = [
     ["cron-explainer", "Cron Expression Explainer", "Validate and explain five-field cron syntax, lists, ranges, and steps.", ["cron", "explain", "parser", "schedule", "validate"]],
     ["css-units", "CSS Units Converter", "Convert CSS lengths with explicit font and viewport assumptions.", ["css", "units", "px", "rem", "em", "vw", "vh", "cm", "percent"]],
     ["currency", "Live Currency Converter", "Fetch a current indicative exchange rate on demand and convert an amount.", ["currency", "exchange rate", "forex", "money", "usd", "eur", "inr", "live"]],
-  ].map(([slug, title, description, keywords]) => ({ slug: slug as string, category: "converters" as const, title: title as string, description: description as string, metaTitle: `${title as string} Online`, keywords: keywords as string[], icon: "⇄", href: `/tools/converters/${slug as string}`, processing: "client" as const, privacyNote: slug === "currency" ? "Rates are fetched from Frankfurter only when you request a refresh. Your amount and other tool inputs are not sent." : "Conversion runs locally in your browser. Your input is not uploaded or saved." })),
+  ].map(([slug, title, description, keywords]) => ({ slug: slug as string, category: "converters" as const, title: title as string, description: description as string, metaTitle: `${title as string} Online`, keywords: keywords as string[], icon: "⇄", href: `/tools/converters/${slug as string}`, processing: "client" as const, privacyNote: slug === "currency" ? "Rates are fetched from Frankfurter only when you request a refresh. Your amount and other tool inputs are not sent." : "Conversion runs locally in your browser. Your input is not uploaded or saved.", ...(["unit-converter", "unix-timestamp", "timezone-converter", "date-difference", "currency"].includes(slug as string) ? { additionalCategories: ["everyday" as const] } : {}) })),
   {
     slug: "editor", category: "markdown", title: "Markdown Editor & Preview", metaTitle: "Markdown Editor and Live Preview Online",
     description: "Write Markdown and preview GitHub-style formatting live in your browser.",
@@ -81,7 +82,7 @@ export const tools: ToolDefinition[] = [
     privacyNote: "HTML is parsed and converted locally in your browser. Input is not rendered, uploaded, or saved.",
   },
   {
-    slug: "to-pdf", category: "markdown", title: "Markdown to PDF Converter", metaTitle: "Markdown to PDF Converter Online",
+    slug: "to-pdf", category: "markdown", additionalCategories: ["student"], title: "Markdown to PDF Converter", metaTitle: "Markdown to PDF Converter Online",
     description: "Create a structured, paginated PDF from Markdown locally in your browser.",
     keywords: ["markdown", "pdf", "convert", "document", "export", "gfm", "download"], icon: "M→PDF", href: "/tools/markdown/to-pdf", processing: "client",
     privacyNote: "Markdown parsing and PDF generation happen locally in your browser. Your content is not uploaded or saved.",
@@ -143,7 +144,7 @@ export const tools: ToolDefinition[] = [
     privacyNote: "Processed locally in your browser. Your files are not uploaded.",
   },
   {
-    slug: "inspect", category: "pdf", title: "PDF Inspector & Text Extraction", metaTitle: "PDF Inspector and Text Extraction Online",
+    slug: "inspect", category: "pdf", additionalCategories: ["student"], title: "PDF Inspector & Text Extraction", metaTitle: "PDF Inspector and Text Extraction Online",
     description: "Inspect PDF properties and extract selectable text from chosen pages in your browser.",
     keywords: ["pdf", "inspect", "metadata", "properties", "extract text", "text extraction", "pages", "dimensions"], icon: "PDF", href: "/tools/pdf/inspect", processing: "client",
     privacyNote: "PDF inspection and text extraction happen locally in your browser. Your document is not uploaded.",
@@ -184,7 +185,7 @@ export const tools: ToolDefinition[] = [
     privacyNote: "Processed locally in your browser. Your data was not uploaded.", popular: true,
   },
   {
-    slug: "word-counter", category: "developer", title: "Word Counter", description: "Count words, characters, and lines as you type.",
+    slug: "word-counter", category: "developer", additionalCategories: ["student"], title: "Word Counter", description: "Count words, characters, sentences, paragraphs, and reading time as you type.",
     keywords: ["word count", "characters", "lines", "text", "writing"], icon: "¶", href: "/tools/developer/word-counter", processing: "client",
     privacyNote: "Processed locally in your browser. Your data was not uploaded.", popular: true,
   },
@@ -229,6 +230,35 @@ export const tools: ToolDefinition[] = [
     keywords: ["color", "colour", "hex", "rgb", "hsl", "converter"], icon: "◉", href: "/tools/color/convert", processing: "client",
     privacyNote: "Processed locally in your browser. Your data was not uploaded.", popular: true,
   },
+  ...[
+    ["calculator", "Calculator", "Calculate expressions with decimals, parentheses, percentages, and keyboard input.", ["calculator", "math", "arithmetic", "percentage", "expression", "sum", "divide", "multiply"]],
+    ["percentage-calculator", "Percentage Calculator", "Find a percentage, compare values, or increase and decrease by a percentage.", ["percent", "percentage of", "percentage change", "reverse percentage", "discount", "increase", "decrease"]],
+    ["age-calculator", "Age Calculator", "Calculate age in years, months, and days between calendar dates.", ["age", "birthday", "date of birth", "dob", "years old", "days alive"]],
+    ["tip-calculator", "Tip Calculator", "Calculate a tip, bill total, and per-person share.", ["tip", "gratuity", "bill split", "restaurant", "per person"]],
+    ["gst-calculator", "GST Calculator", "Add GST to a price or extract GST from a tax-inclusive amount.", ["gst", "tax", "inclusive", "exclusive", "sales tax"]],
+    ["loan-calculator", "Loan Calculator", "Estimate monthly loan repayments, total interest, and an optional amortization schedule.", ["loan", "mortgage", "repayment", "interest", "amortization", "emi"]],
+    ["date-time", "Date and Time Utilities", "Add or subtract calendar time and inspect useful date details.", ["date", "calendar", "add days", "month end", "leap year", "day of year", "weekday"]],
+    ["random-generator", "Random Generator", "Generate unbiased random integers, pick a list item, or shuffle a list locally.", ["random", "number generator", "pick a winner", "shuffle", "list picker", "crypto randomness"]],
+  ].map(([slug, title, description, keywords]) => ({
+    slug: slug as string, category: "everyday" as const, title: title as string, description: description as string,
+    keywords: keywords as string[], icon: "✳", href: `/tools/everyday/${slug}`, processing: "client" as const,
+    privacyNote: slug === "currency" ? "Only the selected currency pair is sent to Frankfurter to retrieve a public exchange rate. Amounts stay in your browser." : "Calculations run locally in your browser. Your inputs are not uploaded or saved.",
+  })),
+  ...[
+    ["image-to-text", "Image to Text (OCR)", "Extract printed English text from an image locally in your browser.", ["ocr", "image to text", "extract text", "photo", "scan", "english"]],
+    ["notes-to-markdown", "Notes to Markdown", "Format plain notes into readable Markdown with optional, explicit structure.", ["notes", "markdown", "format", "paragraphs", "lists", "checklist", "study"]],
+    ["citation-helper", "Citation Formatting Helper", "Create editable APA 7, MLA 9, or Chicago author-date citation drafts from source details.", ["citation", "reference", "apa", "mla", "chicago", "bibliography", "journal", "book", "website"]],
+    ["apa-reference", "APA 7 Reference Builder", "Build a source-specific APA 7 reference and in-text citation draft.", ["apa", "apa 7", "reference", "citation", "book", "journal", "website", "report"]],
+    ["text-utilities", "Text Utilities", "Transform text locally with case, line, whitespace, and literal find-and-replace tools.", ["text", "case converter", "sort lines", "duplicate lines", "find replace", "whitespace"]],
+    ["study-timer", "Study Timer", "Use a private focus timer with Pomodoro, break, and custom duration presets.", ["study", "timer", "pomodoro", "focus", "break", "countdown"]],
+    ["flashcard-generator", "Flashcard Generator", "Make editable revision cards from notes with simple local rules.", ["flashcards", "revision", "study cards", "quiz", "question answer", "term definition"]],
+    ["notes-organizer", "Notes Organizer", "Create, search, tag, and export study notes stored only in this browser.", ["notes", "organizer", "study notes", "tags", "local storage", "search"]],
+  ].map(([slug, title, description, keywords]) => ({
+    slug: slug as string, category: "student" as const, title: title as string,
+    metaTitle: `${title as string} Online`, description: description as string,
+    keywords: keywords as string[], icon: "book", href: `/tools/student/${slug as string}`, processing: "client" as const,
+    privacyNote: slug === "notes-organizer" ? "Notes are stored only in this browser's local storage. They are not synced or uploaded; export or delete them at any time." : slug === "image-to-text" ? "Image processing stays in your browser. OCR loads the Tesseract.js worker and English language model from jsDelivr on demand; the image itself is not uploaded." : "This tool runs locally in your browser. Your input is not uploaded or saved.",
+  })),
 ];
 
 export function getCategory(slug: string): CategoryDefinition | undefined {
@@ -241,11 +271,12 @@ export function getTool(categorySlug: string, toolSlug: string): ToolDefinition 
 }
 
 export function getToolsForCategory(categorySlug: string): ToolDefinition[] {
-  return tools.filter((tool) => tool.category === categorySlug);
+  return tools.filter((tool) => tool.category === categorySlug || tool.additionalCategories?.includes(categorySlug as ToolCategory));
 }
 
 export function getRelatedTools(tool: ToolDefinition, limit = 3): ToolDefinition[] {
+  const belongsTo = (candidate: ToolDefinition, category: ToolCategory) => candidate.category === category || candidate.additionalCategories?.includes(category);
   return tools.filter((candidate) => candidate.href !== tool.href)
-    .sort((a, b) => Number(b.category === tool.category) - Number(a.category === tool.category))
+    .sort((a, b) => Number(belongsTo(b, tool.category)) - Number(belongsTo(a, tool.category)))
     .slice(0, limit);
 }

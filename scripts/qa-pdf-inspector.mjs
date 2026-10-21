@@ -34,6 +34,7 @@ try {
   const extracted = await page.locator(".pdf-extracted-text").inputValue();
   assert.match(extracted, /--- Page 2 ---[\s\S]*Second selectable page/);
   assert.match(extracted, /--- Page 3 ---[\s\S]*No selectable text/);
+  await page.locator('a[href="/tools/student/image-to-text"]').waitFor();
   await page.getByRole("button", { name: "Copy" }).click();
   assert.match(await page.evaluate(() => navigator.clipboard.readText()), /--- Page 2 ---/);
   const downloadEvent = page.waitForEvent("download");

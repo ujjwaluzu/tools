@@ -9,4 +9,10 @@ coverage/
 next-env.d.ts
 .npm-cache/
 public/pdf.worker.min.mjs
-docs
+public/ocr/
+/docs/*
+!/docs/tools/
+/docs/tools/*
+!/docs/tools/STUDENT.md
+!/docs/tools/README.md
+!/docs/tools/EVERYDAY.md

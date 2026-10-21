@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { CopyButton, DownloadButton, Dropzone, EmptyState, ErrorState, LoadingState, Progress, ResetButton, formatBytes, type AcceptedFiles } from "@/components/tools/primitives";
 import { extractPdfText } from "@/lib/tools/pdf/render";
 import { formatPdfExtraction, inspectPdfDocument, type PdfInspection } from "@/lib/tools/pdf/inspector";
@@ -121,7 +122,7 @@ export function PdfInspector() {
             <button type="button" className="button button-primary" onClick={runExtraction} disabled={extracting}>{extracting ? "Extracting…" : "Extract selected pages"}</button></div>
           {selectionError && <ErrorState>{selectionError}</ErrorState>}
           {extracting && progress && <><LoadingState label={`Extracting page ${progress.page} of ${inspection.pageCount}…`} /><Progress value={progress.completed / progress.total * 100} label={`${progress.completed} of ${progress.total} selected pages processed`} /></>}
-          {output && <section className="result-panel" aria-labelledby="pdf-text-output-title"><div className="result-panel-heading"><h2 id="pdf-text-output-title">Extracted text · {selectedPages.length} pages processed</h2><div className="button-row"><CopyButton value={output} /><DownloadButton value={output} filename={`${safeBaseName(state.file.name)}-text.txt`} /></div></div>{emptyPages.length > 0 && <p className="pdf-empty-pages" role="status">No selectable text was found on page{emptyPages.length === 1 ? "" : "s"} {emptyPages.join(", ")}. Scanned pages need OCR, which is not included.</p>}<textarea className="pdf-extracted-text" aria-label="Extracted PDF text" readOnly value={output} /></section>}
+          {output && <section className="result-panel" aria-labelledby="pdf-text-output-title"><div className="result-panel-heading"><h2 id="pdf-text-output-title">Extracted text · {selectedPages.length} pages processed</h2><div className="button-row"><CopyButton value={output} /><DownloadButton value={output} filename={`${safeBaseName(state.file.name)}-text.txt`} /></div></div>{emptyPages.length > 0 && <p className="pdf-empty-pages" role="status">No selectable text was found on page{emptyPages.length === 1 ? "" : "s"} {emptyPages.join(", ")}. For scanned pages, render or save the page as an image first, then try <Link href="/tools/student/image-to-text">Image to Text OCR</Link>. It supports printed English and is approximate.</p>}<textarea className="pdf-extracted-text" aria-label="Extracted PDF text" readOnly value={output} /></section>}
         </section>
       </>}
     </>}
