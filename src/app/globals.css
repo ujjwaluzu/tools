@@ -364,6 +364,15 @@ h1 span, h2 span { color: var(--muted-headline); }
 
 /* ── Workspace: fields, buttons, results ───────────────────────────── */
 .workspace { padding: 24px; border: 1px solid var(--hairline); border-radius: 10px; background: var(--page); }
+.tool-guide { display: grid; grid-template-columns: minmax(150px, .7fr) 2fr; gap: 20px; align-items: center; margin-bottom: 24px; padding: 15px 17px; border: 1px solid var(--hairline); border-radius: 9px; background: var(--hover); }
+.tool-guide-heading { display: flex; flex-direction: column; gap: 5px; }
+.tool-guide-heading .eyebrow { font-size: 10px; }
+.tool-guide-heading > strong { color: var(--ink); font-size: 14px; letter-spacing: -.015em; }
+.tool-guide ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+.tool-guide li { display: flex; align-items: flex-start; gap: 9px; min-width: 0; }
+.tool-guide li > span { width: 21px; height: 21px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid var(--tag-border); border-radius: 50%; background: var(--page); color: var(--ink); font-size: 10px; font-weight: 700; }
+.tool-guide li p { display: flex; flex-direction: column; gap: 2px; margin: 0; color: var(--body); font-size: 11px; line-height: 1.45; }
+.tool-guide li strong { color: var(--ink); font-size: 11px; }
 .tool-workspace { display: flex; flex-direction: column; gap: 12px; }
 .everyday-workspace { max-width: 760px; }
 .everyday-actions { display: flex; justify-content: flex-end; }
@@ -404,6 +413,7 @@ h1 span, h2 span { color: var(--muted-headline); }
 .button-secondary:hover { border-color: var(--ink); background: var(--hover); }
 .button-quiet { border-color: transparent; background: transparent; color: var(--body); }
 .button-quiet:hover { background: var(--hover); color: var(--ink); }
+.button:focus-visible, .icon-button:focus-visible { outline: 2px solid var(--action-bg); outline-offset: 2px; }
 .error-state { display: flex; align-items: flex-start; gap: 9px; padding: 11px 13px; border: 1px solid var(--ink); border-radius: 7px; background: var(--hover); color: var(--ink); }
 .error-state > span { width: 16px; height: 16px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; background: var(--action-bg); color: var(--action-ink); font-size: 10px; font-weight: 700; }
 .error-state p { margin: 0; color: var(--ink); font-size: 11px; line-height: 1.5; }
@@ -881,6 +891,9 @@ h1 span, h2 span { color: var(--muted-headline); }
   .large-category-icon, .large-tool-icon, .tool-icon.large-tool-icon { width: 45px; height: 45px; border-radius: 8px; font-size: 17px; }
   .tool-privacy { align-items: flex-start; margin-left: 57px; font-size: 10px; }
   .workspace { padding: 15px; }
+  .tool-guide { grid-template-columns: 1fr; gap: 12px; margin-bottom: 18px; padding: 13px; }
+  .tool-guide ol { grid-template-columns: 1fr; gap: 10px; }
+  .tool-guide li p { font-size: 12px; }
   .text-pdf-options-grid { grid-template-columns: 1fr; }
   .text-pdf-input { min-height: 235px; }
   .text-pdf-download { align-items: stretch; flex-direction: column; }
