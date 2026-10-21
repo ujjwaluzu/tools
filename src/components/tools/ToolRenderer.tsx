@@ -24,6 +24,7 @@ const toolComponents: Record<string, ComponentType> = {
   "xml-inspector": dynamic(() => import("@/components/tools/implementations/XmlInspector").then((module) => module.XmlInspector)),
   editor: dynamic(() => import("@/components/tools/implementations/MarkdownEditor").then((module) => module.MarkdownEditor)),
   "to-html": dynamic(() => import("@/components/tools/implementations/MarkdownToHtml").then((module) => module.MarkdownToHtml)),
+  "to-markdown": dynamic(() => import("@/components/tools/implementations/HtmlToMarkdown").then((module) => module.HtmlToMarkdown)),
 };
 
 const ImageTool = dynamic<{ tool: string }>(() => import("@/components/tools/implementations/images/ImageSuite").then((module) => module.ImageSuite), { ssr: false });

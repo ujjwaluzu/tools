@@ -734,6 +734,9 @@ h1 span, h2 span { color: var(--muted-headline); }
   .html-converter-layout { display: block; }
   .html-converter-pane { display: none; min-height: 510px; }
   .html-converter-pane.is-mobile-active { display: flex; }
+  .html-markdown-layout { display: block; }
+  .html-markdown-layout .html-converter-pane { display: flex; min-height: 430px; margin-bottom: 12px; }
+  .html-markdown-layout .html-markdown-source { min-height: 300px; flex: 1; }
   .html-output-tabs { display: none; }
 }
 
