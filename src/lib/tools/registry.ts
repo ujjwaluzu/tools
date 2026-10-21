@@ -49,6 +49,12 @@ export const categories: CategoryDefinition[] = [
 ];
 
 export const tools: ToolDefinition[] = [
+  {
+    slug: "editor", category: "markdown", title: "Markdown Editor & Preview", metaTitle: "Markdown Editor and Live Preview Online",
+    description: "Write Markdown and preview GitHub-style formatting live in your browser.",
+    keywords: ["markdown", "editor", "preview", "gfm", "github flavored markdown", "write", "render", "live"], icon: "M↓", href: "/tools/markdown/editor", processing: "client",
+    privacyNote: "Markdown editing and preview happen locally in your browser. Your source is not uploaded or saved.",
+  },
   ...[
     ["convert", "Convert Images", "Convert images between common formats directly in your browser.", "Convert Images Online — Ujjwal Tools", ["image", "convert", "png", "jpg", "webp", "avif", "svg"]],
     ["resize", "Resize Images", "Resize images quickly in your browser without uploading them.", "Resize Images Online — Ujjwal Tools", ["image", "resize", "dimensions", "scale"]],

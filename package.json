@@ -14,17 +14,20 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test tests/csv.test.ts tests/file-info.test.ts tests/hash.test.ts tests/xml.test.ts tests/pdf-inspector.test.ts tests/pdf-text-to-pdf.test.ts",
+    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test tests/csv.test.ts tests/file-info.test.ts tests/hash.test.ts tests/xml.test.ts tests/pdf-inspector.test.ts tests/pdf-text-to-pdf.test.ts tests/markdown.test.ts",
     "test:xml-browser": "node scripts/qa-xml.mjs",
     "test:pdf-browser": "node scripts/qa-pdf-inspector.mjs",
-    "test:text-pdf-browser": "node scripts/qa-text-to-pdf.mjs"
+    "test:text-pdf-browser": "node scripts/qa-text-to-pdf.mjs",
+    "test:markdown-browser": "node scripts/qa-markdown.mjs"
   },
   "dependencies": {
     "next": "^16.1.0",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^6.4.299",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

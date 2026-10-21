@@ -22,6 +22,7 @@ const toolComponents: Record<string, ComponentType> = {
   "csv-viewer": dynamic(() => import("@/components/tools/implementations/CsvViewer").then((module) => module.CsvViewer)),
   "file-info": dynamic(() => import("@/components/tools/implementations/FileInfo").then((module) => module.FileInfo)),
   "xml-inspector": dynamic(() => import("@/components/tools/implementations/XmlInspector").then((module) => module.XmlInspector)),
+  editor: dynamic(() => import("@/components/tools/implementations/MarkdownEditor").then((module) => module.MarkdownEditor)),
 };
 
 const ImageTool = dynamic<{ tool: string }>(() => import("@/components/tools/implementations/images/ImageSuite").then((module) => module.ImageSuite), { ssr: false });

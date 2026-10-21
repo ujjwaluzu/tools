@@ -20,13 +20,14 @@ The lists below reflect the tool catalogue and implementation in this repository
 | Web & SEO | URL and query parsing, metadata and social previews, JSON-LD, sitemap/robots utilities, metadata inspection | Implemented; some URL checks and remote image previews make browser requests |
 | Data | CSV Viewer & Cleaner, File Information & Metadata | Implemented; browser-local processing, with documented CSV and file inspection limits |
 | Security & Encoding | Base64, UUID, JWT decoder, hash and HMAC generators | Implemented; browser-local processing |
+| Markdown | Markdown Editor & Preview | Implemented; browser-local Markdown editor and GitHub Flavored Markdown preview |
 | Color | HEX/RGB/HSL color converter | Implemented; browser-local processing |
 
 ### Coming soon / planned
 
 These are roadmap ideas, not yet available tools or release commitments. Work is expected to be incremental.
 
-- **Markdown:** Markdown writing, formatting, and preview utilities.
+- **Markdown:** HTML and document conversion, table, TOC, and formatting utilities.
 - **Data:** XLSX conversion and additional CSV/data utilities.
 - **PDF and images:** PDF editing, OCR, and image background removal.
 - **Git & GitHub:** small workflow helpers and GitHub tools.
@@ -46,6 +47,7 @@ File and text tools process data locally in the browser. This includes image con
 - SVG input is sanitized before rasterization. EXIF reading currently supports JPEG metadata; removing metadata re-encodes to PNG.
 
 See [the product documentation](docs/tools/README.md), [privacy guidance](docs/tools/PRIVACY.md), and [security rules](docs/tools/SECURITY.md) for the full product contract.
+The Markdown editor's [syntax, privacy, security, and size-limit behavior](docs/tools/MARKDOWN_EDITOR.md) is documented separately.
 
 ## Tech stack
 
@@ -55,6 +57,7 @@ See [the product documentation](docs/tools/README.md), [privacy guidance](docs/t
 - Plain CSS design tokens and responsive layouts
 - `pdf-lib` for local PDF creation, merge, and page extraction
 - Mozilla `pdfjs-dist` for local PDF page rendering
+- `react-markdown` and `remark-gfm` for safe, local GitHub Flavored Markdown preview
 
 ## Getting started
 

@@ -233,6 +233,58 @@ h1 span, h2 span { color: var(--muted-headline); }
 .segmented-control button { min-height: 30px; padding: 0 13px; border: 0; border-radius: 5px; background: transparent; color: var(--body); font-size: 11px; font-weight: 600; }
 .segmented-control button.selected { background: var(--page); color: var(--ink); box-shadow: 0 0 0 1px var(--hairline); }
 .uuid-controls { display: flex; align-items: end; gap: 12px; }
+
+/* Markdown editor and live preview */
+.markdown-workspace { gap: 13px; }
+.markdown-privacy, .markdown-status, .markdown-error, .markdown-size-note { margin: 0; color: var(--body); font-size: 12px; }
+.markdown-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.markdown-tabs { display: none; }
+.markdown-panes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; min-width: 0; }
+.markdown-pane { display: flex; flex-direction: column; min-width: 0; min-height: 490px; overflow: hidden; border: 1px solid var(--hairline); border-radius: 8px; background: var(--page); }
+.markdown-pane-heading { min-height: 43px; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--hairline); }
+.markdown-pane-heading h2 { font-size: 12px; }
+.markdown-pane-heading span { color: var(--label); font-family: var(--font-mono), 'DM Mono', monospace; font-size: 10px; }
+.markdown-source { width: 100%; min-height: 0; flex: 1; resize: vertical; padding: 15px; border: 0; outline: none; background: var(--page); color: var(--ink); font-family: var(--font-mono), 'DM Mono', Consolas, monospace; font-size: 12px; line-height: 1.7; tab-size: 2; }
+.markdown-source:focus-visible { outline: 2px solid var(--ink); outline-offset: -3px; }
+.markdown-source::placeholder { color: var(--muted-headline); }
+.markdown-counts { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 9px 12px 0; color: var(--label); font-size: 10px; }
+.markdown-size-note { padding: 2px 12px 10px; font-size: 10px; }
+.markdown-size-note.is-error, .markdown-error { color: #9c2424; }
+.markdown-error { padding: 9px 11px; border: 1px solid #d98e8e; border-radius: 7px; background: #fff8f8; }
+.markdown-preview-content { min-width: 0; min-height: 0; flex: 1; overflow: auto; padding: 21px; }
+.markdown-empty { min-height: 300px; display: flex; align-items: center; flex-direction: column; justify-content: center; padding: 22px; color: var(--label); text-align: center; }
+.markdown-empty > span { margin-bottom: 8px; color: var(--ink); font-family: var(--font-mono), monospace; font-size: 22px; }
+.markdown-empty strong { color: var(--body); font-size: 13px; }
+.markdown-empty p { max-width: 270px; margin-top: 5px; color: var(--label); font-size: 11px; }
+.markdown-prose { min-width: 0; overflow-wrap: anywhere; color: var(--ink); font-size: 14px; line-height: 1.7; }
+.markdown-prose > :first-child { margin-top: 0; }
+.markdown-prose > :last-child { margin-bottom: 0; }
+.markdown-prose h1, .markdown-prose h2, .markdown-prose h3, .markdown-prose h4 { margin: 1.2em 0 .45em; line-height: 1.25; letter-spacing: -.025em; }
+.markdown-prose h1 { font-size: 1.8em; }
+.markdown-prose h2 { font-size: 1.45em; }
+.markdown-prose h3 { font-size: 1.2em; }
+.markdown-prose p, .markdown-prose ul, .markdown-prose ol, .markdown-prose blockquote { margin: 0 0 1em; }
+.markdown-prose ul, .markdown-prose ol { padding-left: 1.5em; }
+.markdown-prose li + li { margin-top: .2em; }
+.markdown-prose li > ul, .markdown-prose li > ol { margin: .25em 0 0; }
+.markdown-prose blockquote { padding: 2px 0 2px 13px; border-left: 3px solid var(--tag-border); color: var(--body); }
+.markdown-prose blockquote > :last-child { margin-bottom: 0; }
+.markdown-prose :not(pre) > code { padding: .12em .35em; border: 1px solid var(--hairline); border-radius: 4px; background: var(--hover); font-family: var(--font-mono), 'DM Mono', monospace; font-size: .88em; }
+.markdown-prose pre { max-width: 100%; overflow: auto; margin: 0 0 1em; padding: 13px; border: 1px solid var(--hairline); border-radius: 7px; background: #f7f7f7; font-family: var(--font-mono), 'DM Mono', Consolas, monospace; font-size: 11px; line-height: 1.6; tab-size: 2; }
+.markdown-prose pre code { font: inherit; white-space: pre; }
+.markdown-prose hr { height: 1px; margin: 1.5em 0; border: 0; background: var(--hairline); }
+.markdown-prose a { color: #174f9d; text-decoration: underline; text-underline-offset: 2px; }
+.markdown-prose img { display: block; max-width: 100%; max-height: 420px; margin: .7em 0; object-fit: contain; }
+.markdown-table-scroll { max-width: 100%; overflow-x: auto; margin: 0 0 1em; }
+.markdown-prose table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.markdown-prose th, .markdown-prose td { min-width: 90px; padding: 7px 9px; border: 1px solid var(--tag-border); text-align: left; vertical-align: top; }
+.markdown-prose th { background: var(--hover); font-weight: 600; }
+.markdown-prose input[type="checkbox"] { margin-right: 7px; accent-color: var(--ink); }
+.markdown-reference { padding: 12px 14px; border: 1px solid var(--hairline); border-radius: 7px; color: var(--body); font-size: 11px; }
+.markdown-reference summary { color: var(--ink); cursor: pointer; font-weight: 600; }
+.markdown-reference-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.markdown-reference-grid code { min-width: 0; overflow-wrap: anywhere; padding: 7px 8px; border-radius: 5px; background: var(--hover); font-family: var(--font-mono), 'DM Mono', monospace; font-size: 10px; }
+.markdown-reference > p { margin-top: 12px; font-size: 10px; }
 .count-input { width: 105px; }
 .uuid-controls > .button { min-height: 43px; }
 .uuid-list { max-height: 360px; overflow: auto; margin: 0; padding: 5px 0 5px 35px; }
@@ -574,4 +626,23 @@ h1 span, h2 span { color: var(--muted-headline); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+@media (max-width: 760px) {
+  .markdown-tabs { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--hover); }
+  .markdown-tabs button { min-height: 37px; flex: 1; border: 0; border-radius: 5px; background: transparent; color: var(--body); font-size: 12px; font-weight: 600; }
+  .markdown-tabs button.selected { background: var(--page); color: var(--ink); box-shadow: 0 0 0 1px var(--hairline); }
+  .markdown-panes { display: block; }
+  .markdown-pane { display: none; min-height: 440px; }
+  .markdown-pane.is-active-mobile { display: flex; }
+  .markdown-source { min-height: 320px; resize: vertical; }
+  .markdown-preview-content { min-height: 390px; }
+}
+
+@media (max-width: 420px) {
+  .markdown-toolbar { align-items: flex-start; }
+  .markdown-toolbar .button-row { flex-wrap: wrap; }
+  .markdown-toolbar .button { padding-inline: 9px; font-size: 11px; }
+  .markdown-preview-content { padding: 15px; }
+  .markdown-reference-grid { grid-template-columns: 1fr; }
 }
