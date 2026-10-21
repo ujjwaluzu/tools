@@ -6,10 +6,11 @@ import { PDFDocument } from "pdf-lib";
 const baseUrl = process.env.TEXT_PDF_BASE_URL ?? "http://localhost:3000";
 const browser = await chromium.launch({ headless: true });
 try {
-  const context = await browser.newContext({ acceptDownloads: true });
+  const context = await browser.newContext({ acceptDownloads: true, locale: "en-IN" });
   const page = await context.newPage({ viewport: { width: 1280, height: 900 } });
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
+  page.on("console", (message) => { if (message.type() === "error" && /hydration|did not match/iu.test(message.text())) errors.push(message.text()); });
   const response = await page.goto(`${baseUrl}/tools/pdf/text-to-pdf`, { waitUntil: "networkidle" });
   assert.equal(response?.status(), 200, "Text-to-PDF route should load");
   assert.equal(await page.title().then((title) => /Text to PDF Generator/u.test(title)), true);

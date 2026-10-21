@@ -84,7 +84,7 @@ export function TextToPdf() {
     <div className="field-group">
       <label className="field-label" htmlFor="text-pdf-input">Text to convert</label>
       <textarea id="text-pdf-input" className="code-input text-area text-pdf-input" value={text} onChange={(event) => updateText(event.target.value)} placeholder={'Type or paste plain text here…\n\nBlank lines stay as paragraph breaks.'} aria-describedby="text-pdf-counts text-pdf-font-note" spellCheck />
-      <div id="text-pdf-counts" className="text-pdf-counts" aria-live="polite"><span>{countCharacters(text).toLocaleString()} characters</span><span>{countWords(text).toLocaleString()} words</span><span>{countLines(text).toLocaleString()} lines</span><span>{bytes.toLocaleString()} / {MAX_TEXT_BYTES.toLocaleString()} UTF-8 bytes</span></div>
+      <div id="text-pdf-counts" className="text-pdf-counts" aria-live="polite"><span>{formatCount(countCharacters(text))} characters</span><span>{formatCount(countWords(text))} words</span><span>{formatCount(countLines(text))} lines</span><span>{formatCount(bytes)} / {formatCount(MAX_TEXT_BYTES)} UTF-8 bytes</span></div>
       <p className="field-help" id="text-pdf-font-note">Standard PDF fonts support Latin text and many Windows-1252 accents and punctuation. Emoji and many non-Latin scripts are not supported; the tool will identify unsupported characters instead of replacing them.</p>
     </div>
 
@@ -121,4 +121,8 @@ export function TextToPdf() {
 
 function Field({ label, id, children }: { label: string; id: string; children: React.ReactNode }) {
   return <div className="field-group"><label className="field-label" htmlFor={id}>{label}</label>{children}</div>;
+}
+
+function formatCount(value: number): string {
+  return String(value).replace(/\B(?=(\d{3})+(?!\d))/gu, ",");
 }
