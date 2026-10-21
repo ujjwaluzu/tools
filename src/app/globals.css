@@ -347,6 +347,20 @@ h1 span, h2 span { color: var(--muted-headline); }
 .markdown-pdf-preview .markdown-preview-content { min-height: 0; }
 .markdown-docx-title { max-width: 520px; }
 .markdown-docx-title small { color: var(--label); font-weight: 400; }
+.markdown-table-workspace { gap: 13px; }
+.markdown-table-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.markdown-table-editor-scroll { max-width: 100%; overflow: auto; border: 1px solid var(--hairline); border-radius: 8px; background: var(--page); }
+.markdown-table-editor { width: 100%; min-width: 620px; border-collapse: collapse; }
+.markdown-table-editor th, .markdown-table-editor td { min-width: 170px; padding: 9px; border: 1px solid var(--hairline); vertical-align: top; text-align: left; }
+.markdown-table-editor th { background: var(--hover); }
+.markdown-table-editor th > label:not(.visually-hidden) { display: block; margin: 0 0 5px; color: var(--label); font-size: 10px; font-weight: 600; }
+.markdown-table-editor th .text-input { width: 100%; min-width: 0; min-height: 35px; margin-bottom: 9px; font-size: 11px; }
+.markdown-table-editor th select.text-input { padding: 6px; }
+.markdown-table-cell { width: 100%; min-width: 0; min-height: 57px; resize: vertical; font-size: 11px; }
+.markdown-table-row-actions { min-width: 120px !important; }
+.markdown-table-remove { padding-inline: 8px; font-size: 10px; }
+.markdown-table-output { min-width: 0; overflow: hidden; border: 1px solid var(--hairline); border-radius: 8px; background: var(--page); }
+.markdown-table-output-source { display: block; width: 100%; min-height: 150px; resize: vertical; padding: 13px; border: 0; outline: 0; background: var(--page); color: var(--ink); font-family: var(--font-mono), Consolas, monospace; font-size: 11px; line-height: 1.6; white-space: pre; }
 
 /* Markdown to HTML converter */
 .markdown-html-workspace { gap: 13px; }

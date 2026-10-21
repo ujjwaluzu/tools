@@ -79,6 +79,12 @@ export const tools: ToolDefinition[] = [
     keywords: ["markdown", "docx", "word", "document", "convert", "gfm", "download"], icon: "M→W", href: "/tools/markdown/to-docx", processing: "client",
     privacyNote: "Markdown parsing and DOCX generation happen locally in your browser. Your content is not uploaded or saved.",
   },
+  {
+    slug: "table-generator", category: "markdown", title: "Markdown Table Generator", metaTitle: "Markdown Table Generator Online",
+    description: "Build, align, and export escaped Markdown tables in your browser.",
+    keywords: ["markdown", "table", "generator", "builder", "alignment", "gfm", "copy", "download"], icon: "M▦", href: "/tools/markdown/table-generator", processing: "client",
+    privacyNote: "Table editing and Markdown generation happen locally in your browser. Your content is not uploaded or saved.",
+  },
   ...[
     ["convert", "Convert Images", "Convert images between common formats directly in your browser.", "Convert Images Online — Ujjwal Tools", ["image", "convert", "png", "jpg", "webp", "avif", "svg"]],
     ["resize", "Resize Images", "Resize images quickly in your browser without uploading them.", "Resize Images Online — Ujjwal Tools", ["image", "resize", "dimensions", "scale"]],
