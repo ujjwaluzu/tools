@@ -14,7 +14,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test tests/csv.test.ts tests/file-info.test.ts tests/hash.test.ts"
+    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test tests/csv.test.ts tests/file-info.test.ts tests/hash.test.ts tests/xml.test.ts",
+    "test:xml-browser": "node scripts/qa-xml.mjs"
   },
   "dependencies": {
     "next": "^16.1.0",

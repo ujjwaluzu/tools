@@ -210,6 +210,12 @@ h1 span, h2 span { color: var(--muted-headline); }
 .result-panel-heading h2 { margin: 0; font-size: 11px; font-weight: 600; }
 .result-panel-heading .button { min-height: 29px; padding-inline: 9px; font-size: 10px; }
 .code-result { max-height: 400px; overflow: auto; margin: 0; padding: 14px; color: var(--ink); font-family: var(--font-mono), 'DM Mono', Consolas, monospace; font-size: 11px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+.xml-workspace .dropzone { min-height: 150px; }
+.xml-success { margin: 0; padding: 11px 13px; border: 1px solid var(--tag-border); border-radius: 7px; background: var(--hover); color: var(--ink); font-size: 11px; line-height: 1.5; }
+.xml-mapping { padding: 12px 14px; border: 1px solid var(--hairline); border-radius: 7px; color: var(--body); font-size: 10px; }
+.xml-mapping summary { color: var(--ink); cursor: pointer; font-size: 11px; font-weight: 600; }
+.xml-mapping ul { display: grid; gap: 7px; margin: 10px 0 0; padding-left: 19px; line-height: 1.55; }
+.xml-mapping code { color: var(--ink); font-family: var(--font-mono), 'DM Mono', Consolas, monospace; }
 .result-empty { min-height: 123px; display: flex; align-items: center; flex-direction: column; justify-content: center; padding: 18px; color: var(--label); text-align: center; }
 .result-empty > span { margin-bottom: 6px; color: var(--label); font-size: 19px; }
 .result-empty strong { color: var(--body); font-size: 11px; }

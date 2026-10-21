@@ -140,6 +140,12 @@ export const tools: ToolDefinition[] = [
     privacyNote: "File inspection happens locally in your browser. Your file and metadata are not uploaded.",
   },
   {
+    slug: "xml-inspector", category: "data", title: "XML Inspector", metaTitle: "XML Formatter, Validator and JSON Converter",
+    description: "Format and validate XML, or convert it to JSON locally in your browser.",
+    keywords: ["xml", "format", "pretty print", "validate", "json", "convert", "data", "parser"], icon: "< >", href: "/tools/data/xml-inspector", processing: "client",
+    privacyNote: "XML is parsed locally in your browser. Your input is not uploaded.",
+  },
+  {
     slug: "convert", category: "color", title: "Color Converter", description: "Convert between HEX, RGB, and HSL with a live preview.",
     keywords: ["color", "colour", "hex", "rgb", "hsl", "converter"], icon: "◉", href: "/tools/color/convert", processing: "client",
     privacyNote: "Processed locally in your browser. Your data was not uploaded.", popular: true,
