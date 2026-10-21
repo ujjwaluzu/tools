@@ -14,16 +14,18 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test tests/csv.test.ts tests/file-info.test.ts tests/hash.test.ts tests/xml.test.ts tests/pdf-inspector.test.ts tests/pdf-text-to-pdf.test.ts tests/markdown.test.ts tests/markdown-to-html.test.ts tests/html-to-markdown.test.ts tests/markdown-to-pdf.test.ts",
+    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test tests/csv.test.ts tests/file-info.test.ts tests/hash.test.ts tests/xml.test.ts tests/pdf-inspector.test.ts tests/pdf-text-to-pdf.test.ts tests/markdown.test.ts tests/markdown-to-html.test.ts tests/html-to-markdown.test.ts tests/markdown-to-pdf.test.ts tests/markdown-to-docx.test.ts",
     "test:xml-browser": "node scripts/qa-xml.mjs",
     "test:pdf-browser": "node scripts/qa-pdf-inspector.mjs",
     "test:text-pdf-browser": "node scripts/qa-text-to-pdf.mjs",
     "test:markdown-browser": "node scripts/qa-markdown.mjs",
     "test:markdown-html-browser": "node scripts/qa-markdown-to-html.mjs",
     "test:html-markdown-browser": "node scripts/qa-html-to-markdown.mjs",
-    "test:markdown-pdf-browser": "node scripts/qa-markdown-to-pdf.mjs"
+    "test:markdown-pdf-browser": "node scripts/qa-markdown-to-pdf.mjs",
+    "test:markdown-docx-browser": "node scripts/qa-markdown-to-docx.mjs"
   },
   "dependencies": {
+    "docx": "^9.13.0",
     "dompurify": "^3.4.17",
     "next": "^16.1.0",
     "pdf-lib": "^1.17.1",
@@ -46,6 +48,7 @@
     "@types/turndown": "^5.0.6",
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.1.0",
+    "jszip": "^3.10.2",
     "patchright": "^1.64.1",
     "typescript": "^5.9.0"
   }

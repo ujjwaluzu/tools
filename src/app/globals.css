@@ -345,6 +345,8 @@ h1 span, h2 span { color: var(--muted-headline); }
 .markdown-pdf-source:focus-visible { outline: 2px solid var(--ink); outline-offset: -3px; }
 .markdown-pdf-pane > .html-markdown-size { padding: 0 12px 9px; }
 .markdown-pdf-preview .markdown-preview-content { min-height: 0; }
+.markdown-docx-title { max-width: 520px; }
+.markdown-docx-title small { color: var(--label); font-weight: 400; }
 
 /* Markdown to HTML converter */
 .markdown-html-workspace { gap: 13px; }

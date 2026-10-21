@@ -26,6 +26,7 @@ const toolComponents: Record<string, ComponentType> = {
   "to-html": dynamic(() => import("@/components/tools/implementations/MarkdownToHtml").then((module) => module.MarkdownToHtml)),
   "to-markdown": dynamic(() => import("@/components/tools/implementations/HtmlToMarkdown").then((module) => module.HtmlToMarkdown)),
   "to-pdf": dynamic(() => import("@/components/tools/implementations/pdf/MarkdownToPdf").then((module) => module.MarkdownToPdf)),
+  "to-docx": dynamic(() => import("@/components/tools/implementations/MarkdownToDocx").then((module) => module.MarkdownToDocx)),
 };
 
 const ImageTool = dynamic<{ tool: string }>(() => import("@/components/tools/implementations/images/ImageSuite").then((module) => module.ImageSuite), { ssr: false });

@@ -73,6 +73,12 @@ export const tools: ToolDefinition[] = [
     keywords: ["markdown", "pdf", "convert", "document", "export", "gfm", "download"], icon: "M→PDF", href: "/tools/markdown/to-pdf", processing: "client",
     privacyNote: "Markdown parsing and PDF generation happen locally in your browser. Your content is not uploaded or saved.",
   },
+  {
+    slug: "to-docx", category: "markdown", title: "Markdown to DOCX Converter", metaTitle: "Markdown to DOCX Converter Online",
+    description: "Create a formatted Microsoft Word document from Markdown locally in your browser.",
+    keywords: ["markdown", "docx", "word", "document", "convert", "gfm", "download"], icon: "M→W", href: "/tools/markdown/to-docx", processing: "client",
+    privacyNote: "Markdown parsing and DOCX generation happen locally in your browser. Your content is not uploaded or saved.",
+  },
   ...[
     ["convert", "Convert Images", "Convert images between common formats directly in your browser.", "Convert Images Online — Ujjwal Tools", ["image", "convert", "png", "jpg", "webp", "avif", "svg"]],
     ["resize", "Resize Images", "Resize images quickly in your browser without uploading them.", "Resize Images Online — Ujjwal Tools", ["image", "resize", "dimensions", "scale"]],

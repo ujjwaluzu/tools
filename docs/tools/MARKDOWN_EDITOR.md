@@ -16,7 +16,7 @@ Markdown source is limited to 1 MiB measured as UTF-8 bytes. Oversized source is
 
 The parser and renderer are `react-markdown` and `remark-gfm`. The renderer creates React elements from parsed Markdown nodes and never injects generated HTML into the DOM.
 
-Other planned Markdown tools (conversion, export, table generation, TOC generation, and formatting) are tracked in the roadmap and are not part of this editor.
+Other Markdown tools (table generation, TOC generation, and formatting) are added incrementally and are not part of this editor.
 
 Markdown parsing for analysis and document conversion uses the same `remark-parse` plus `remark-gfm` parser configured in `src/lib/tools/markdown.ts`. Raw HTML stays disabled in the live renderer and HTML export follows the DOMPurify policy above.
 
@@ -31,3 +31,9 @@ The sanitizer allows common Markdown semantic elements, safe links, relative ima
 Route: `/tools/markdown/to-markdown`.
 
 The converter accepts up to 1 MiB of UTF-8 HTML and uses Turndown with its GFM plugin. The source is parsed by the browser's inert `DOMParser`; it is never inserted into the application DOM or rendered as a preview. Headings, paragraphs, emphasis, lists, blockquotes, safe links, relative images, tables, inline code, preformatted code, horizontal rules, and line breaks are converted where representable. Scripts, styles, SVG/MathML, forms, embedded content, media, and other active or unsupported elements are discarded. Unsafe link URLs are removed and non-relative image URLs are dropped to prevent external requests. HTML styling and some semantics are lossy by nature. Output is also limited to 1 MiB. Copy and `.md` download use the generated Markdown; the download filename is fixed to `document.md`. Processing is local and transient.
+
+## Markdown to DOCX converter
+
+Route: `/tools/markdown/to-docx`.
+
+The converter uses the shared CommonMark/GFM syntax tree and the `docx` library to create a valid Office Open XML Word document in the browser. Headings map to Word Heading 1–6 styles; paragraphs, bold/italic/strikethrough, inline and fenced code, ordered and unordered/nested lists, task-list markers, blockquotes, tables, horizontal rules, and hyperlinks receive Word formatting. Only `http`, `https`, `mailto`, and `tel` links are written as hyperlinks; unsafe destinations are emitted as plain text. Raw HTML is included as literal text and never executed. Images are represented by alt text and are not fetched or embedded. Code fence language labels and browser-specific layout details are not preserved, and output is not pixel-identical to the preview. The optional title appears as a Title-style paragraph and document metadata. Input is limited to 1 MiB UTF-8. The sanitized `.docx` filename and document remain local and transient.
