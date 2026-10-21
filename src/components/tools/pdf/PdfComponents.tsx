@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Icon } from "@/components/Icon";
 import { Dropzone, EmptyState, ErrorState, formatBytes, type AcceptedFiles } from "@/components/tools/primitives";
 import { renderPdfThumbnails } from "@/lib/tools/pdf/render";
 import { formatPageRanges, parsePageRanges } from "@/lib/tools/pdf/validation";
@@ -26,9 +27,9 @@ export function PdfFileList({ files, onMove, onRemove }: {
     <span className="pdf-file-position" aria-label={`File ${index + 1}`}>{index + 1}</span>
     <span className="pdf-file-copy"><strong title={file.name}>{file.name}</strong><small>{file.type || "PDF file"} · {formatBytes(file.size)}</small></span>
     <span className="pdf-file-controls">
-      <button type="button" className="icon-button reorder-button" aria-label={`Move ${file.name} up`} title="Move up" disabled={index === 0} onClick={() => onMove(index, -1)}>↑</button>
-      <button type="button" className="icon-button reorder-button" aria-label={`Move ${file.name} down`} title="Move down" disabled={index === files.length - 1} onClick={() => onMove(index, 1)}>↓</button>
-      <button type="button" className="icon-button" aria-label={`Remove ${file.name}`} title="Remove file" onClick={() => onRemove(index)}>×</button>
+      <button type="button" className="icon-button reorder-button" aria-label={`Move ${file.name} up`} title="Move up" disabled={index === 0} onClick={() => onMove(index, -1)}><Icon name="chevron-up" size={16} /></button>
+      <button type="button" className="icon-button reorder-button" aria-label={`Move ${file.name} down`} title="Move down" disabled={index === files.length - 1} onClick={() => onMove(index, 1)}><Icon name="chevron-down" size={16} /></button>
+      <button type="button" className="icon-button" aria-label={`Remove ${file.name}`} title="Remove file" onClick={() => onRemove(index)}><Icon name="x" size={16} /></button>
     </span>
   </li>)}</ol>;
 }

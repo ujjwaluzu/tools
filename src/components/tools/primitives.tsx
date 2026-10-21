@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Icon } from "@/components/Icon";
 
 export function CopyButton({ value, label = "Copy" }: { value: string; label?: string }) {
   const [copied, setCopied] = useState(false);
@@ -38,7 +39,7 @@ export function ErrorState({ children }: { children: React.ReactNode }) {
 }
 
 export function EmptyState({ title, children }: { title: string; children: React.ReactNode }) {
-  return <div className="result-empty"><span aria-hidden="true">↳</span><strong>{title}</strong><p>{children}</p></div>;
+  return <div className="result-empty"><span aria-hidden="true"><Icon name="search" size={20} /></span><strong>{title}</strong><p>{children}</p></div>;
 }
 
 export function LoadingState({ label = "Working…" }: { label?: string }) {
@@ -83,7 +84,7 @@ export function Dropzone({ onFiles, accept, multiple = false, maxBytes = 25 * 10
   }
   return <div className={`dropzone${dragging ? " is-dragging" : ""}${disabled ? " is-disabled" : ""}`} onDragOver={(event) => { event.preventDefault(); if (!disabled) setDragging(true); }} onDragLeave={() => setDragging(false)} onDrop={(event) => { event.preventDefault(); setDragging(false); if (!disabled) validate(event.dataTransfer.files); }}>
     <input ref={input} type="file" className="visually-hidden" accept={accept?.join(",")} multiple={multiple} disabled={disabled} onChange={(event) => { if (event.target.files) validate(event.target.files); event.target.value = ""; }} />
-    <span className="dropzone-icon" aria-hidden="true">↥</span><strong>Drop a file here</strong><span>or choose a file from your device</span>
+    <span className="dropzone-icon" aria-hidden="true"><Icon name="upload" size={24} /></span><strong>Drop a file here</strong><span>or choose a file from your device</span>
     <button type="button" className="button button-secondary" disabled={disabled} onClick={() => input.current?.click()}>Browse files</button>
     <small>Up to {formatBytes(displayMaxBytes)}{accept?.length ? ` · ${accept.join(", ")}` : ""}</small>
   </div>;
@@ -92,8 +93,8 @@ export function Dropzone({ onFiles, accept, multiple = false, maxBytes = 25 * 10
 export function FileList({ files, onRemove }: { files: File[]; onRemove: (index: number) => void }) {
   if (!files.length) return null;
   return <ul className="file-list">{files.map((file, index) => <li className="file-row" key={`${file.name}-${file.lastModified}`}>
-    <span className="file-icon" aria-hidden="true">▤</span><span className="file-info"><strong>{file.name}</strong><small>{file.type || "Unknown type"} · {formatBytes(file.size)}</small></span>
-    <button type="button" className="icon-button" aria-label={`Remove ${file.name}`} onClick={() => onRemove(index)}>×</button>
+    <span className="file-icon" aria-hidden="true"><Icon name="file" size={17} /></span><span className="file-info"><strong>{file.name}</strong><small>{file.type || "Unknown type"} · {formatBytes(file.size)}</small></span>
+    <button type="button" className="icon-button" aria-label={`Remove ${file.name}`} onClick={() => onRemove(index)}><Icon name="x" size={16} /></button>
   </li>)}</ul>;
 }
 

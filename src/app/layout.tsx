@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { DM_Mono, Instrument_Sans } from "next/font/google";
 import Link from "next/link";
 import { HatchGutter } from "@/components/home/DesignPrimitives";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -45,17 +46,23 @@ export const viewport: Viewport = { themeColor: "#ffffff" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${instrumentSans.variable} ${dmMono.variable}`}>
+    <html lang="en" className={`${instrumentSans.variable} ${dmMono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `try { var theme = localStorage.getItem("ujjwal-tools-theme"); if (theme !== "light" && theme !== "dark") theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; document.documentElement.dataset.theme = theme; } catch (_) { document.documentElement.dataset.theme = "light"; }` }} />
+      </head>
       <body>
         <header className="site-header">
           <div className="header-inner">
             <Link className="brand" href="/tools" aria-label="Ujjwal Tools home">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M4 3v6a4 4 0 0 0 8 0V3" /></svg>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M4 3v6a4 4 0 0 0 8 0V3" /></svg>
             </Link>
-            <nav className="header-nav" aria-label="Main navigation">
-              <Link href="/tools">All tools</Link>
-              <Link href="/tools#categories">Categories</Link>
-            </nav>
+            <div className="header-actions">
+              <nav className="header-nav" aria-label="Main navigation">
+                <Link href="/tools">All tools</Link>
+                <Link href="/tools#categories">Categories</Link>
+              </nav>
+              <ThemeToggle />
+            </div>
           </div>
         </header>
         <div className="site-frame">
