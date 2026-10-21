@@ -55,6 +55,12 @@ export const tools: ToolDefinition[] = [
     keywords: ["markdown", "editor", "preview", "gfm", "github flavored markdown", "write", "render", "live"], icon: "M↓", href: "/tools/markdown/editor", processing: "client",
     privacyNote: "Markdown editing and preview happen locally in your browser. Your source is not uploaded or saved.",
   },
+  {
+    slug: "to-html", category: "markdown", title: "Markdown to HTML Converter", metaTitle: "Markdown to HTML Converter Online",
+    description: "Convert Markdown to a complete, sanitized HTML document locally in your browser.",
+    keywords: ["markdown", "html", "convert", "converter", "gfm", "export", "sanitize", "download"], icon: "M→H", href: "/tools/markdown/to-html", processing: "client",
+    privacyNote: "Markdown conversion and HTML sanitization happen locally in your browser. Your content is not uploaded or saved.",
+  },
   ...[
     ["convert", "Convert Images", "Convert images between common formats directly in your browser.", "Convert Images Online — Ujjwal Tools", ["image", "convert", "png", "jpg", "webp", "avif", "svg"]],
     ["resize", "Resize Images", "Resize images quickly in your browser without uploading them.", "Resize Images Online — Ujjwal Tools", ["image", "resize", "dimensions", "scale"]],

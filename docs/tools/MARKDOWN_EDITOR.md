@@ -17,3 +17,9 @@ Markdown source is limited to 1 MiB measured as UTF-8 bytes. Oversized source is
 The parser and renderer are `react-markdown` and `remark-gfm`. The renderer creates React elements from parsed Markdown nodes and never injects generated HTML into the DOM.
 
 Other planned Markdown tools (conversion, export, table generation, TOC generation, and formatting) are tracked in the roadmap and are not part of this editor.
+
+## Markdown to HTML converter
+
+The companion converter is at `/tools/markdown/to-html`. It uses the same `remark-gfm` Markdown syntax and 1 MiB UTF-8 input limit, and creates a complete standalone HTML document with a UTF-8 declaration, responsive viewport, escaped optional title, and a small built-in responsive and print stylesheet. The generated body is sanitized with DOMPurify before it is assembled into the document. The same sanitized fragment drives the in-app preview; copy and download use the exact assembled document.
+
+The sanitizer allows common Markdown semantic elements, safe links, relative images, and GFM task-list checkboxes. It removes raw HTML, scripts, event handlers, SVG/MathML, embedded content, unsafe URL schemes, and user style attributes. Generated links open in a new tab with `noopener noreferrer`; images must use relative paths, so the preview does not contact third-party image hosts. The stylesheet in the exported document is a fixed application template, not user Markdown. This policy is designed for this converter and does not replace downstream sanitization requirements.
