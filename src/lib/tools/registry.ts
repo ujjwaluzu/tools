@@ -49,6 +49,21 @@ export const categories: CategoryDefinition[] = [
 ];
 
 export const tools: ToolDefinition[] = [
+  ...[
+    ["px-rem", "PX ↔ REM Converter", "Convert pixels and rem using a configurable root font size.", ["px", "pixels", "rem", "root font size", "css units"]],
+    ["rem-em", "REM ↔ EM Converter", "Compare root-relative rem values with parent-relative em sizing.", ["rem", "em", "font size", "css units"]],
+    ["bytes", "Bytes & Storage Unit Converter", "Convert decimal kB through TB and binary KiB through TiB.", ["bytes", "kb", "mb", "gb", "tb", "kib", "mib", "gib", "binary", "decimal"]],
+    ["milliseconds", "Milliseconds & Time Converter", "Convert fractional durations from milliseconds through days.", ["milliseconds", "seconds", "minutes", "hours", "days", "duration"]],
+    ["unit-converter", "Common Measurement Converter", "Convert length, mass, and temperature units with correct temperature formulas.", ["unit converter", "length", "weight", "mass", "temperature", "celsius", "fahrenheit", "kelvin"]],
+    ["unix-timestamp", "Unix Timestamp Converter", "Convert ISO dates to Unix seconds and milliseconds with UTC and local time.", ["unix", "timestamp", "epoch", "seconds", "milliseconds", "date"]],
+    ["timezone-converter", "Timezone Converter", "Convert local date and time across IANA timezones and daylight-saving transitions.", ["timezone", "time zone", "iana", "dst", "daylight saving", "world clock"]],
+    ["date-difference", "Date Difference Calculator", "Compare calendar dates by elapsed days and calendar years, months, and days.", ["date difference", "days between", "calendar", "inclusive", "duration"]],
+    ["json-query-string", "JSON ↔ Query String Converter", "Convert flat JSON objects and URL query strings while preserving repeated keys.", ["json", "query string", "url params", "repeated keys", "encode", "decode"]],
+    ["cron-generator", "Cron Expression Generator", "Generate and validate common five-field cron schedules.", ["cron", "schedule", "generator", "five field", "minutes", "daily"]],
+    ["cron-explainer", "Cron Expression Explainer", "Validate and explain five-field cron syntax, lists, ranges, and steps.", ["cron", "explain", "parser", "schedule", "validate"]],
+    ["css-units", "CSS Units Converter", "Convert CSS lengths with explicit font and viewport assumptions.", ["css", "units", "px", "rem", "em", "vw", "vh", "cm", "percent"]],
+    ["currency", "Live Currency Converter", "Fetch a current indicative exchange rate on demand and convert an amount.", ["currency", "exchange rate", "forex", "money", "usd", "eur", "inr", "live"]],
+  ].map(([slug, title, description, keywords]) => ({ slug: slug as string, category: "converters" as const, title: title as string, description: description as string, metaTitle: `${title as string} Online`, keywords: keywords as string[], icon: "⇄", href: `/tools/converters/${slug as string}`, processing: "client" as const, privacyNote: slug === "currency" ? "Rates are fetched from Frankfurter only when you request a refresh. Your amount and other tool inputs are not sent." : "Conversion runs locally in your browser. Your input is not uploaded or saved." })),
   {
     slug: "editor", category: "markdown", title: "Markdown Editor & Preview", metaTitle: "Markdown Editor and Live Preview Online",
     description: "Write Markdown and preview GitHub-style formatting live in your browser.",

@@ -657,6 +657,15 @@ h1 span, h2 span { color: var(--muted-headline); }
 .color-format-field { width: 130px; }
 .color-value-field { flex: 1; }
 .color-preview-card { display: grid; grid-template-columns: minmax(180px, .7fr) 1.3fr; gap: 14px; margin-top: 6px; }
+.converter-row { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; }
+.converter-row > .field-group { flex: 1 1 150px; min-width: 0; }
+.converter-row > .button { margin-bottom: 1px; }
+.converter-result, .converter-output { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--page); }
+.converter-output > div { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.converter-output small { color: var(--muted); font-size: 11px; }
+.converter-output output { color: var(--ink); font: 500 15px/1.5 var(--font-mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+.converter-result p { margin: 0; font-size: 12px; color: var(--body); }
+.converter-row .inline-check { align-self: center; }
 .color-swatch { min-height: 210px; display: flex; align-items: end; padding: 13px; border: 1px solid rgba(0, 0, 0, .06); border-radius: 8px; }
 .color-swatch span { padding: 4px 7px; border-radius: 5px; background: rgba(255, 255, 255, .85); color: var(--ink); font-size: 10px; }
 .color-values { display: flex; flex-direction: column; gap: 8px; }
