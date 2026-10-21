@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { Cell, DotShape, Grid, Tag } from "@/components/home/DesignPrimitives";
+import { HeroDroid } from "@/components/home/HeroDroid";
 import { ToolSearch } from "@/components/tools/ToolSearch";
 import { categories, tools } from "@/lib/tools/registry";
 
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 // href is the catalogue identity; a few registry entries share a slug across categories.
 const uniqueTools = Array.from(new Map(tools.map((tool) => [tool.href, tool])).values());
 const popularTools = uniqueTools.filter((tool) => tool.popular);
+/** Position in the hero's entrance cascade; the CSS turns --i into a delay. */
+const cue = (index: number) => ({ "--i": index }) as CSSProperties;
 const FORMATS = ["JSON", "PDF", "PNG", "Base64", "CSV", "YAML", "JWT"];
 
 const DIFFERENCES = [
@@ -26,12 +30,13 @@ export default function ToolsHomePage() {
   return (
     <main className="tools-home">
       <section className="home-hero">
-        <Tag>New · {uniqueTools.length} tools</Tag>
-        <h1>Small tools for<br /><span>annoying tasks.</span></h1>
-        <p>Quick, useful utilities that get out of your way. Private by default, with local processing whenever possible.</p>
-        <ToolSearch />
-        <p className="privacy-inline">Your inputs stay in your browser for these tools.</p>
-        <div className="hero-rings" aria-hidden="true"><div className="dots" /><div /></div>
+        <Tag className="hero-enter" style={cue(0)}>New · {uniqueTools.length} tools</Tag>
+        <h1 className="hero-enter" style={cue(1)}>Small tools for<br /><span>annoying tasks.</span></h1>
+        <p className="hero-enter" style={cue(2)}>Quick, useful utilities that get out of your way. Private by default, with local processing whenever possible.</p>
+        <div className="hero-enter hero-search" style={cue(3)}><ToolSearch /></div>
+        <p className="privacy-inline hero-enter" style={cue(4)}>Your inputs stay in your browser for these tools.</p>
+        <div className="hero-droid-stage hero-droid-left"><HeroDroid variant="fixer" /></div>
+        <div className="hero-droid-stage hero-droid-right"><HeroDroid variant="converter" /></div>
       </section>
 
       <div className="hatch hatch-band" aria-hidden="true" />
