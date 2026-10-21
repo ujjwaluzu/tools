@@ -40,7 +40,7 @@ export function Base64Tool() {
       <button type="button" aria-pressed={mode === "decode"} className={mode === "decode" ? "selected" : ""} onClick={() => { setMode("decode"); setError(""); setResult(""); }}>Decode</button>
     </div></div>
     <label className="field-label" htmlFor="base64-input">{mode === "encode" ? "Text to encode" : "Base64 to decode"}</label>
-    <textarea id="base64-input" className="code-input compact-input" value={input} onChange={(event) => { setInput(event.target.value); setError(""); }} placeholder={mode === "encode" ? "Type or paste text…" : "Paste a Base64 value…"} spellCheck={false} />
+    <textarea id="base64-input" className="code-input compact-input" value={input} onChange={(event) => { setInput(event.target.value); setError(""); }} placeholder={mode === "encode" ? "e.g. Hello, world" : "e.g. SGVsbG8sIHdvcmxkIQ=="} spellCheck={false} />
     <div className="workspace-actions"><div className="button-row"><button type="button" className="button button-primary" onClick={run}>{mode === "encode" ? "Encode to Base64" : "Decode Base64"}</button><button type="button" className="button button-secondary" onClick={swapMode}>⇄ Swap mode</button></div><ResetButton onClick={reset} /></div>
     {error && <ErrorState>{error}</ErrorState>}
     <ResultPanel title="Result" actions={<CopyButton value={result} />}>

@@ -146,7 +146,7 @@ export function HashTool() {
       {HASH_ALGORITHMS.map((item) => <option value={item} key={item}>{item}</option>)}
     </select></label>
 
-    {mode === "text" ? <label className="field-group" htmlFor="hash-text-input"><span className="field-label">Text to hash</span><textarea id="hash-text-input" className="code-input" value={text} onChange={(event) => changeText(event.target.value)} placeholder="Type or paste text to hash…" spellCheck={false} /></label> : <>
+    {mode === "text" ? <label className="field-group" htmlFor="hash-text-input"><span className="field-label">Text to hash</span><textarea id="hash-text-input" className="code-input" value={text} onChange={(event) => changeText(event.target.value)} placeholder="e.g. Hello, world" spellCheck={false} /></label> : <>
       <Dropzone onFiles={chooseFile} maxBytes={MAX_HASH_FILE_BYTES} />
       {file && <div className="hash-file-summary"><span><strong title={file.name}>{file.name}</strong><small>{file.size.toLocaleString()} bytes · {formatBytes(file.size)}</small></span><button type="button" className="button button-secondary" onClick={() => document.querySelector<HTMLInputElement>(".hash-workspace input[type='file']")?.click()}>Replace file</button></div>}
       <p className="field-help">The Web Crypto digest API reads a file into memory as one buffer; it does not stream. Files are limited to 25 MiB to reduce browser memory pressure.</p>
@@ -169,7 +169,7 @@ export function HashTool() {
 
     {mode === "file" && <section className="hash-verify" aria-labelledby="hash-verify-heading">
       <div><h2 id="hash-verify-heading">Verify an expected checksum</h2><p>Compare this file’s calculated digest with a checksum from a source you trust.</p></div>
-      <label className="field-group" htmlFor="expected-checksum"><span className="field-label">Expected {algorithm} checksum ({expectedDigestLength(algorithm)} hexadecimal characters)</span><input id="expected-checksum" className="text-input hash-checksum-input" type="text" inputMode="text" autoComplete="off" spellCheck={false} value={expected} onChange={(event) => { setExpected(event.target.value); setVerification(null); setError(""); }} placeholder="Paste expected checksum" /></label>
+      <label className="field-group" htmlFor="expected-checksum"><span className="field-label">Expected {algorithm} checksum ({expectedDigestLength(algorithm)} hexadecimal characters)</span><input id="expected-checksum" className="text-input hash-checksum-input" type="text" inputMode="text" autoComplete="off" spellCheck={false} value={expected} onChange={(event) => { setExpected(event.target.value); setVerification(null); setError(""); }} placeholder={`e.g. ${"a".repeat(expectedDigestLength(algorithm))}`} /></label>
       <button type="button" className="button button-secondary" onClick={verify} disabled={working || !currentDigest}>Verify checksum</button>
       {currentVerification && <p className={verification.matches ? "hash-match" : "hash-mismatch"} role="status" aria-live="polite">{verification.matches ? "Match" : "Mismatch"} · compared using {verification.algorithm}. A match only confirms equality with the checksum you supplied; it does not prove file safety or checksum provenance.</p>}
       {!currentVerification && <p className="field-help">A match is not a malware scan, authentication check, or proof that the supplied checksum is trustworthy.</p>}

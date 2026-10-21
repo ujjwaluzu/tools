@@ -10,9 +10,9 @@ export function WordCounter() {
   const counts = useMemo(() => countStudentText(text, wordsPerMinute), [text, wordsPerMinute]);
   return <div className="tool-workspace">
     <label className="field-label" htmlFor="counter-input">Your text</label>
-    <textarea id="counter-input" className="code-input text-area" value={text} onChange={(event) => setText(event.target.value)} placeholder="Start typing or paste your text here…" />
+    <textarea id="counter-input" className="code-input text-area" value={text} onChange={(event) => setText(event.target.value)} placeholder="e.g. This is a sample paragraph to count words and characters." />
     <div className="workspace-actions"><span className="live-label"><span className="status-dot" /> Counts update as you type</span><CopyButton value={text} label="Copy text" /><ResetButton onClick={() => setText("")} /></div>
-    <label className="field-label" htmlFor="counter-wpm">Estimated reading speed (words per minute)</label><input id="counter-wpm" className="text-input" type="number" min="1" max="2000" value={wordsPerMinute} onChange={(event) => setWordsPerMinute(Math.max(1, Number(event.target.value) || 1))} />
+    <label className="field-label" htmlFor="counter-wpm">Estimated reading speed (words per minute)</label><input id="counter-wpm" className="text-input" type="number" min="1" max="2000" value={wordsPerMinute} onChange={(event) => setWordsPerMinute(Math.max(1, Number(event.target.value) || 1))} placeholder="e.g. 200" />
     <p className="field-help">Words are Unicode letter/number groups; contractions and hyphenated compounds count as one. Punctuation alone is not a word. Reading time is rounded up to at least one minute.</p>
     <div className="counter-grid" aria-live="polite">
       <div className="counter-card counter-primary"><span>Words</span><strong>{counts.words.toLocaleString()}</strong></div>

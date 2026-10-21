@@ -83,7 +83,7 @@ export function TextToPdf() {
     <p className="file-info-privacy">Your text and PDF are processed locally in this browser. Nothing is uploaded or saved.</p>
     <div className="field-group">
       <label className="field-label" htmlFor="text-pdf-input">Text to convert</label>
-      <textarea id="text-pdf-input" className="code-input text-area text-pdf-input" value={text} onChange={(event) => updateText(event.target.value)} placeholder={'Type or paste plain text here…\n\nBlank lines stay as paragraph breaks.'} aria-describedby="text-pdf-counts text-pdf-font-note" spellCheck />
+      <textarea id="text-pdf-input" className="code-input text-area text-pdf-input" value={text} onChange={(event) => updateText(event.target.value)} placeholder={'e.g. Meeting notes\n\n- Review the draft\n- Share the final version'} aria-describedby="text-pdf-counts text-pdf-font-note" spellCheck />
       <div id="text-pdf-counts" className="text-pdf-counts" aria-live="polite"><span>{formatCount(countCharacters(text))} characters</span><span>{formatCount(countWords(text))} words</span><span>{formatCount(countLines(text))} lines</span><span>{formatCount(bytes)} / {formatCount(MAX_TEXT_BYTES)} UTF-8 bytes</span></div>
       <p className="field-help" id="text-pdf-font-note">Standard PDF fonts support Latin text and many Windows-1252 accents and punctuation. Emoji and many non-Latin scripts are not supported; the tool will identify unsupported characters instead of replacing them.</p>
     </div>
@@ -103,9 +103,9 @@ export function TextToPdf() {
     <section className="file-info-section" aria-labelledby="text-pdf-document-elements">
       <div className="file-info-section-heading"><div><span className="eyebrow">Optional</span><h2 id="text-pdf-document-elements">Document details</h2></div></div>
       <div className="text-pdf-options-grid">
-        <Field label="Document title" id="text-pdf-title"><input id="text-pdf-title" className="text-input" maxLength={200} value={options.title} onChange={(event) => updateOptions({ title: event.target.value })} placeholder="Used as PDF metadata and filename" /></Field>
-        <Field label="Header · one line" id="text-pdf-header"><input id="text-pdf-header" className="text-input" maxLength={180} value={options.header} onChange={(event) => updateOptions({ header: event.target.value })} placeholder="Optional text on each page" /></Field>
-        <Field label="Footer · one line" id="text-pdf-footer"><input id="text-pdf-footer" className="text-input" maxLength={180} value={options.footer} onChange={(event) => updateOptions({ footer: event.target.value })} placeholder="Optional text on each page" /></Field>
+        <Field label="Document title" id="text-pdf-title"><input id="text-pdf-title" className="text-input" maxLength={200} value={options.title} onChange={(event) => updateOptions({ title: event.target.value })} placeholder="e.g. Meeting notes" /></Field>
+        <Field label="Header · one line" id="text-pdf-header"><input id="text-pdf-header" className="text-input" maxLength={180} value={options.header} onChange={(event) => updateOptions({ header: event.target.value })} placeholder="e.g. Project update" /></Field>
+        <Field label="Footer · one line" id="text-pdf-footer"><input id="text-pdf-footer" className="text-input" maxLength={180} value={options.footer} onChange={(event) => updateOptions({ footer: event.target.value })} placeholder="e.g. Page 1" /></Field>
       </div>
       <label className="inline-check text-pdf-page-number"><input type="checkbox" checked={options.pageNumbers} onChange={(event) => updateOptions({ pageNumbers: event.target.checked })} /> Add page numbers</label>
       <p className="field-help">The document title is stored as PDF metadata and used for the download filename. It is not added to the body text.</p>

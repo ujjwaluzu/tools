@@ -23,7 +23,7 @@ export function UuidGenerator() {
   }
   const output = uuids.join("\n");
   return <div className="tool-workspace">
-    <div className="uuid-controls"><div className="field-group"><label className="field-label" htmlFor="uuid-count">How many?</label><input id="uuid-count" className="text-input count-input" type="number" min={1} max={100} step={1} value={count} onChange={(event) => setCount(Number(event.target.value))} /></div><button type="button" className="button button-primary" onClick={generate}>✳ Generate UUID{count === 1 ? "" : "s"}</button></div>
+    <div className="uuid-controls"><div className="field-group"><label className="field-label" htmlFor="uuid-count">How many?</label><input id="uuid-count" className="text-input count-input" type="number" min={1} max={100} step={1} value={count} onChange={(event) => setCount(Number(event.target.value))} placeholder="e.g. 5" /></div><button type="button" className="button button-primary" onClick={generate}>✳ Generate UUID{count === 1 ? "" : "s"}</button></div>
     {error && <div className="error-state" role="alert"><span aria-hidden="true">!</span><p>{error}</p></div>}
     <ResultPanel title={uuids.length ? `${uuids.length} UUID${uuids.length === 1 ? "" : "s"}` : "Generated UUIDs"} actions={<CopyButton value={output} label="Copy all" />}>
       {uuids.length ? <ol className="uuid-list">{uuids.map((uuid) => <li key={uuid}><code>{uuid}</code></li>)}</ol> : <EmptyState title="Ready when you are">UUID v4 values use secure browser randomness.</EmptyState>}

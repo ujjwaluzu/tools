@@ -165,7 +165,7 @@ export function CsvViewer() {
     {table ? <>
       <section className="csv-controls" aria-label="CSV cleaning and export options">
         <div className="csv-filter-row">
-          <label className="field-group" htmlFor="csv-row-filter"><span className="field-label">Filter rows across all columns</span><input id="csv-row-filter" className="text-input" type="search" value={filter} onChange={(event) => { setFilter(event.target.value); setPage(0); }} placeholder="Type to filter values" /></label>
+          <label className="field-group" htmlFor="csv-row-filter"><span className="field-label">Filter rows across all columns</span><input id="csv-row-filter" className="text-input" type="search" value={filter} onChange={(event) => { setFilter(event.target.value); setPage(0); }} placeholder="e.g. Ada" /></label>
           {filter && <button className="button button-secondary csv-clear-filter" type="button" onClick={() => { setFilter(""); setPage(0); }}>Clear filter</button>}
         </div>
         <div className="csv-option-grid">

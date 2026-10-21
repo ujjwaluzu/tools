@@ -387,12 +387,15 @@ h1 span, h2 span { color: var(--muted-headline); }
 .everyday-history button { border: 0; padding: 5px 0; background: transparent; color: var(--body); text-align: left; cursor: pointer; }
 .everyday-history button:hover { color: var(--ink); }
 .everyday-workspace .code-input { min-height: 100px; }
-.field-group { display: flex; flex-direction: column; gap: 7px; }
-.field-label { display: block; color: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .02em; }
-.text-input { min-height: 43px; padding: 0 12px; border: 1px solid var(--tag-border); border-radius: 7px; background: var(--page); color: var(--ink); outline: none; }
-.text-input:focus, .code-input:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(10, 10, 10, .1); }
-.code-input { width: 100%; min-height: 235px; resize: vertical; padding: 14px; border: 1px solid var(--tag-border); border-radius: 8px; background: var(--page); color: var(--ink); font-family: var(--font-mono), 'DM Mono', Consolas, monospace; font-size: 12px; line-height: 1.65; outline: none; tab-size: 2; }
-.code-input::placeholder { color: var(--muted-headline); }
+.field-group { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.field-label { display: block; color: var(--body); font-size: 12px; font-weight: 600; line-height: 1.4; }
+.text-input { width: 100%; min-width: 0; min-height: 46px; padding: 9px 12px; border: 1px solid var(--field-border); border-radius: 8px; background: var(--page); color: var(--ink); outline: none; transition: border-color .15s ease, box-shadow .15s ease; }
+.text-input::placeholder, .code-input::placeholder { color: var(--label); opacity: 1; }
+.text-input:hover, .code-input:hover { border-color: var(--label); }
+.text-input:focus-visible, .code-input:focus-visible { border-color: var(--link); box-shadow: 0 0 0 3px color-mix(in srgb, var(--link) 20%, transparent); outline: none; }
+.text-input:disabled, .code-input:disabled { background: var(--hover); color: var(--label); cursor: not-allowed; }
+.text-input[aria-invalid="true"], .code-input[aria-invalid="true"] { border-color: var(--danger); }
+.code-input { display: block; width: 100%; min-width: 0; min-height: 235px; resize: vertical; padding: 14px; border: 1px solid var(--field-border); border-radius: 8px; background: var(--page); color: var(--ink); font-family: var(--font-mono), 'DM Mono', Consolas, monospace; font-size: 13px; line-height: 1.65; outline: none; tab-size: 2; transition: border-color .15s ease, box-shadow .15s ease; }
 .compact-input { min-height: 155px; }
 .text-pdf-workspace { gap: 16px; }
 .text-pdf-input { min-height: 300px; font-family: var(--font-sans), 'Instrument Sans', sans-serif; font-size: 14px; line-height: 1.6; }

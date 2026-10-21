@@ -62,7 +62,7 @@ export function MarkdownTableGenerator() {
       <table className="markdown-table-editor"><thead><tr>
         {table.headers.map((header, column) => <th key={column} scope="col">
           <label htmlFor={`markdown-table-header-${column}`}>Column {column + 1} heading</label>
-          <input id={`markdown-table-header-${column}`} className="text-input" value={header} onChange={(event) => updateHeader(column, event.target.value)} />
+          <input id={`markdown-table-header-${column}`} className="text-input" value={header} onChange={(event) => updateHeader(column, event.target.value)} placeholder={`e.g. ${header || `Column ${column + 1}`}`} />
           <label htmlFor={`markdown-table-align-${column}`}>Alignment for column {column + 1}</label>
           <select id={`markdown-table-align-${column}`} className="text-input" value={table.alignments[column]} onChange={(event) => updateAlignment(column, event.target.value as MarkdownTableAlignment)}>
             <option value="left">Left</option><option value="center">Center</option><option value="right">Right</option>
@@ -74,7 +74,7 @@ export function MarkdownTableGenerator() {
         {table.rows.map((row, rowIndex) => <tr key={rowIndex}>
           {row.map((cell, column) => <td key={column}>
             <label className="visually-hidden" htmlFor={`markdown-table-cell-${rowIndex}-${column}`}>Row {rowIndex + 1}, {table.headers[column] || `column ${column + 1}`}</label>
-            <textarea id={`markdown-table-cell-${rowIndex}-${column}`} className="text-input markdown-table-cell" value={cell} onChange={(event) => updateCell(rowIndex, column, event.target.value)} rows={2} />
+            <textarea id={`markdown-table-cell-${rowIndex}-${column}`} className="text-input markdown-table-cell" value={cell} onChange={(event) => updateCell(rowIndex, column, event.target.value)} rows={2} placeholder="e.g. Add a value" />
           </td>)}
           <td className="markdown-table-row-actions"><button className="button button-quiet markdown-table-remove" type="button" onClick={() => removeRow(rowIndex)} disabled={table.rows.length <= 1} aria-label={`Remove row ${rowIndex + 1}`}>Remove row</button></td>
         </tr>)}
