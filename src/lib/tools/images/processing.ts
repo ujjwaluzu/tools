@@ -1,6 +1,7 @@
 export const MAX_IMAGE_BYTES = 25 * 1024 * 1024;
 export const MAX_IMAGE_PIXELS = 24_000_000;
 export const MAX_IMAGE_EDGE = 12_000;
+export const MAX_JPEG_DIMENSION_SCAN_BYTES = 2 * 1024 * 1024;
 
 export type ImageInfo = { width: number; height: number; type: string };
 export type ImageOutput = { name: string; blob: Blob };
@@ -62,6 +63,7 @@ export async function decodeImage(file: File, type?: string): Promise<ImageBitma
 }
 
 async function readHeaderDimensions(file: File, type: string): Promise<{ width: number; height: number } | null> {
+  if (type === "image/jpeg") return readJpegDimensions(file);
   const bytes = new Uint8Array(await file.slice(0, Math.min(file.size, 1_000_000)).arrayBuffer());
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   if (type === "image/svg+xml") {
@@ -74,20 +76,6 @@ async function readHeaderDimensions(file: File, type: string): Promise<{ width: 
     return { width: Math.ceil(width), height: Math.ceil(height) };
   }
   if (type === "image/png" && bytes.length >= 24) return { width: view.getUint32(16), height: view.getUint32(20) };
-  if (type === "image/jpeg") {
-    let offset = 2;
-    while (offset + 4 < bytes.length) {
-      if (bytes[offset] !== 0xff) { offset += 1; continue; }
-      const marker = bytes[offset + 1];
-      if (marker === 0xda || marker === 0xd9) break;
-      const length = view.getUint16(offset + 2);
-      if ([0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf].includes(marker) && length >= 7) {
-        return { height: view.getUint16(offset + 5), width: view.getUint16(offset + 7) };
-      }
-      if (length < 2) break;
-      offset += 2 + length;
-    }
-  }
   if (type === "image/webp" && bytes.length >= 30 && String.fromCharCode(...bytes.slice(12, 16)) === "VP8X") {
     const width = 1 + bytes[24] + (bytes[25] << 8) + (bytes[26] << 16);
     const height = 1 + bytes[27] + (bytes[28] << 8) + (bytes[29] << 16);
@@ -104,6 +92,54 @@ async function readHeaderDimensions(file: File, type: string): Promise<{ width: 
     throw new Error("We couldn't safely verify this WebP image's dimensions. Try a PNG or JPG image.");
   }
   return null;
+}
+
+const JPEG_SOF_MARKERS = new Set([0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf]);
+const JPEG_STANDALONE_MARKERS = new Set([0x01, 0xd0, 0xd1, 0xd2, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7]);
+
+async function readJpegDimensions(file: File): Promise<{ width: number; height: number }> {
+  const scanSize = Math.min(file.size, MAX_JPEG_DIMENSION_SCAN_BYTES);
+  const bytes = new Uint8Array(await file.slice(0, scanSize).arrayBuffer());
+  const inspectionLimitReached = file.size > MAX_JPEG_DIMENSION_SCAN_BYTES;
+  const malformed = (): never => { throw new Error("This JPEG is malformed or truncated, so its dimensions could not be verified."); };
+  const limitReached = (): never => { throw new Error(`We couldn't safely verify this JPEG's dimensions within the first ${MAX_JPEG_DIMENSION_SCAN_BYTES / (1024 * 1024)} MB. Use a valid JPEG with its frame header near the beginning.`); };
+
+  if (bytes.length < 2 || bytes[0] !== 0xff || bytes[1] !== 0xd8) malformed();
+  let offset = 2;
+  while (offset < bytes.length) {
+    if (bytes[offset] !== 0xff) malformed();
+    while (offset < bytes.length && bytes[offset] === 0xff) offset += 1;
+    if (offset >= bytes.length) {
+      if (inspectionLimitReached) limitReached();
+      malformed();
+    }
+    const marker = bytes[offset++];
+    if (marker === 0x00 || marker === 0xd8 || marker === 0xd9 || marker === 0xda) malformed();
+    if (JPEG_STANDALONE_MARKERS.has(marker)) continue;
+    if (marker < 0xc0) malformed();
+    if (offset + 2 > bytes.length) {
+      if (inspectionLimitReached) limitReached();
+      malformed();
+    }
+    const segmentLength = (bytes[offset] << 8) | bytes[offset + 1];
+    if (segmentLength < 2) malformed();
+    const segmentEnd = offset + segmentLength;
+    if (segmentEnd > bytes.length) {
+      if (segmentEnd > file.size) malformed();
+      if (inspectionLimitReached && segmentEnd > MAX_JPEG_DIMENSION_SCAN_BYTES) limitReached();
+      malformed();
+    }
+    if (JPEG_SOF_MARKERS.has(marker)) {
+      if (segmentLength < 11) malformed();
+      const componentCount = bytes[offset + 7];
+      if (!componentCount || segmentLength !== 8 + 3 * componentCount) malformed();
+      const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+      return { height: view.getUint16(offset + 3), width: view.getUint16(offset + 5) };
+    }
+    offset = segmentEnd;
+  }
+  if (inspectionLimitReached) limitReached();
+  return malformed();
 }
 
 function sanitizeSvg(source: string): string {

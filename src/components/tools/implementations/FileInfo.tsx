@@ -53,8 +53,10 @@ export function FileInfo() {
         } else {
           try {
             result.image = detected.label === "GIF" ? await inspectGif(candidate) : await inspectImage(candidate);
-          } catch {
-            result.imageError = "The browser could not decode this image. Its general file information is still available.";
+          } catch (caught) {
+            const jpegValidationError = detected.mime === "image/jpeg" && caught instanceof Error &&
+              (/JPEG's dimensions|JPEG is malformed|too many pixels/.test(caught.message));
+            result.imageError = jpegValidationError ? (caught as Error).message : "The browser could not decode this image. Its general file information is still available.";
           }
           if (detected.mime === "image/jpeg") {
             try { result.exif = readJpegExif(await candidate.arrayBuffer()); }
