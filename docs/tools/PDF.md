@@ -2,6 +2,14 @@
 
 ## Core
 
+### Text to PDF Generator
+
+Route: `/tools/pdf/text-to-pdf`.
+
+Enter or paste plain text and generate a locally processed PDF. Newlines and blank lines are retained; long lines wrap to the selected page width, with text flowing across pages. Choose A4 or US Letter, portrait or landscape, 10–30 mm margins, Helvetica, Times Roman, or Courier, 8–36 pt type, and single, 1.25×, or 1.5× line spacing. A title is added as PDF metadata and used for a sanitized download filename; it is not duplicated in the body. Optional one-line headers and footers repeat on every page. Page numbers use the final page count and appear at bottom right.
+
+Text is limited to 1 MiB of UTF-8 and generated documents to 500 pages. The standard built-in PDF fonts support basic Latin and many Windows-1252 accents and punctuation. The generator checks font encoding and reports unsupported characters, including emoji and many non-Latin scripts, instead of silently replacing them. There are no external font downloads. Text wrapping follows the selected font's measured glyph widths; this is a plain-text layout and does not interpret Markdown, infer rich paragraphs, or provide word-processing features. Text, settings, and output remain in browser memory and are not uploaded or persisted.
+
 ### PDF Inspector & Text Extraction
 
 Route: `/tools/pdf/inspect`.

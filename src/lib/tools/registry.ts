@@ -82,6 +82,12 @@ export const tools: ToolDefinition[] = [
     privacyNote: "PDF inspection and text extraction happen locally in your browser. Your document is not uploaded.",
   },
   {
+    slug: "text-to-pdf", category: "pdf", title: "Text to PDF Generator", metaTitle: "Text to PDF Generator Online",
+    description: "Turn plain text into a formatted PDF locally in your browser.",
+    keywords: ["pdf", "text to pdf", "plain text", "document", "generate", "download", "local"], icon: "T→PDF", href: "/tools/pdf/text-to-pdf", processing: "client",
+    privacyNote: "Your text is converted to PDF locally in your browser. It is not uploaded or saved.",
+  },
+  {
     slug: "split", category: "pdf", title: "Split PDF", metaTitle: "Split PDF Files Online",
     description: "Split and extract pages from a PDF directly in your browser.",
     keywords: ["pdf", "split", "extract", "pages", "range"], icon: "▤↕", href: "/tools/pdf/split", processing: "client",

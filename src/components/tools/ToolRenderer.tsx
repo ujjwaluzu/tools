@@ -15,6 +15,7 @@ const toolComponents: Record<string, ComponentType> = {
   merge: dynamic(() => import("@/components/tools/implementations/pdf/MergePdf").then((module) => module.MergePdf)),
   split: dynamic(() => import("@/components/tools/implementations/pdf/SplitPdf").then((module) => module.SplitPdf)),
   inspect: dynamic(() => import("@/components/tools/implementations/pdf/PdfInspector").then((module) => module.PdfInspector)),
+  "text-to-pdf": dynamic(() => import("@/components/tools/implementations/pdf/TextToPdf").then((module) => module.TextToPdf)),
   "images-to-pdf": dynamic(() => import("@/components/tools/implementations/pdf/ImagesToPdf").then((module) => module.ImagesToPdf)),
   "to-png": dynamic(() => import("@/components/tools/implementations/pdf/PdfToImages").then((module) => module.PdfToPngTool)),
   "to-jpg": dynamic(() => import("@/components/tools/implementations/pdf/PdfToImages").then((module) => module.PdfToJpgTool)),

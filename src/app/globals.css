@@ -192,6 +192,15 @@ h1 span, h2 span { color: var(--muted-headline); }
 .code-input { width: 100%; min-height: 235px; resize: vertical; padding: 14px; border: 1px solid var(--tag-border); border-radius: 8px; background: var(--page); color: var(--ink); font-family: var(--font-mono), 'DM Mono', Consolas, monospace; font-size: 12px; line-height: 1.65; outline: none; tab-size: 2; }
 .code-input::placeholder { color: var(--muted-headline); }
 .compact-input { min-height: 155px; }
+.text-pdf-workspace { gap: 16px; }
+.text-pdf-input { min-height: 300px; font-family: var(--font-sans), 'Instrument Sans', sans-serif; font-size: 14px; line-height: 1.6; }
+.text-pdf-counts { display: flex; flex-wrap: wrap; gap: 5px 16px; color: var(--body); font-size: 11px; }
+.text-pdf-options-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
+.text-pdf-page-number { margin-top: 4px; }
+.text-pdf-actions { justify-content: flex-start; }
+.text-pdf-status { margin: 0; color: var(--body); font-size: 12px; }
+.text-pdf-download { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px; border: 1px solid var(--hairline); border-radius: 8px; }
+.text-pdf-download p { margin: 0; color: var(--body); font-size: 12px; }
 .text-area { min-height: 265px; font-family: var(--font-sans), 'Instrument Sans', sans-serif; font-size: 14px; }
 .workspace-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .button-row { display: flex; align-items: center; gap: 8px; }
@@ -506,6 +515,10 @@ h1 span, h2 span { color: var(--muted-headline); }
   .large-category-icon, .large-tool-icon, .tool-icon.large-tool-icon { width: 45px; height: 45px; border-radius: 8px; font-size: 17px; }
   .tool-privacy { align-items: flex-start; margin-left: 57px; font-size: 10px; }
   .workspace { padding: 15px; }
+  .text-pdf-options-grid { grid-template-columns: 1fr; }
+  .text-pdf-input { min-height: 235px; }
+  .text-pdf-download { align-items: stretch; flex-direction: column; }
+  .text-pdf-download .button { width: 100%; }
   .code-input { min-height: 210px; }
   .workspace-actions { align-items: flex-start; flex-direction: column; }
   .workspace-actions > .button-quiet { align-self: flex-end; margin-top: -43px; }
