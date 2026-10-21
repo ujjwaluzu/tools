@@ -1,3 +1,5 @@
+import { parseCsv, serializeCsv, serializeSpreadsheetSafeCsv, type CsvCell } from "./csv.ts";
+
 export function jsonError(error: unknown, source: string) {
   const message = error instanceof Error ? error.message : "Invalid JSON.";
   const match = /position (\d+)/i.exec(message);
@@ -6,35 +8,35 @@ export function jsonError(error: unknown, source: string) {
   return `${message} (line ${before.split("\n").length}, column ${index - before.lastIndexOf("\n")}).`;
 }
 
-export function flatten(value: unknown, key = "", out: Record<string, string> = {}): Record<string, string> {
-  if (value === null || typeof value !== "object") { out[key] = value === null ? "" : String(value); return out; }
-  if (Array.isArray(value)) { out[key] = JSON.stringify(value); return out; }
-  for (const [child, item] of Object.entries(value as Record<string, unknown>)) flatten(item, key ? `${key}.${child}` : child, out);
+export function flatten(value: unknown, key = "", out: Record<string, CsvCell> = {}): Record<string, CsvCell> {
+  if (value === null || typeof value !== "object") { setFlatValue(out, key, value as CsvCell); return out; }
+  if (Array.isArray(value)) { setFlatValue(out, key, JSON.stringify(value)); return out; }
+  for (const [child, item] of Object.entries(value as Record<string, unknown>)) {
+    const flattenedKey = key ? `${key}.${child}` : child;
+    if (Object.hasOwn(out, flattenedKey)) throw new Error(`Nested JSON fields produce the same CSV header: ${flattenedKey}`);
+    flatten(item, flattenedKey, out);
+  }
   return out;
 }
 
-export function jsonToCsv(input: string) {
+function setFlatValue(out: Record<string, CsvCell>, key: string, value: CsvCell): void {
+  Object.defineProperty(out, key, { value, enumerable: true, configurable: true, writable: true });
+}
+
+export function jsonToCsv(input: string, options: { spreadsheetSafe?: boolean } = {}) {
   const parsed: unknown = JSON.parse(input);
   if (!Array.isArray(parsed) || parsed.some((row) => !row || typeof row !== "object" || Array.isArray(row))) throw new Error("JSON to CSV accepts an array of objects. Nested objects are flattened with dot-separated keys; arrays are JSON strings.");
-  const rows = parsed.map((row) => flatten(row)); const columns = [...new Set(rows.flatMap((row) => Object.keys(row)))];
-  const quote = (value: string) => /[",\n\r]/.test(value) ? `"${value.replaceAll('"', '""')}"` : value;
-  return [columns, ...rows.map((row) => columns.map((column) => quote(row[column] ?? "")))].map((row) => row.join(",")).join("\n");
+  if (!parsed.length) throw new Error("JSON to CSV needs at least one object so it can determine the headers.");
+  const rows = parsed.map((row) => flatten(row));
+  const columns = [...new Set(rows.flatMap((row) => Object.keys(row)))];
+  if (!columns.length) throw new Error("JSON objects need at least one field to create CSV headers.");
+  const table = { headers: columns, rows: rows.map((row) => columns.map((column) => row[column] ?? "")) };
+  return options.spreadsheetSafe ? serializeSpreadsheetSafeCsv(table) : serializeCsv(table);
 }
 
 export function csvToJson(input: string) {
-  const rows: string[][] = []; let row: string[] = []; let field = ""; let quoted = false;
-  for (let i = 0; i < input.length; i += 1) { const char = input[i]; const next = input[i + 1];
-    if (quoted) { if (char === '"' && next === '"') { field += '"'; i += 1; } else if (char === '"') quoted = false; else field += char; }
-    else if (char === '"') { if (field) throw new Error("A quoted field must begin at the start of a value."); quoted = true; }
-    else if (char === ",") { row.push(field); field = ""; }
-    else if (char === "\n" || char === "\r") { if (char === "\r" && next === "\n") i += 1; row.push(field); rows.push(row); row = []; field = ""; }
-    else field += char;
-  }
-  if (quoted) throw new Error("CSV ends inside a quoted field."); if (field || row.length) { row.push(field); rows.push(row); }
-  if (rows.length < 1) throw new Error("Add a header row and at least one CSV row.");
-  const headers = rows[0]; if (headers.some((header) => !header.trim())) throw new Error("CSV headers cannot be empty."); if (new Set(headers).size !== headers.length) throw new Error("CSV headers must be unique.");
-  if (rows.slice(1).some((item) => item.length !== headers.length)) throw new Error("Every CSV row must contain the same number of fields as the header row.");
-  return JSON.stringify(rows.slice(1).map((item) => Object.fromEntries(headers.map((header, index) => [header, item[index]]))), null, 2);
+  const table = parseCsv(input);
+  return JSON.stringify(table.rows.map((row) => Object.fromEntries(table.headers.map((header, index) => [header, row[index]]))), null, 2);
 }
 
 type Infer = { text: string; optional?: boolean };

@@ -17,6 +17,7 @@ const toolComponents: Record<string, ComponentType> = {
   "images-to-pdf": dynamic(() => import("@/components/tools/implementations/pdf/ImagesToPdf").then((module) => module.ImagesToPdf)),
   "to-png": dynamic(() => import("@/components/tools/implementations/pdf/PdfToImages").then((module) => module.PdfToPngTool)),
   "to-jpg": dynamic(() => import("@/components/tools/implementations/pdf/PdfToImages").then((module) => module.PdfToJpgTool)),
+  "csv-viewer": dynamic(() => import("@/components/tools/implementations/CsvViewer").then((module) => module.CsvViewer)),
 };
 
 const ImageTool = dynamic<{ tool: string }>(() => import("@/components/tools/implementations/images/ImageSuite").then((module) => module.ImageSuite), { ssr: false });
@@ -31,5 +32,5 @@ export function ToolRenderer({ slug, category }: { slug: string; category: ToolC
   if (suiteTools.has(slug)) return <DeveloperSuite mode={slug as Mode} />;
   if (webTools.has(slug)) return <WebSuite mode={slug as WebMode} />;
   const Tool = toolComponents[slug];
-  return Tool ? <Tool /> : null;
+  return Tool ? <Tool /> : <div className="empty-state" role="alert">This tool is registered but its implementation is not available yet.</div>;
 }

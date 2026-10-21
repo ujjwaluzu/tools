@@ -16,17 +16,18 @@ The lists below reflect the tool catalogue and implementation in this repository
 | --- | --- | --- |
 | Images | Convert, resize, compress, crop, rotate/flip, adjust, image to Base64, Base64 to image, EXIF viewer, remove image metadata, favicon generator, PWA icon generator, thumbnail generator, Open Graph image generator | Implemented; browser-local processing |
 | PDF | Merge PDF, split PDF, images to PDF, PDF to PNG, PDF to JPG | Implemented; browser-local processing |
-| Developer | JSON formatter/validator/minifier, word counter | Implemented; browser-local processing |
-| Security & Encoding | Base64 encoder/decoder, UUID generator | Implemented; browser-local processing |
+| Developer | JSON formatter, word counter, JSON/CSV conversion, TypeScript/YAML generation, text, URL, encoding, regex, cron, and gitignore utilities | Implemented; browser-local processing |
+| Web & SEO | URL and query parsing, metadata and social previews, JSON-LD, sitemap/robots utilities, metadata inspection | Implemented; some URL checks and remote image previews make browser requests |
+| Data | CSV Viewer & Cleaner | Implemented; browser-local processing, 10 MB / 25,000 row / 100 column limits |
+| Security & Encoding | Base64, UUID, JWT decoder, hash and HMAC generators | Implemented; browser-local processing |
 | Color | HEX/RGB/HSL color converter | Implemented; browser-local processing |
 
 ### Coming soon / planned
 
 These are roadmap ideas, not yet available tools or release commitments. Work is expected to be incremental.
 
-- **Developer and web:** JWT decoder, URL encoder/decoder, metadata generator, sitemap and robots.txt generators.
 - **Markdown:** Markdown writing, formatting, and preview utilities.
-- **Data:** CSV/JSON conversion and cleanup utilities, plus more advanced data tools.
+- **Data:** XLSX conversion and additional CSV/data utilities.
 - **PDF and images:** PDF editing, OCR, and image background removal.
 - **Git & GitHub:** small workflow helpers and GitHub tools.
 - **Everyday and student:** focused utilities for common daily and study tasks.

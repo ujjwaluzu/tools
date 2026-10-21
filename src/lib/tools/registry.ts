@@ -128,6 +128,12 @@ export const tools: ToolDefinition[] = [
     privacyNote: "Generated locally in your browser. Nothing was uploaded.", popular: true,
   },
   {
+    slug: "csv-viewer", category: "data", title: "CSV Viewer & Cleaner", metaTitle: "CSV Viewer and Cleaner Online",
+    description: "Preview, filter, and clean CSV files locally in your browser.",
+    keywords: ["csv", "spreadsheet", "viewer", "filter", "deduplicate", "cleaner", "data"], icon: "▦", href: "/tools/data/csv-viewer", processing: "client",
+    privacyNote: "Your CSV is processed locally in your browser. Its contents are not uploaded.",
+  },
+  {
     slug: "convert", category: "color", title: "Color Converter", description: "Convert between HEX, RGB, and HSL with a live preview.",
     keywords: ["color", "colour", "hex", "rgb", "hsl", "converter"], icon: "◉", href: "/tools/color/convert", processing: "client",
     privacyNote: "Processed locally in your browser. Your data was not uploaded.", popular: true,
