@@ -62,7 +62,7 @@ try {
   assert.match(await page.evaluate(() => navigator.clipboard.readText()), /Lovelace, A\. \(2024\)\. Notes\. Example Press\./u);
 
   await page.goto(`${baseUrl}/tools/student/flashcard-generator`);
-  await page.locator("#flashcard-notes").fill("Term — definition\nQuestion? | answer");
+  await page.locator("#flashcard-notes").fill("Term | definition\nQuestion? | answer");
   await page.getByRole("button", { name: "Generate cards" }).click();
   await page.getByLabel("Front").nth(0).fill("Edited term");
   await page.getByRole("button", { name: "Flip card" }).click();

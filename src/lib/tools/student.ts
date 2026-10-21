@@ -1,7 +1,7 @@
 export type WordStats = { words: number; characters: number; charactersWithoutSpaces: number; sentences: number; paragraphs: number; lines: number; readingMinutes: number };
 
 export function countStudentText(text: string, wordsPerMinute = 200): WordStats {
-  const words = text.match(/[\p{L}\p{N}\p{M}]+(?:['’][\p{L}\p{N}\p{M}]+)*(?:[-‐‑‒–—][\p{L}\p{N}\p{M}]+(?:['’][\p{L}\p{N}\p{M}]+)*)*/gu)?.length ?? 0;
+  const words = text.match(/[\p{L}\p{N}\p{M}]+(?:['’][\p{L}\p{N}\p{M}]+)*(?:[-‐‑‒–\u2014][\p{L}\p{N}\p{M}]+(?:['’][\p{L}\p{N}\p{M}]+)*)*/gu)?.length ?? 0;
   const sentences = text.trim() ? Math.max(1, text.match(/[.!?]+(?:["'”’)]*)?(?=\s|$)/gu)?.length ?? 0) : 0;
   const paragraphs = text.trim() ? text.trim().split(/\n\s*\n+/u).filter((part) => part.trim()).length : 0;
   return { words, characters: Array.from(text).length, charactersWithoutSpaces: Array.from(text.replace(/\s/gu, "")).length, sentences, paragraphs, lines: text ? text.split(/\r\n|\r|\n/u).length : 0, readingMinutes: words ? Math.max(1, Math.ceil(words / Math.max(1, wordsPerMinute))) : 0 };
@@ -106,7 +106,7 @@ export function resetTimer(state: TimerState): TimerState { return createTimerSt
 export type Flashcard = { id: string; front: string; back: string };
 export function generateFlashcards(notes: string, mode: "pairs" | "lines" | "paragraphs" = "pairs"): Flashcard[] {
   const cards: Flashcard[] = [];
-  if (mode === "pairs") for (const line of notes.split(/\r\n|\r|\n/u)) { const pair = line.match(/^\s*(.+?)\s*(?:—|–|::|\s-\s|\|)\s*(.+?)\s*$/u); if (pair) cards.push({ id: cryptoSafeId(cards.length), front: pair[1].trim(), back: pair[2].trim() }); }
+  if (mode === "pairs") for (const line of notes.split(/\r\n|\r|\n/u)) { const pair = line.match(/^\s*(.+?)\s*(?:\u2014|–|::|\s-\s|\|)\s*(.+?)\s*$/u); if (pair) cards.push({ id: cryptoSafeId(cards.length), front: pair[1].trim(), back: pair[2].trim() }); }
   else { const chunks = mode === "lines" ? notes.split(/\r\n|\r|\n/u) : notes.split(/\n\s*\n+/u); for (const chunk of chunks) { const value = chunk.trim(); if (!value) continue; const sentence = value.split(/(?<=[.!?])\s+/u); cards.push({ id: cryptoSafeId(cards.length), front: sentence.length > 1 ? sentence[0] : `Review: ${value.slice(0, 72)}${value.length > 72 ? "…" : ""}`, back: sentence.length > 1 ? sentence.slice(1).join(" ") : value }); } }
   const seen = new Set<string>();
   return cards.filter((card) => { const key = `${card.front}\0${card.back}`.toLocaleLowerCase(); if (!card.front || !card.back || seen.has(key)) return false; seen.add(key); return true; });

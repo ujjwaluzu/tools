@@ -25,7 +25,7 @@ const dmMono = DM_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tools.ujjwaluzu.in"),
-  title: { default: "Ujjwal Tools — Tiny tools for annoying tasks", template: "%s — Ujjwal Tools" },
+  title: { default: "Ujjwal Tools - Tiny tools for annoying tasks", template: "%s - Ujjwal Tools" },
   description: "Small, useful tools for everyday, developer, document, and creative tasks. Private by default, with local processing whenever possible.",
   applicationName: "Ujjwal Tools",
   icons: {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Ujjwal Tools",
-    title: "Ujjwal Tools — Tiny tools for annoying tasks",
+    title: "Ujjwal Tools - Tiny tools for annoying tasks",
     description: "Small tools for annoying tasks, processed locally whenever possible.",
     url: "https://tools.ujjwaluzu.in/tools",
   },

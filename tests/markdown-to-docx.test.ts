@@ -30,7 +30,7 @@ test("creates a valid DOCX archive with heading styles, lists, tables, formattin
 });
 
 test("supports Unicode and recovers malformed Markdown as a valid Word document", async () => {
-  const result = await createMarkdownDocx("# Café\n\nRésumé — 中文 🌌\n\n**unfinished", { title: "Résumé" });
+  const result = await createMarkdownDocx("# Café\n\nRésumé \u2014 中文 🌌\n\n**unfinished", { title: "Résumé" });
   const zip = await JSZip.loadAsync(new Uint8Array(await result.blob.arrayBuffer()));
   assert.match(await zip.file("word/document.xml")!.async("string"), /中文/u);
   assert.match(result.filename, /Resume\.docx/u);

@@ -64,6 +64,6 @@ test("validates empty, oversized, unsupported Unicode, and malformed Markdown in
 });
 
 test("accepts representative supported Unicode accents and punctuation", async () => {
-  const result = await createMarkdownPdf("# Café\n\nRésumé — £25 “quoted” text.", options());
+  const result = await createMarkdownPdf("# Café\n\nRésumé \u2014 £25 “quoted” text.", options());
   assert.ok(result.blob.size > 0);
 });

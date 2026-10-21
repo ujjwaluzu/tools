@@ -9,7 +9,7 @@ const zones = typeof Intl !== "undefined" && "supportedValuesOf" in Intl ? Intl.
 type Props = { slug: string };
 const nowDate = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
 const number = (s: string) => s.trim() === "" ? NaN : Number(s);
-const show = (n: number, digits = 2) => Number.isFinite(n) ? new Intl.NumberFormat(undefined, { maximumFractionDigits: digits }).format(n) : "—";
+const show = (n: number, digits = 2) => Number.isFinite(n) ? new Intl.NumberFormat(undefined, { maximumFractionDigits: digits }).format(n) : "N/A";
 const today = nowDate();
 
 export function EverydaySuite({ slug }: Props) {

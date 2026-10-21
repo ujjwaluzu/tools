@@ -65,7 +65,7 @@ test("reserves usable body space for repeated headers and footers", () => {
 
 test("detects unsupported characters without substituting them", () => {
   const supported = (character: string) => character.codePointAt(0)! <= 0xff || [0x2013, 0x2014, 0x2018, 0x2019, 0x201c, 0x201d, 0x20ac].includes(character.codePointAt(0)!);
-  assert.deepEqual(unsupportedCharacters("Café — déjà vu €", supported), []);
+  assert.deepEqual(unsupportedCharacters("Café \u2014 déjà vu €", supported), []);
   assert.deepEqual(unsupportedCharacters("Hello नमस्ते 😀", supported), ["न", "म", "स", "्", "त", "े", "😀"]);
 });
 
@@ -76,7 +76,7 @@ test("sanitizes title filenames and falls back to document.pdf", () => {
 });
 
 test("generates a reopenable PDF with dimensions, page count, title metadata, header, footer, and page numbers", async () => {
-  const generated = await createTextPdf("Café — résumé “quoted” €\n\nSecond paragraph\n".repeat(120), options({
+  const generated = await createTextPdf("Café \u2014 résumé “quoted” €\n\nSecond paragraph\n".repeat(120), options({
     title: "Quarterly report", header: "Ujjwal Tools", footer: "Local copy", pageNumbers: true, pageSize: "letter", orientation: "landscape",
   }));
   const { PDFArray, PDFDocument, PDFRawStream, PDFStream, decodePDFRawStream } = await import("pdf-lib");

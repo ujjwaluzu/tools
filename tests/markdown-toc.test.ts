@@ -12,7 +12,7 @@ test("extracts nested headings and preserves heading levels when intermediate le
 test("creates deterministic punctuation and duplicate slugs without colliding with authored suffixes", () => {
   const headings = extractMarkdownHeadings("# Hello, World!\n\n# Hello World\n\n# Hello World-1");
   assert.deepEqual(headings.map(({ slug }) => slug), ["hello-world", "hello-world-1", "hello-world-1-1"]);
-  assert.equal(createHeadingSlug("  A/B — C  "), "ab-c");
+  assert.equal(createHeadingSlug("  A/B \u2014 C  "), "ab-c");
 });
 
 test("preserves non-Latin letters and combining marks", () => {

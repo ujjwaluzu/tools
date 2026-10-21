@@ -47,7 +47,7 @@ export function HtmlToMarkdown() {
         <div className="html-pane-heading"><h2>HTML</h2><span>Input</span></div>
         <label className="visually-hidden" htmlFor="html-markdown-source">HTML source</label>
         <textarea id="html-markdown-source" className="html-markdown-source" value={source} onChange={(event) => { setSource(event.target.value); setResult(""); setError(""); setStatus(""); }} placeholder={'<h1>Readable title</h1>\n<p>Paste HTML to convert.</p>'} spellCheck={false} aria-describedby="html-markdown-size" />
-        <p className={`html-markdown-size${tooLarge ? " is-error" : ""}`} id="html-markdown-size">{formatMarkdownBytes(bytes)} of {formatMarkdownBytes(MAX_HTML_INPUT_BYTES)} maximum{tooLarge ? " — conversion is paused." : ""}</p>
+        <p className={`html-markdown-size${tooLarge ? " is-error" : ""}`} id="html-markdown-size">{formatMarkdownBytes(bytes)} of {formatMarkdownBytes(MAX_HTML_INPUT_BYTES)} maximum{tooLarge ? ": conversion is paused." : ""}</p>
       </section>
       <section className="html-converter-pane" aria-label="Markdown output">
         <div className="html-pane-heading"><h2>Markdown</h2><span>{result ? `${markdownByteLength(result)} UTF-8 bytes` : "Output"}</span></div>

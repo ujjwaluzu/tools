@@ -80,7 +80,7 @@ test("timer state calculations support start, pause, resume, reset, and completi
 });
 
 test("flashcards parse explicit pairs and import validates untrusted JSON", () => {
-  const cards = generateFlashcards("Term — definition\nQuestion? | answer\nTerm — definition", "pairs");
+  const cards = generateFlashcards("Term \u2014 definition\nQuestion? | answer\nTerm \u2014 definition", "pairs");
   assert.equal(cards.length, 2);
   assert.deepEqual(cards.map(({ front, back }) => [front, back]), [["Term", "definition"], ["Question?", "answer"]]);
   assert.deepEqual(generateFlashcards(" \n ", "lines"), []);

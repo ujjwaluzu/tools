@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
     title: tool.metaTitle ?? tool.title,
     description: tool.description,
     alternates: { canonical: tool.href },
-    openGraph: { title: `${tool.title} — Ujjwal Tools`, description: tool.description, url: tool.href, type: "website" },
+    openGraph: { title: `${tool.title} - Ujjwal Tools`, description: tool.description, url: tool.href, type: "website" },
   } : {};
 }
 
