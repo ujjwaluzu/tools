@@ -256,6 +256,29 @@ h1 span, h2 span { color: var(--muted-headline); }
 .csv-empty-cell { color: var(--muted-headline); font-family: var(--font-mono), 'DM Mono', Consolas, monospace; }
 .csv-pagination { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 12px; color: var(--body); font-size: 10px; }
 .csv-pagination .button { min-height: 31px; }
+.file-info-workspace { gap: 14px; }
+.file-info-privacy, .file-info-note { margin: 0; color: var(--body); font-size: 11px; line-height: 1.55; }
+.file-info-actions { display: flex; justify-content: flex-end; }
+.file-info-section { display: flex; flex-direction: column; gap: 12px; padding: 14px; border: 1px solid var(--hairline); border-radius: 9px; background: var(--page); }
+.file-info-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.file-info-section-heading .eyebrow { font-size: 9px; }
+.file-info-section-heading h2 { margin: 2px 0 0; font-size: 15px; }
+.file-info-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin: 0; }
+.file-info-field { min-width: 0; padding: 10px; border: 1px solid var(--hairline); border-radius: 7px; background: var(--hover); }
+.file-info-field dt { margin-bottom: 4px; color: var(--body); font-size: 10px; }
+.file-info-field dd { margin: 0; color: var(--ink); font-size: 12px; font-weight: 600; overflow-wrap: anywhere; }
+.file-match-mismatch { color: #9a3a2b !important; }
+.file-match-unknown { color: var(--body) !important; }
+.file-info-note-wide { grid-column: 1 / -1; }
+.file-info-error { margin: 0; padding: 10px; border-radius: 6px; background: var(--hover); color: #9a3a2b; font-size: 11px; line-height: 1.5; }
+.file-info-exif { display: flex; flex-direction: column; gap: 8px; }
+.file-info-exif h3 { margin: 0; font-size: 12px; }
+.file-info-exif dl { display: grid; grid-template-columns: minmax(130px, .5fr) 1fr; gap: 6px 10px; margin: 0; padding: 10px; border: 1px solid var(--hairline); border-radius: 7px; }
+.file-info-exif dl div { display: contents; }
+.file-info-exif dt { color: var(--body); font-size: 10px; }
+.file-info-exif dd { margin: 0; color: var(--ink); font-size: 11px; overflow-wrap: anywhere; }
+.file-info-exif p { margin: 0; color: var(--body); font-size: 10px; line-height: 1.5; }
+.file-info-empty { margin-top: 2px; }
 .color-input-row { display: flex; gap: 12px; }
 .color-format-field { width: 130px; }
 .color-value-field { flex: 1; }
@@ -478,6 +501,11 @@ h1 span, h2 span { color: var(--muted-headline); }
   .image-output-summary { align-items: flex-start; flex-direction: column; }
   .preset-row .button { flex: 1 1 auto; }
   .csv-input-grid { grid-template-columns: 1fr; }
+  .file-info-grid { grid-template-columns: 1fr; }
+  .file-info-section { padding: 11px; }
+  .file-info-section-heading { align-items: flex-start; }
+  .file-info-exif dl { grid-template-columns: 1fr; gap: 3px; }
+  .file-info-exif dd { margin-bottom: 6px; }
   .csv-preview-heading { align-items: flex-start; flex-direction: column; }
   .csv-export-row { align-items: stretch; flex-direction: column; }
   .csv-export-scope { flex-basis: auto; }

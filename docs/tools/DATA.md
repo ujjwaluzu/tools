@@ -2,6 +2,18 @@
 
 ## Available
 
+### File Information & Metadata
+
+Route: `/tools/data/file-info`.
+
+Select or drop one local file up to 50 MB. The tool reports its name, extension, browser-reported MIME type, byte and human-readable size, local last-modified time, and a conservative format guess based on at most the first 1,024 bytes. Recognized signatures include PDF, JPEG, PNG, GIF, WebP, AVIF, and generic ZIP-based containers. ZIP recognition does not identify a specific Office document. Unknown signatures remain unknown; matching extension/MIME labels are comparisons, not proof that a file is safe or valid.
+
+Recognized images show dimensions, aspect ratio, pixel count, and decoded format when browser decoding succeeds. Image decoding follows the existing 25 MB and 24 megapixel image limits. JPEG EXIF uses the existing limited local reader; only supported fields appear, GPS coordinates are not shown, and unavailable EXIF is distinguished from no readable fields.
+
+PDF inspection reuses `pdf-lib` and the existing 50 MB per-file and 500-page limits. It shows page count and available title, author, subject, creator, producer, creation date, and modification date without rendering pages or changing the source. Encrypted, malformed, unsupported, or over-limit PDFs may not expose properties. Missing metadata says nothing reliable about a document's edit history.
+
+The browser-reported MIME type can be empty or inaccurate. Signature detection is limited and is not malware scanning or a security guarantee. Files and metadata are inspected locally and are not uploaded. Formats without a recognized signature still show general browser file properties.
+
 ### CSV Viewer & Cleaner
 
 Route: `/tools/data/csv-viewer`.

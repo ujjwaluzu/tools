@@ -40,7 +40,7 @@ export const categories: CategoryDefinition[] = [
   { slug: "web-seo", name: "Web & SEO", description: "Handy utilities for building for the web.", icon: "↗" },
   { slug: "markdown", name: "Markdown", description: "Write, format, and preview Markdown.", icon: "M↓" },
   { slug: "git-github", name: "Git & GitHub", description: "Small helpers for your GitHub workflow.", icon: "⌘" },
-  { slug: "data", name: "Data", description: "Convert and clean up structured data.", icon: "▦" },
+  { slug: "data", name: "Data", description: "Inspect, convert, and clean data files.", icon: "▦" },
   { slug: "color", name: "Color", description: "Work with color values and palettes.", icon: "◉" },
   { slug: "security", name: "Security & Encoding", description: "Encode values and generate identifiers locally.", icon: "⌑" },
   { slug: "converters", name: "Converters", description: "Convert common values and units.", icon: "⇄" },
@@ -132,6 +132,12 @@ export const tools: ToolDefinition[] = [
     description: "Preview, filter, and clean CSV files locally in your browser.",
     keywords: ["csv", "spreadsheet", "viewer", "filter", "deduplicate", "cleaner", "data"], icon: "▦", href: "/tools/data/csv-viewer", processing: "client",
     privacyNote: "Your CSV is processed locally in your browser. Its contents are not uploaded.",
+  },
+  {
+    slug: "file-info", category: "data", title: "File Information & Metadata", metaTitle: "File Information and Metadata Viewer",
+    description: "Inspect local file properties and supported image or PDF metadata in your browser.",
+    keywords: ["file", "information", "metadata", "mime", "signature", "image dimensions", "pdf pages"], icon: "▤", href: "/tools/data/file-info", processing: "client",
+    privacyNote: "File inspection happens locally in your browser. Your file and metadata are not uploaded.",
   },
   {
     slug: "convert", category: "color", title: "Color Converter", description: "Convert between HEX, RGB, and HSL with a live preview.",

@@ -18,7 +18,7 @@ The lists below reflect the tool catalogue and implementation in this repository
 | PDF | Merge PDF, split PDF, images to PDF, PDF to PNG, PDF to JPG | Implemented; browser-local processing |
 | Developer | JSON formatter, word counter, JSON/CSV conversion, TypeScript/YAML generation, text, URL, encoding, regex, cron, and gitignore utilities | Implemented; browser-local processing |
 | Web & SEO | URL and query parsing, metadata and social previews, JSON-LD, sitemap/robots utilities, metadata inspection | Implemented; some URL checks and remote image previews make browser requests |
-| Data | CSV Viewer & Cleaner | Implemented; browser-local processing, 10 MB / 25,000 row / 100 column limits |
+| Data | CSV Viewer & Cleaner, File Information & Metadata | Implemented; browser-local processing, with documented CSV and file inspection limits |
 | Security & Encoding | Base64, UUID, JWT decoder, hash and HMAC generators | Implemented; browser-local processing |
 | Color | HEX/RGB/HSL color converter | Implemented; browser-local processing |
 
