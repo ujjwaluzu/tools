@@ -43,3 +43,9 @@ The converter uses the shared CommonMark/GFM syntax tree and the `docx` library 
 Route: `/tools/markdown/table-generator`.
 
 Edit headers, rows, and per-column alignment to create a GitHub Flavored Markdown table. Pipes and backslashes are escaped; line breaks within cells become `<br>`, a common Markdown table convention. Empty cells are preserved. The table begins with two columns and two data rows; rows and columns can be added or removed while keeping at least one of each. Copy and `.md` download contain the generated table. Processing is local and transient.
+
+## Table to Markdown Converter
+
+Route: `/tools/markdown/table-to-markdown`.
+
+The converter accepts TSV, CSV, or pasted HTML containing a table, with a 1 MiB UTF-8 input limit, 100-column limit, and 25,000-data-row limit. CSV uses the shared strict CSV parser, including quoted commas, escaped quotes, and quoted newlines. CSV with the first-row-as-header option enabled requires unique, nonempty header values; when disabled, the first row is treated as data. TSV preserves empty cells and CRLF, LF, or CR endings. Uneven row widths produce a row-specific error instead of silently shifting cells. Values are not trimmed unless selected. HTML is parsed by the browser's inert `DOMParser`; scripts and active embedded elements are removed from the parsed table before text extraction, and no input markup is inserted into the live page or allowed to load resources. Only the first HTML table is converted; row/column spans and formatting are not represented. Pipes and backslashes are escaped, multiline cells use `<br>`, and output/download remain local and transient.

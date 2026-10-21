@@ -15,6 +15,8 @@ export type CsvParseOptions = {
   maxColumns?: number;
   /** Empty physical lines are ignored by default. A line containing spaces is data. */
   skipBlankLines?: boolean;
+  /** Allow arbitrary first-row values when the caller treats that row as data. */
+  validateHeaders?: boolean;
 };
 
 export type CsvSerializeOptions = {
@@ -171,13 +173,15 @@ export function parseCsv(input: string, options: CsvParseOptions = {}): CsvTable
   const headers = headerRecord.fields;
   if (!headers.length) throw new CsvParseError("CSV must have at least one header", headerRecord.line, 1);
 
-  const seenHeaders = new Set<string>();
-  headers.forEach((header, index) => {
-    const normalized = header.trim();
-    if (!normalized) throw new CsvParseError("CSV headers cannot be empty or whitespace-only", headerRecord.line, index + 1);
-    if (seenHeaders.has(normalized)) throw new CsvParseError(`Duplicate CSV header: ${normalized}`, headerRecord.line, index + 1);
-    seenHeaders.add(normalized);
-  });
+  if (options.validateHeaders !== false) {
+    const seenHeaders = new Set<string>();
+    headers.forEach((header, index) => {
+      const normalized = header.trim();
+      if (!normalized) throw new CsvParseError("CSV headers cannot be empty or whitespace-only", headerRecord.line, index + 1);
+      if (seenHeaders.has(normalized)) throw new CsvParseError(`Duplicate CSV header: ${normalized}`, headerRecord.line, index + 1);
+      seenHeaders.add(normalized);
+    });
+  }
 
   for (const record of dataRecords) {
     if (record.fields.length !== headers.length) {

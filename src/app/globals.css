@@ -361,6 +361,18 @@ h1 span, h2 span { color: var(--muted-headline); }
 .markdown-table-remove { padding-inline: 8px; font-size: 10px; }
 .markdown-table-output { min-width: 0; overflow: hidden; border: 1px solid var(--hairline); border-radius: 8px; background: var(--page); }
 .markdown-table-output-source { display: block; width: 100%; min-height: 150px; resize: vertical; padding: 13px; border: 0; outline: 0; background: var(--page); color: var(--ink); font-family: var(--font-mono), Consolas, monospace; font-size: 11px; line-height: 1.6; white-space: pre; }
+.table-markdown-workspace { gap: 13px; }
+.table-markdown-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 11px 18px; }
+.table-markdown-controls .field-group { width: min(100%, 250px); }
+.table-markdown-controls .text-input, .table-markdown-alignments .text-input { min-height: 38px; font-size: 11px; }
+.table-markdown-controls .checkbox-label { display: flex; align-items: center; gap: 7px; min-height: 40px; color: var(--body); font-size: 11px; }
+.table-markdown-controls input[type="checkbox"] { accent-color: var(--ink); }
+.table-markdown-alignments { display: flex; flex-wrap: wrap; gap: 9px; margin: 0; padding: 10px; border: 1px solid var(--hairline); border-radius: 8px; }
+.table-markdown-alignments legend { padding: 0 5px; color: var(--label); font-size: 10px; font-weight: 600; }
+.table-markdown-alignments .field-group { width: min(100%, 170px); }
+.table-markdown-alignments .field-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.table-markdown-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.table-markdown-output-pane .markdown-table-output-source { min-height: 0; flex: 1; resize: vertical; }
 
 /* Markdown to HTML converter */
 .markdown-html-workspace { gap: 13px; }
@@ -778,6 +790,7 @@ h1 span, h2 span { color: var(--muted-headline); }
   .html-markdown-layout .html-converter-pane { display: flex; min-height: 430px; margin-bottom: 12px; }
   .html-markdown-layout .html-markdown-source { min-height: 300px; flex: 1; }
   .html-output-tabs { display: none; }
+  .table-markdown-panes { display: block; }
 }
 
 @media (max-width: 420px) {
