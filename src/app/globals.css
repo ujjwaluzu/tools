@@ -279,6 +279,28 @@ h1 span, h2 span { color: var(--muted-headline); }
 .file-info-exif dd { margin: 0; color: var(--ink); font-size: 11px; overflow-wrap: anywhere; }
 .file-info-exif p { margin: 0; color: var(--body); font-size: 10px; line-height: 1.5; }
 .file-info-empty { margin-top: 2px; }
+.hash-workspace { gap: 14px; }
+.hash-privacy { margin: 0; color: var(--body); font-size: 11px; }
+.hash-algorithm { max-width: 260px; }
+.hash-file-picker { min-width: 0; }
+.hash-file-summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 12px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--page); }
+.hash-file-summary > span { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.hash-file-summary strong { overflow-wrap: anywhere; font-size: 12px; }
+.hash-file-summary small, .hash-result-meta span { color: var(--body); font-size: 10px; }
+.hash-actions { justify-content: flex-start; }
+.hash-result { display: flex; flex-direction: column; gap: 10px; padding: 12px; }
+.hash-result-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; }
+.hash-result-meta strong { font-size: 11px; }
+.hash-digest { display: block; max-width: 100%; overflow-wrap: anywhere; word-break: break-all; color: var(--ink); font-family: var(--font-mono), 'DM Mono', Consolas, monospace; font-size: 12px; line-height: 1.6; }
+.hash-result-status, .hash-result-stale, .hash-match, .hash-mismatch { margin: 0; font-size: 11px; line-height: 1.55; }
+.hash-result-status { color: var(--body); }
+.hash-result-stale, .hash-mismatch { color: #9a3a2b; }
+.hash-verify { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px; border: 1px solid var(--hairline); border-radius: 9px; background: var(--page); }
+.hash-verify h2 { margin: 0 0 4px; font-size: 14px; }
+.hash-verify > div > p { margin: 0; color: var(--body); font-size: 10px; line-height: 1.5; }
+.hash-verify .field-group { width: 100%; }
+.hash-match { color: #276346; }
+.hash-verify .field-help { margin: 0; }
 .color-input-row { display: flex; gap: 12px; }
 .color-format-field { width: 130px; }
 .color-value-field { flex: 1; }
@@ -506,6 +528,8 @@ h1 span, h2 span { color: var(--muted-headline); }
   .file-info-section-heading { align-items: flex-start; }
   .file-info-exif dl { grid-template-columns: 1fr; gap: 3px; }
   .file-info-exif dd { margin-bottom: 6px; }
+  .hash-file-summary { align-items: flex-start; flex-direction: column; }
+  .hash-actions { flex-wrap: wrap; }
   .csv-preview-heading { align-items: flex-start; flex-direction: column; }
   .csv-export-row { align-items: stretch; flex-direction: column; }
   .csv-export-scope { flex-basis: auto; }
