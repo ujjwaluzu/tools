@@ -4,7 +4,6 @@ export type ToolCategory =
   | "developer"
   | "web-seo"
   | "markdown"
-  | "git-github"
   | "data"
   | "color"
   | "security"
@@ -39,7 +38,6 @@ export const categories: CategoryDefinition[] = [
   { slug: "developer", name: "Developer", description: "Quick helpers for code and text.", icon: "{ }" },
   { slug: "web-seo", name: "Web & SEO", description: "Handy utilities for building for the web.", icon: "↗" },
   { slug: "markdown", name: "Markdown", description: "Write, format, and preview Markdown.", icon: "M↓" },
-  { slug: "git-github", name: "Git & GitHub", description: "Small helpers for your GitHub workflow.", icon: "⌘" },
   { slug: "data", name: "Data", description: "Inspect, convert, and clean data files.", icon: "▦" },
   { slug: "color", name: "Color", description: "Work with color values and palettes.", icon: "◉" },
   { slug: "security", name: "Security & Encoding", description: "Encode values and generate identifiers locally.", icon: "⌑" },
