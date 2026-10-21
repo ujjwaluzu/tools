@@ -1,12 +1,9 @@
 import DOMPurify, { type Config } from "dompurify";
 import rehypeStringify from "rehype-stringify";
-import remarkGfm from "remark-gfm";
-import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import { unified } from "unified";
-import { assertMarkdownInputSize, safeMarkdownUrl } from "./markdown.ts";
+import { assertMarkdownInputSize, createMarkdownParser, safeMarkdownUrl } from "./markdown.ts";
 
-const markdownHtmlProcessor = unified().use(remarkParse).use(remarkGfm).use(remarkRehype).use(rehypeStringify);
+const markdownHtmlProcessor = createMarkdownParser().use(remarkRehype).use(rehypeStringify);
 
 const SANITIZE_OPTIONS: Config = {
   ALLOWED_TAGS: ["a", "blockquote", "br", "code", "del", "em", "h1", "h2", "h3", "h4", "h5", "h6", "hr", "img", "input", "li", "ol", "p", "pre", "strong", "table", "thead", "tbody", "tr", "th", "td", "ul"],

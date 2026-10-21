@@ -67,6 +67,12 @@ export const tools: ToolDefinition[] = [
     keywords: ["html", "markdown", "convert", "converter", "turndown", "gfm", "table", "download"], icon: "H→M", href: "/tools/markdown/to-markdown", processing: "client",
     privacyNote: "HTML is parsed and converted locally in your browser. Input is not rendered, uploaded, or saved.",
   },
+  {
+    slug: "to-pdf", category: "markdown", title: "Markdown to PDF Converter", metaTitle: "Markdown to PDF Converter Online",
+    description: "Create a structured, paginated PDF from Markdown locally in your browser.",
+    keywords: ["markdown", "pdf", "convert", "document", "export", "gfm", "download"], icon: "M→PDF", href: "/tools/markdown/to-pdf", processing: "client",
+    privacyNote: "Markdown parsing and PDF generation happen locally in your browser. Your content is not uploaded or saved.",
+  },
   ...[
     ["convert", "Convert Images", "Convert images between common formats directly in your browser.", "Convert Images Online — Ujjwal Tools", ["image", "convert", "png", "jpg", "webp", "avif", "svg"]],
     ["resize", "Resize Images", "Resize images quickly in your browser without uploading them.", "Resize Images Online — Ujjwal Tools", ["image", "resize", "dimensions", "scale"]],

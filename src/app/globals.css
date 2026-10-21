@@ -330,6 +330,22 @@ h1 span, h2 span { color: var(--muted-headline); }
 .markdown-reference-grid code { min-width: 0; overflow-wrap: anywhere; padding: 7px 8px; border-radius: 5px; background: var(--hover); font-family: var(--font-mono), 'DM Mono', monospace; font-size: 10px; }
 .markdown-reference > p { margin-top: 12px; font-size: 10px; }
 
+/* Markdown to PDF editor, preview, and settings */
+.markdown-pdf-workspace { gap: 13px; }
+.markdown-pdf-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.markdown-pdf-actions .markdown-status { padding: 0; }
+.markdown-pdf-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; padding: 13px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--page); }
+.markdown-pdf-options .field-group { min-width: 0; }
+.markdown-pdf-options .text-input { min-width: 0; }
+.markdown-pdf-page-numbers { align-self: end; min-height: 43px; }
+.markdown-pdf-tabs { display: none; }
+.markdown-pdf-panes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; min-width: 0; }
+.markdown-pdf-pane { display: flex; flex-direction: column; min-width: 0; min-height: 480px; overflow: hidden; border: 1px solid var(--hairline); border-radius: 8px; background: var(--page); }
+.markdown-pdf-source { width: 100%; min-height: 0; flex: 1; resize: vertical; padding: 15px; border: 0; outline: none; background: var(--page); color: var(--ink); font-family: var(--font-mono), Consolas, monospace; font-size: 12px; line-height: 1.7; tab-size: 2; }
+.markdown-pdf-source:focus-visible { outline: 2px solid var(--ink); outline-offset: -3px; }
+.markdown-pdf-pane > .html-markdown-size { padding: 0 12px 9px; }
+.markdown-pdf-preview .markdown-preview-content { min-height: 0; }
+
 /* Markdown to HTML converter */
 .markdown-html-workspace { gap: 13px; }
 .html-converter-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
@@ -720,6 +736,14 @@ h1 span, h2 span { color: var(--muted-headline); }
 }
 
 @media (max-width: 760px) {
+  .markdown-pdf-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .markdown-pdf-tabs { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--hover); }
+  .markdown-pdf-tabs button { min-height: 37px; flex: 1; border: 0; border-radius: 5px; background: transparent; color: var(--body); font-size: 12px; font-weight: 600; }
+  .markdown-pdf-tabs button.selected { background: var(--page); color: var(--ink); box-shadow: 0 0 0 1px var(--hairline); }
+  .markdown-pdf-panes { display: block; }
+  .markdown-pdf-pane { display: none; min-height: 440px; }
+  .markdown-pdf-pane.is-mobile-active { display: flex; }
+  .markdown-pdf-source { min-height: 320px; }
   .markdown-tabs { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--hover); }
   .markdown-tabs button { min-height: 37px; flex: 1; border: 0; border-radius: 5px; background: transparent; color: var(--body); font-size: 12px; font-weight: 600; }
   .markdown-tabs button.selected { background: var(--page); color: var(--ink); box-shadow: 0 0 0 1px var(--hairline); }

@@ -1,4 +1,18 @@
+import remarkGfm from "remark-gfm";
+import remarkParse from "remark-parse";
+import { unified } from "unified";
+
 export const MAX_MARKDOWN_INPUT_BYTES = 1024 * 1024;
+
+/** Shared CommonMark/GFM parser used for analysis and document conversion. */
+export function createMarkdownParser() {
+  return unified().use(remarkParse).use(remarkGfm);
+}
+
+export function parseMarkdownTree(source: string) {
+  assertMarkdownInputSize(source);
+  return createMarkdownParser().parse(source);
+}
 
 export function countMarkdown(source: string) {
   return {

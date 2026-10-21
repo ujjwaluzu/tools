@@ -20,14 +20,14 @@ The lists below reflect the tool catalogue and implementation in this repository
 | Web & SEO | URL and query parsing, metadata and social previews, JSON-LD, sitemap/robots utilities, metadata inspection | Implemented; some URL checks and remote image previews make browser requests |
 | Data | CSV Viewer & Cleaner, File Information & Metadata | Implemented; browser-local processing, with documented CSV and file inspection limits |
 | Security & Encoding | Base64, UUID, JWT decoder, hash and HMAC generators | Implemented; browser-local processing |
-| Markdown | Markdown Editor & Preview, Markdown to HTML Converter, HTML to Markdown Converter | Implemented; browser-local editing, GFM preview, sanitized HTML export, and safe HTML conversion |
+| Markdown | Markdown Editor & Preview, Markdown to HTML Converter, HTML to Markdown Converter, Markdown to PDF Converter | Implemented; browser-local editing, GFM preview, sanitized HTML export, safe HTML conversion, and structured PDF output |
 | Color | HEX/RGB/HSL color converter | Implemented; browser-local processing |
 
 ### Coming soon / planned
 
 These are roadmap ideas, not yet available tools or release commitments. Work is expected to be incremental.
 
-- **Markdown:** document conversion, table, TOC, and formatting utilities.
+- **Markdown:** DOCX conversion, table, TOC, and formatting utilities.
 - **Data:** XLSX conversion and additional CSV/data utilities.
 - **PDF and images:** PDF editing, OCR, and image background removal.
 - **Git & GitHub:** small workflow helpers and GitHub tools.

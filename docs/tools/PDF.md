@@ -10,6 +10,14 @@ Enter or paste plain text and generate a locally processed PDF. Newlines and bla
 
 Text is limited to 1 MiB of UTF-8 and generated documents to 500 pages. The standard built-in PDF fonts support basic Latin and many Windows-1252 accents and punctuation. The generator checks font encoding and reports unsupported characters, including emoji and many non-Latin scripts, instead of silently replacing them. There are no external font downloads. Text wrapping follows the selected font's measured glyph widths; this is a plain-text layout and does not interpret Markdown, infer rich paragraphs, or provide word-processing features. Text, settings, and output remain in browser memory and are not uploaded or persisted.
 
+### Markdown to PDF Converter
+
+Route: `/tools/markdown/to-pdf`.
+
+The converter uses the shared CommonMark/GFM syntax tree and draws headings, paragraphs, emphasis, ordered and unordered lists, task-list markers, nested lists, blockquotes, inline and fenced code, horizontal rules, tables, and safe links into a paginated PDF. It supports A4 or US Letter, portrait or landscape, 10–30 mm margins, Helvetica/Times Roman/Courier, 9–16 pt body text, optional title metadata, and page numbers. The title also supplies a sanitized filename. Links with allowed `http`, `https`, `mailto`, or `tel` schemes become PDF link annotations; unsafe destinations are shown as plain link text. No user HTML is executed and no images or external resources are fetched; image alt text is used in place of image content.
+
+Markdown is limited to 1 MiB UTF-8 and output to 500 pages. Built-in standard fonts support basic Latin and many Windows-1252 accents; unsupported characters are identified and fail generation instead of being replaced. Tables wrap cell text and may continue over page boundaries. The lightweight PDF layout is readable but does not promise browser-to-Word parity or sophisticated table column fitting. Raw HTML blocks are displayed as literal text. All processing is local and transient.
+
 ### PDF Inspector & Text Extraction
 
 Route: `/tools/pdf/inspect`.
