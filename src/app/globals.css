@@ -216,7 +216,6 @@ h1 span, h2 span { color: var(--muted-headline); }
   .droid-beam-l, .droid-beam-r { opacity: 0; }
 }
 
-.hatch-band { height: 28px; border-bottom: 1px solid var(--hairline); }
 
 .formats-strip { padding: 40px 24px; text-align: center; border-bottom: 1px solid var(--hairline); }
 .formats-strip .tag { display: block; border: 0; padding: 0; background: transparent; margin-bottom: 18px; }
@@ -904,6 +903,25 @@ h1 span, h2 span { color: var(--muted-headline); }
   .csv-export-scope { flex-basis: auto; }
   .csv-safe-option { align-self: flex-start; }
   .csv-pagination .button-row { flex-wrap: nowrap; }
+}
+
+@media (max-width: 380px) {
+  .brand-name { display: none; }
+  .category-menu-panel { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 1099px) {
+  .hero-droid-right {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    display: block;
+    align-self: center;
+    width: clamp(104px, 28vw, 150px);
+    margin: -8px 0 -18px;
+    --patrol: 8px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

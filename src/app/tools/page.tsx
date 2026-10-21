@@ -32,14 +32,12 @@ export default function ToolsHomePage() {
       <section className="home-hero">
         <Tag className="hero-enter" style={cue(0)}>New · {uniqueTools.length} tools</Tag>
         <h1 className="hero-enter" style={cue(1)}>Small tools for<br /><span>annoying tasks.</span></h1>
+        <div className="hero-droid-stage hero-droid-right"><HeroDroid variant="converter" /></div>
         <p className="hero-enter" style={cue(2)}>Quick, useful utilities that get out of your way. Private by default, with local processing whenever possible.</p>
         <div className="hero-enter hero-search" style={cue(3)}><ToolSearch /></div>
         <p className="privacy-inline hero-enter" style={cue(4)}>Your inputs stay in your browser for these tools.</p>
         <div className="hero-droid-stage hero-droid-left"><HeroDroid variant="fixer" /></div>
-        <div className="hero-droid-stage hero-droid-right"><HeroDroid variant="converter" /></div>
       </section>
-
-      <div className="hatch hatch-band" aria-hidden="true" />
 
       <section className="formats-strip">
         <Tag>Formats and files we handle</Tag>
