@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Mono, Instrument_Sans } from "next/font/google";
 import Link from "next/link";
-import { HatchGutter } from "@/components/home/DesignPrimitives";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
@@ -66,9 +65,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           </div>
         </header>
         <div className="site-frame">
-          <HatchGutter side="left" />
           <div className="frame-center">{children}</div>
-          <HatchGutter side="right" />
         </div>
         <footer className="site-footer">
           <div className="footer-inner">
