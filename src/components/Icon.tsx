@@ -50,7 +50,7 @@ export function ToolIcon({ category, slug, size = 18 }: { category: string; slug
     : key.includes("pdf") || category === "pdf" ? "file"
       : key.includes("csv") || key.includes("table") ? "table"
         : key.includes("markdown") || key.includes("editor") || key.includes("html") ? "markdown"
-          : key.includes("color") ? "palette"
+          : key.includes("color") || category === "color" ? "palette"
             : key.includes("hash") || key.includes("uuid") || key.includes("base64") || key.includes("jwt") ? "shield"
               : key.includes("url") || key.includes("query") || key.includes("http") || category === "web-seo" ? "globe"
                 : category === "git-github" ? "branch"
