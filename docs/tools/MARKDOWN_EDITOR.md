@@ -55,3 +55,9 @@ The converter accepts TSV, CSV, or pasted HTML containing a table, with a 1 MiB 
 Route: `/tools/markdown/toc-generator`.
 
 The generator extracts heading nodes from the shared CommonMark/GFM syntax tree, so fenced-code examples and inline code are not mistaken for headings. Select any combination of H1–H6; included headings are nested according to their heading levels and skipped heading levels remain a compact list hierarchy. Anchors use a deterministic GitHub-inspired slug: lowercase, remove punctuation, turn whitespace into hyphens, preserve Unicode letters, use `section` when the slug would be empty, and append `-1`, `-2`, etc. for duplicates while avoiding collisions with existing slugs. Other Markdown platforms can use different anchor rules; verify links in the publishing target. The source limit is 1 MiB UTF-8. Copy and `.md` download remain local and transient.
+
+## Markdown Formatter
+
+Route: `/tools/markdown/formatter`.
+
+The formatter parses and serializes with the shared CommonMark/GFM ecosystem and `remark-stringify`. It uses ATX headings, hyphen bullets, period ordered markers, two-space nested-list indentation, backtick fences, spaced GFM tables, and blank lines between blocks; prose wrapping is preserved. It does not execute or render Markdown. The AST serializer preserves code block values, inline code values, raw HTML strings, and safe link destinations; destinations are checked using the shared URL policy, and unsafe schemes or remote image destinations are rejected. Because the core GFM parser does not parse math syntax, documents with `$...$` or `$$...$$` outside code spans/fences are returned unchanged to protect the notation. The input and output are limited to 1 MiB UTF-8. Copy and `.md` download remain local and transient.

@@ -97,6 +97,12 @@ export const tools: ToolDefinition[] = [
     keywords: ["markdown", "toc", "table of contents", "heading", "anchors", "slug", "gfm"], icon: "M≡", href: "/tools/markdown/toc-generator", processing: "client",
     privacyNote: "Heading extraction and TOC generation happen locally in your browser. Your Markdown is not uploaded or saved.",
   },
+  {
+    slug: "formatter", category: "markdown", title: "Markdown Formatter", metaTitle: "Markdown Formatter Online",
+    description: "Normalize Markdown headings, lists, block spacing, and GFM tables locally.",
+    keywords: ["markdown", "formatter", "format", "normalize", "gfm", "prettify", "tables", "lists"], icon: "M≋", href: "/tools/markdown/formatter", processing: "client",
+    privacyNote: "Markdown formatting runs locally in your browser. Source and output are not uploaded or saved.",
+  },
   ...[
     ["convert", "Convert Images", "Convert images between common formats directly in your browser.", "Convert Images Online — Ujjwal Tools", ["image", "convert", "png", "jpg", "webp", "avif", "svg"]],
     ["resize", "Resize Images", "Resize images quickly in your browser without uploading them.", "Resize Images Online — Ujjwal Tools", ["image", "resize", "dimensions", "scale"]],

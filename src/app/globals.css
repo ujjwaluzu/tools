@@ -381,6 +381,10 @@ h1 span, h2 span { color: var(--muted-headline); }
 .markdown-toc-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .markdown-toc-output-pane .html-output-empty { min-height: 0; flex: 1; }
 .markdown-toc-output-source { width: 100%; min-height: 0; flex: 1; resize: vertical; padding: 14px; border: 0; outline: 0; background: var(--page); color: var(--ink); font-family: var(--font-mono), Consolas, monospace; font-size: 11px; line-height: 1.7; white-space: pre; }
+.markdown-formatter-workspace { gap: 13px; }
+.markdown-formatter-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.markdown-formatter-output-pane .html-output-empty { min-height: 0; flex: 1; }
+.markdown-formatter-output-source { width: 100%; min-height: 0; flex: 1; resize: vertical; padding: 14px; border: 0; outline: 0; background: var(--page); color: var(--ink); font-family: var(--font-mono), Consolas, monospace; font-size: 11px; line-height: 1.7; white-space: pre; }
 
 /* Markdown to HTML converter */
 .markdown-html-workspace { gap: 13px; }
