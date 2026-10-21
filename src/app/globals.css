@@ -373,6 +373,14 @@ h1 span, h2 span { color: var(--muted-headline); }
 .table-markdown-alignments .field-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .table-markdown-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .table-markdown-output-pane .markdown-table-output-source { min-height: 0; flex: 1; resize: vertical; }
+.markdown-toc-workspace { gap: 13px; }
+.markdown-toc-levels { display: flex; flex-wrap: wrap; gap: 8px 17px; margin: 0; padding: 10px 12px; border: 1px solid var(--hairline); border-radius: 8px; }
+.markdown-toc-levels legend { padding: 0 5px; color: var(--label); font-size: 10px; font-weight: 600; }
+.markdown-toc-levels .checkbox-label { display: flex; align-items: center; gap: 6px; color: var(--body); font-size: 11px; }
+.markdown-toc-levels input[type="checkbox"] { accent-color: var(--ink); }
+.markdown-toc-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.markdown-toc-output-pane .html-output-empty { min-height: 0; flex: 1; }
+.markdown-toc-output-source { width: 100%; min-height: 0; flex: 1; resize: vertical; padding: 14px; border: 0; outline: 0; background: var(--page); color: var(--ink); font-family: var(--font-mono), Consolas, monospace; font-size: 11px; line-height: 1.7; white-space: pre; }
 
 /* Markdown to HTML converter */
 .markdown-html-workspace { gap: 13px; }

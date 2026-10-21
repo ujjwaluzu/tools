@@ -29,6 +29,7 @@ const toolComponents: Record<string, ComponentType> = {
   "to-docx": dynamic(() => import("@/components/tools/implementations/MarkdownToDocx").then((module) => module.MarkdownToDocx)),
   "table-generator": dynamic(() => import("@/components/tools/implementations/MarkdownTableGenerator").then((module) => module.MarkdownTableGenerator)),
   "table-to-markdown": dynamic(() => import("@/components/tools/implementations/TableToMarkdown").then((module) => module.TableToMarkdown)),
+  "toc-generator": dynamic(() => import("@/components/tools/implementations/MarkdownTocGenerator").then((module) => module.MarkdownTocGenerator)),
 };
 
 const ImageTool = dynamic<{ tool: string }>(() => import("@/components/tools/implementations/images/ImageSuite").then((module) => module.ImageSuite), { ssr: false });

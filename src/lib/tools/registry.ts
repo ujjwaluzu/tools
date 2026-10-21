@@ -91,6 +91,12 @@ export const tools: ToolDefinition[] = [
     keywords: ["table", "markdown", "tsv", "csv", "html", "convert", "gfm", "alignment"], icon: "▦→M", href: "/tools/markdown/table-to-markdown", processing: "client",
     privacyNote: "Tabular input is parsed locally in your browser. Your data is not uploaded or saved.",
   },
+  {
+    slug: "toc-generator", category: "markdown", title: "Markdown TOC Generator", metaTitle: "Markdown Table of Contents Generator",
+    description: "Generate nested, duplicate-safe Markdown table-of-contents links from real heading syntax.",
+    keywords: ["markdown", "toc", "table of contents", "heading", "anchors", "slug", "gfm"], icon: "M≡", href: "/tools/markdown/toc-generator", processing: "client",
+    privacyNote: "Heading extraction and TOC generation happen locally in your browser. Your Markdown is not uploaded or saved.",
+  },
   ...[
     ["convert", "Convert Images", "Convert images between common formats directly in your browser.", "Convert Images Online — Ujjwal Tools", ["image", "convert", "png", "jpg", "webp", "avif", "svg"]],
     ["resize", "Resize Images", "Resize images quickly in your browser without uploading them.", "Resize Images Online — Ujjwal Tools", ["image", "resize", "dimensions", "scale"]],
