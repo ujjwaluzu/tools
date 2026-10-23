@@ -2,12 +2,17 @@ import type { Metadata, Viewport } from "next";
 import { DM_Mono, Instrument_Sans } from "next/font/google";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ToolsMegaMenu } from "@/components/ToolsMegaMenu";
 import { getThemeBootstrapScript } from "@/lib/theme";
 import { categories, tools } from "@/lib/tools/registry";
 import "./globals.css";
 
 const uniqueTools = Array.from(new Map(tools.map((tool) => [tool.href, tool])).values());
 const activeCategories = categories.filter((category) => uniqueTools.some((tool) => tool.category === category.slug));
+const toolGroups = activeCategories.map((category) => ({
+  ...category,
+  tools: uniqueTools.filter((tool) => tool.category === category.slug).map(({ title, href }) => ({ title, href })),
+}));
 
 const instrumentSans = Instrument_Sans({
   weight: ["400", "500", "600"],
@@ -56,28 +61,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body>
         <header className="site-header">
-          <div className="header-inner">
-            <Link className="brand" href="/tools" aria-label="Tools home">
+          <ToolsMegaMenu
+            groups={toolGroups}
+            brand={<Link className="brand" href="/tools" aria-label="Tools home">
               <span className="brand-mark" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 3v6a4 4 0 0 0 8 0V3" /></svg></span>
               <span className="brand-name">Tools</span>
-            </Link>
-            <nav className="header-nav" aria-label="Tool categories">
-              {activeCategories.map((category) => (
-                <Link href={`/tools/${category.slug}`} key={category.slug}>{category.name}</Link>
-              ))}
-            </nav>
-            <div className="header-actions">
-              <details className="category-menu">
-                <summary>Categories <svg aria-hidden="true" viewBox="0 0 12 12"><path d="m2.5 4.5 3.5 3 3.5-3" /></svg></summary>
-                <nav className="category-menu-panel" aria-label="Tool categories">
-                  {activeCategories.map((category) => (
-                    <Link href={`/tools/${category.slug}`} key={category.slug}>{category.name}</Link>
-                  ))}
-                </nav>
-              </details>
-              <ThemeToggle />
-            </div>
-          </div>
+            </Link>}
+            actions={<div className="header-actions"><ThemeToggle /></div>}
+          />
         </header>
         <div className="site-frame">
           <div className="frame-center">{children}</div>
