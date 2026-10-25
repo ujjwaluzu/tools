@@ -870,10 +870,12 @@ h1 span, h2 span { color: var(--muted-headline); }
   .frame-center { width: 100%; }
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1024px) {
   .header-inner { grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; padding-inline: 24px; }
   .tools-category-nav { display: none; }
   .tools-mobile-trigger { display: inline-flex; grid-column: 2; grid-row: 1; }
+  .tools-mega-links,
+  .tools-all-group > a:not(.tools-all-group-title) { display: none; }
   .tools-all-groups { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .header-actions { gap: 10px; }
 }

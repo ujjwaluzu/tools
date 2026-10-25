@@ -63,11 +63,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <header className="site-header">
           <ToolsMegaMenu
             groups={toolGroups}
-            brand={<Link className="brand" href="/tools" aria-label="Tools home">
+            brand={<Link key="brand" className="brand" href="/tools" aria-label="Tools home">
               <span className="brand-mark" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 3v6a4 4 0 0 0 8 0V3" /></svg></span>
               <span className="brand-name">Tools</span>
             </Link>}
-            actions={<div className="header-actions"><ThemeToggle /></div>}
+            actions={<div key="actions" className="header-actions"><ThemeToggle /></div>}
           />
         </header>
         <div className="site-frame">
