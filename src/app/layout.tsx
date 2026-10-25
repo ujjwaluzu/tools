@@ -33,6 +33,11 @@ export const metadata: Metadata = {
   title: { default: "Ujjwal Tools - Tiny tools for annoying tasks", template: "%s - Ujjwal Tools" },
   description: "Small, useful tools for everyday, developer, document, and creative tasks. Private by default, with local processing whenever possible.",
   applicationName: "Ujjwal Tools",
+  keywords: ["free online tools", "browser tools", "PDF tools", "image tools", "developer tools", "Markdown tools", "text converters"],
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
+  twitter: {
+    card: "summary",
+  },
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },

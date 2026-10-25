@@ -5,11 +5,14 @@ import { Cell, DotShape, Grid, Tag } from "@/components/home/DesignPrimitives";
 import { HeroDroid } from "@/components/home/HeroDroid";
 import { ToolSearch } from "@/components/tools/ToolSearch";
 import { categories, tools } from "@/lib/tools/registry";
+import { siteUrl } from "@/lib/tools/metadata";
 
 export const metadata: Metadata = {
   title: "Small tools for annoying tasks",
   description: "Find quick, private tools for code, text, color, encoding, and more.",
   alternates: { canonical: "/tools" },
+  openGraph: { title: "Ujjwal Tools - Small tools for annoying tasks", description: "Find quick, private tools for code, text, color, encoding, and more.", url: "/tools", siteName: "Ujjwal Tools", type: "website" },
+  twitter: { card: "summary", title: "Ujjwal Tools - Small tools for annoying tasks", description: "Find quick, private browser tools for everyday tasks." },
 };
 
 // href is the catalogue identity; a few registry entries share a slug across categories.
@@ -27,8 +30,16 @@ const DIFFERENCES = [
 
 export default function ToolsHomePage() {
   const categoryName = (slug: string) => categories.find((category) => category.slug === slug)?.name ?? "";
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Ujjwal Tools", url: siteUrl, logo: `${siteUrl}/android-chrome-512x512.png` },
+      { "@type": "WebSite", "@id": `${siteUrl}/#website`, name: "Ujjwal Tools", url: `${siteUrl}/tools`, description: "Small, useful browser tools for everyday, developer, document, and creative tasks.", publisher: { "@id": `${siteUrl}/#organization` }, inLanguage: "en" },
+    ],
+  };
   return (
     <main className="tools-home">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema).replace(/</g, "\\u003c") }} />
       <section className="home-hero">
         <Tag className="hero-enter" style={cue(0)}>New · {uniqueTools.length} tools</Tag>
         <h1 className="hero-enter" style={cue(1)}>Small tools for<br /><span>annoying tasks.</span></h1>

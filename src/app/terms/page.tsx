@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   title: "Terms of Use",
   description: "Terms for using Ujjwal Tools.",
   alternates: { canonical: "/terms" },
+  openGraph: { title: "Terms of Use - Ujjwal Tools", description: "Terms for using Ujjwal Tools.", url: "/terms", siteName: "Ujjwal Tools", type: "article" },
+  twitter: { card: "summary", title: "Terms of Use - Ujjwal Tools", description: "Terms for using Ujjwal Tools." },
 };
 
 export default function TermsPage() {

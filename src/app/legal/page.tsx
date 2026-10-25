@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   title: "Legal Notice",
   description: "Legal information about Ujjwal Tools, its content, and third-party services.",
   alternates: { canonical: "/legal" },
+  openGraph: { title: "Legal Notice - Ujjwal Tools", description: "Legal information about Ujjwal Tools, its content, and third-party services.", url: "/legal", siteName: "Ujjwal Tools", type: "article" },
+  twitter: { card: "summary", title: "Legal Notice - Ujjwal Tools", description: "Legal information about Ujjwal Tools and its services." },
 };
 
 export default function LegalNoticePage() {

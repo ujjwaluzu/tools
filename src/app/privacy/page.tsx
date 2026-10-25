@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How Ujjwal Tools handles information when you use the site and its tools.",
   alternates: { canonical: "/privacy" },
+  openGraph: { title: "Privacy Policy - Ujjwal Tools", description: "How Ujjwal Tools handles information when you use the site and its tools.", url: "/privacy", siteName: "Ujjwal Tools", type: "article" },
+  twitter: { card: "summary", title: "Privacy Policy - Ujjwal Tools", description: "How Ujjwal Tools handles information when you use the site and its tools." },
 };
 
 export default function PrivacyPage() {
